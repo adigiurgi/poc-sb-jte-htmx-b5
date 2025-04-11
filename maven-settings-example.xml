@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    
+    <!-- Configurare pentru autentificare la serverul remote WebLogic -->
+    <servers>
+        <server>
+            <id>remote-weblogic</id>
+            <username>weblogic-user</username>
+            <!-- Folosiți una din cele două opțiuni de autentificare de mai jos -->
+            
+            <!-- Opțiunea 1: Parolă în text clar (nu este recomandată pentru producție) -->
+            <password>your-password-here</password>
+            
+            <!-- Opțiunea 2: Folosire de chei private SSH (recomandată) -->
+            <!-- 
+            <privateKey>/path/to/private/key</privateKey>
+            <passphrase>your-passphrase-if-needed</passphrase>
+            -->
+        </server>
+    </servers>
+    
+</settings>

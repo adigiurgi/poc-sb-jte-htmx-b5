@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-web-app xmlns="http://xmlns.oracle.com/weblogic/weblogic-web-app"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation="http://xmlns.oracle.com/weblogic/weblogic-web-app http://xmlns.oracle.com/weblogic/weblogic-web-app/1.9/weblogic-web-app.xsd">
+
+    <context-root>/webapp</context-root>
+    
+    <!-- Class loader configuration -->
+    <container-descriptor>
+        <!-- <prefer-web-inf-classes>true</prefer-web-inf-classes> -->
+        <show-archived-real-path-enabled>true</show-archived-real-path-enabled>
+        <prefer-application-packages>
+            <package-name>org.slf4j.*</package-name>
+            <package-name>org.springframework.*</package-name>
+            <package-name>com.fasterxml.jackson.*</package-name>
+        </prefer-application-packages>
+    </container-descriptor>
+    
+    <!-- Session configuration -->
+    <session-descriptor>
+        <timeout-secs>1800</timeout-secs>
+        <persistent-store-type>memory</persistent-store-type>
+        <sharing-enabled>false</sharing-enabled>
+        <cookies-enabled>true</cookies-enabled>
+        <url-rewriting-enabled>false</url-rewriting-enabled>
+    </session-descriptor>
+    
+    <!-- Security configurations -->
+    <!-- 
+    <security-role-assignment>
+        <role-name>admin</role-name>
+        <principal-name>administrators</principal-name>
+    </security-role-assignment>
+    <security-role-assignment>
+        <role-name>user</role-name>
+        <principal-name>users</principal-name>
+    </security-role-assignment>
+    -->
+    
+    <!-- JNDI bindings for resources -->
+    <!-- 
+    <resource-description>
+        <res-ref-name>jdbc/MyDataSource</res-ref-name>
+        <jndi-name>jdbc/weblogic/MyDataSource</jndi-name>
+    </resource-description>
+    -->
+
+</weblogic-web-app>
