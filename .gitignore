@@ -21,18 +21,18 @@
 *.rar
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+.hs_err_pid*
+.replay_pid*
 
 ### Spring Boot ###
 HELP.md
-target/
+/target/*
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
 ### JTE ###
-jte-classes/
+/jte-classes/*
 .jte/
 
 ### STS ###
@@ -61,7 +61,7 @@ build/
 !**/src/test/**/build/
 
 ### VS Code ###
-.vscode/
+/.vscode/
 .code-workspace
 
 ### Eclipse ###
