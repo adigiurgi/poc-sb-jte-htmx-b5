@@ -22,7 +22,7 @@
 </head>
 <body>
     <!-- Header -->
-    <header id="header" class="bg-white d-flex align-items-center px-3">
+    <header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
         <div class="container-fluid">
             <div class="row w-100 align-items-center">
                 <div class="col-3 d-flex align-items-center">                    <!-- Logo -->
@@ -63,7 +63,7 @@
     <!-- Main Content Container -->
     <div class="main-container">
         <!-- Sidebar Navigation -->
-        <nav id="sidebar" class="bg-light">
+        <nav id="sidebar" class="bg-body-secondary">
             <div class="list-group list-group-flush pt-2">                @for(var item : menuItems)
                     <a href="#${item.get("id")}" class="list-group-item list-group-item-action nav-link d-flex align-items-center" hx-get="${contextPath}${item.get("link")}" hx-target="#content-area" hx-swap="innerHTML" hx-trigger="click">
                         <i class="bi bi-${item.get("icon")} me-2"></i>
@@ -74,7 +74,7 @@
         </nav>
 
         <!-- Content Area -->
-        <main id="content" class="bg-white">
+        <main id="content" class="bg-body-tertiary">
             <div id="content-area" class="h-100">
                 <!-- Initial content on page load -->
                 <div class="text-center py-5">
@@ -86,7 +86,7 @@
     </div>
 
     <!-- Footer -->
-    <footer id="footer" class="bg-light d-flex align-items-center px-3">
+    <footer id="footer" class="bg-body-secondary d-flex align-items-center px-3">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 text-center">

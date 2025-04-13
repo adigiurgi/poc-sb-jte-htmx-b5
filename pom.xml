@@ -22,6 +22,7 @@
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
         <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy</weblogic.autodeploy.dir>
+        <jte.version>3.2.0</jte.version>
         
         <!-- Remote WebLogic deployment properties -->
         <remote.weblogic.host>remote-weblogic-host</remote.weblogic.host>
@@ -54,6 +55,40 @@
             </properties>
             <build>
                 <plugins>
+                    <!-- JTE Precompilation -->
+                    <plugin>
+                        <groupId>gg.jte</groupId>
+                        <artifactId>jte-maven-plugin</artifactId>
+                        <version>${jte.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>precompile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirectory>${basedir}/src/main/jte</sourceDirectory>
+                                    <targetDirectory>${basedir}/jte-classes</targetDirectory>
+                                    <contentType>Html</contentType>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+                    <!-- Include jte-classes in WAR for WebLogic -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>${basedir}/jte-classes</directory>
+                                    <targetPath>WEB-INF/classes</targetPath>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+                    
                     <!-- Auto-deploy to WebLogic -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -132,12 +167,12 @@
         <dependency>
             <groupId>gg.jte</groupId>
             <artifactId>jte</artifactId>
-            <version>3.2.0</version>
+            <version>${jte.version}</version>
         </dependency>
         <dependency>
             <groupId>gg.jte</groupId>
             <artifactId>jte-spring-boot-starter-2</artifactId>
-            <version>3.2.0</version>
+            <version>${jte.version}</version>
         </dependency>
         
         <!-- WebJars pentru Bootstrap 5 și htmx -->
