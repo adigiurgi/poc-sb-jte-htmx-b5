@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-1">
                     <!-- Theme Toggle Button -->
-                    <button id="theme-toggle" class="btn btn-sm btn-outline-secondary me-3" type="button" aria-label="Theme Toggle">
+                    <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button" aria-label="Theme Toggle">
                         <i class="bi bi-sun-fill theme-icon-light"></i>
                         <i class="bi bi-moon-fill theme-icon-dark d-none"></i>
                     </button>
@@ -44,7 +44,7 @@
                 <div class="col-2 pull-right">                    
                     <!-- User Info -->
                     <div class="dropdown d-inline-block">
-                        <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="d-inline-block text-truncate user-info">${currentUser.getFullName()}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">

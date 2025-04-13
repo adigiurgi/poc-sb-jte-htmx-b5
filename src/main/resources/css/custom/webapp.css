@@ -85,3 +85,7 @@ body {
 [data-bs-theme="dark"] #footer {
     background-color: #212529 !important;
 }
+
+[data-bs-theme="dark"] #header {
+    background-color: #212529 !important;
+}
