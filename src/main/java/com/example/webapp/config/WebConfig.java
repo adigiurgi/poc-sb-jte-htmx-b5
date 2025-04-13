@@ -9,7 +9,6 @@ public class WebConfig implements WebMvcConfigurer {
     // Configurare JTE este gestionată automat de jte-spring-boot-starter-3
     // Nu mai este nevoie de configurarea manuală a ViewResolver-ului
     
-    @SuppressWarnings("null")
 @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         // Configurare pentru resurse CSS

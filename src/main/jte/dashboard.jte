@@ -9,7 +9,7 @@
 @param String contextPath
 
 <!DOCTYPE html>
-<html lang="ro">
+<html lang="ro" data-bs-theme="light">
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${appName} - Dashboard</title>    <!-- Bootstrap 5 CSS -->
@@ -20,7 +20,8 @@
     <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/icons/bootstrap-icons.min-1.11.3.css">
 
 </head>
-<body>
+<body hx-indicator=".hx-loading-indicator">
+    <div class="hx-loading-indicator"></div>
     <!-- Header -->
     <header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
         <div class="container-fluid">
@@ -65,7 +66,12 @@
         <!-- Sidebar Navigation -->
         <nav id="sidebar" class="bg-body-secondary">
             <div class="list-group list-group-flush pt-2">                @for(var item : menuItems)
-                    <a href="#${item.get("id")}" class="list-group-item list-group-item-action nav-link d-flex align-items-center" hx-get="${contextPath}${item.get("link")}" hx-target="#content-area" hx-swap="innerHTML" hx-trigger="click">
+                    <a href="#${item.get("id")}" 
+                       class="list-group-item list-group-item-action nav-link d-flex align-items-center" 
+                       hx-get="${contextPath}${item.get("link")}" 
+                       hx-target="#content-area" 
+                       hx-swap="innerHTML" 
+                       hx-trigger="click">
                         <i class="bi bi-${item.get("icon")} me-2"></i>
                         ${item.get("name")}
                     </a>
@@ -75,6 +81,34 @@
 
         <!-- Content Area -->
         <main id="content" class="bg-body-tertiary">
+            <!-- Loading Indicator -->
+            <!-- <div id="loading-indicator" class="hx-loading-indicator">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Se încarcă...</span>
+                </div>
+            </div> -->
+            
+            <!-- Error container for HTMX errors -->
+            <div id="error-container" class="alert alert-danger d-none" role="alert">
+                <h4 class="alert-heading">A apărut o eroare!</h4>
+                <div id="error-content"></div>
+                <hr>
+                <div class="mt-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="document.getElementById('error-container').classList.add('d-none')">
+                        Închide
+                    </button>
+                    <button id="show-details-btn" type="button" class="btn btn-sm btn-outline-secondary ms-2 d-none" 
+                            data-bs-toggle="collapse" data-bs-target="#error-details-collapse">
+                        Afișează detalii
+                    </button>
+                </div>
+                <div class="collapse mt-3" id="error-details-collapse">
+                    <div class="card card-body">
+                        <small class="text-muted" id="error-details"></small>
+                    </div>
+                </div>
+            </div>
+            
             <div id="content-area" class="h-100">
                 <!-- Initial content on page load -->
                 <div class="text-center py-5">
@@ -93,14 +127,14 @@
                     <small class="text-muted">© 2025 ${appName} | Profil activ: ${activeProfile}</small>
                 </div>
             </div>
-        </div>    </footer>    <!-- Bootstrap 5 & htmx JS -->
+        </div>    </footer>    
+    
+    <!-- Bootstrap 5 & htmx JS -->
     <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min-5.3.5.js"></script>
     <script src="${contextPath}/js/vendor/htmx/htmx.min-2.0.4.js"></script>
-    <!-- Bootstrap Icons -->
-    
     
     <script>
-        // Activează tooltip-urile Bootstrap
+        // Activează tooltip-urile Bootstrap și inițializează tema
         document.addEventListener('DOMContentLoaded', function() {
             var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
             var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
@@ -170,6 +204,60 @@
                 darkIcon.classList.add('d-none');
             }
         }
+        
+        // Handler global pentru erorile HTMX
+        
+        document.body.addEventListener('htmx:responseError', function(event) {
+            const errorContainer = document.getElementById('error-container');
+            const errorContent = document.getElementById('error-content');
+            const errorDetails = document.getElementById('error-details');
+            const showDetailsBtn = document.getElementById('show-details-btn');
+            
+            const xhr = event.detail.xhr;
+            const requestPath = event.detail.pathInfo ? event.detail.pathInfo.requestPath : '';
+            
+            // Extrage conținutul paginii de eroare din răspuns
+            let errorHTML = xhr.responseText;
+            let errorMessage = 'A apărut o eroare la procesarea cererii.';
+            let errorTrace = '';
+            
+            try {
+                // Extrage titlul și descrierea erorii
+                const tempDiv = document.createElement('div');
+                tempDiv.innerHTML = errorHTML;
+                
+                // Caută mesajul de eroare în HTML
+                const leadParas = tempDiv.querySelectorAll('.lead');
+                if (leadParas.length > 0) {
+                    errorMessage = leadParas[0].textContent;
+                }
+                
+                // Caută stack trace-ul dacă există
+                const traceElements = tempDiv.querySelectorAll('pre');
+                if (traceElements.length > 0) {
+                    errorTrace = traceElements[0].textContent;
+                    showDetailsBtn.classList.remove('d-none');
+                } else {
+                    showDetailsBtn.classList.add('d-none');
+                }
+                
+                // Setează conținutul de eroare
+                errorContent.innerHTML = '<p>' + errorMessage + '</p>' +
+                    '<p><strong>URL:</strong> ' + requestPath + '</p>';
+                errorDetails.textContent = errorTrace;
+                
+            } catch (e) {
+                // Fallback dacă parsarea eșuează
+                errorContent.textContent = 'Eroare la încărcarea conținutului: ' + requestPath;
+                showDetailsBtn.classList.add('d-none');
+            }
+            
+            // Arată containerul de eroare
+            errorContainer.classList.remove('d-none');
+            
+            // Scrollează la containerul de eroare
+            errorContainer.scrollIntoView({ behavior: 'smooth' });
+        });
     </script>
 </body>
 </html>
