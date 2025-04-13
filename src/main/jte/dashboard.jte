@@ -34,13 +34,14 @@
                     <!-- App Title -->
                     <h4 class="mb-0 fw-semibold">${appName}</h4>
                 </div>
-                <div class="col-3 text-end">                    
+                <div class="col-1">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-sm btn-outline-secondary me-3" type="button" aria-label="Theme Toggle">
                         <i class="bi bi-sun-fill theme-icon-light"></i>
                         <i class="bi bi-moon-fill theme-icon-dark d-none"></i>
                     </button>
-                    
+                </div>
+                <div class="col-2 pull-right">                    
                     <!-- User Info -->
                     <div class="dropdown d-inline-block">
                         <button class="btn btn-outline-secondary dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">

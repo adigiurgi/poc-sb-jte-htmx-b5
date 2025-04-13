@@ -32,7 +32,7 @@ target/*
 !**/src/test/**/target/
 
 ### JTE ###
-/jte-classes/*
+jte-classes/*
 .jte/
 
 ### STS ###
