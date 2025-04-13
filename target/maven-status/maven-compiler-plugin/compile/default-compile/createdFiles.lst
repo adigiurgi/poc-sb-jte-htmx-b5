@@ -1,7 +1,0 @@
-com\example\webapp\controller\HomeController.class
-com\example\webapp\WebApplication.class
-com\example\webapp\config\WebConfig.class
-com\example\webapp\model\User$UserBuilder.class
-com\example\webapp\model\User.class
-com\example\webapp\controller\PartialsController.class
-com\example\webapp\ServletInitializer.class
