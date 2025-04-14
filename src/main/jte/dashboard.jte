@@ -20,15 +20,15 @@
     <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/icons/bootstrap-icons.min-1.11.3.css">
 
 </head>
-<body hx-indicator=".hx-loading-indicator">
-    <div class="hx-loading-indicator"></div>
+<body>
+    
     <!-- Header -->
     <header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
         <div class="container-fluid">
             <div class="row w-100 align-items-center">
                 <div class="col-3 d-flex align-items-center">                    <!-- Logo -->
                     <div class="me-2">
-                        <img src="${contextPath}/static/4636.jpg" alt="Logo" class="app-logo">
+                        <img src="${contextPath}/static/logo_lion.png" alt="Logo" class="app-logo">
                     </div>
                 </div>
                 <div class="col-6 text-center">
@@ -74,8 +74,12 @@
                        hx-trigger="click">
                         <i class="bi bi-${item.get("icon")} me-2"></i>
                         ${item.get("name")}
+                    <!-- Indicatori de încărcare pentru HTMX -->
+                    <!-- <div class="my-indicator"></div> -->
+                    <div class="my-indicator-overlay"></div>    
                     </a>
                 @endfor
+                
             </div>
         </nav>
 

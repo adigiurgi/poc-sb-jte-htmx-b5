@@ -80,7 +80,7 @@ body {
     font-size: 0.6rem;
 }
 
-.hx-loading-indicator {
+/* .my-indicator {
     opacity: 0;
     position: fixed;
     top: 0;
@@ -88,14 +88,39 @@ body {
     width: 100%;
     height: 4px;
     background: linear-gradient(90deg, transparent,#000, transparent, #000, transparent);
+    z-index: 1000;
 }
 
-.htmx-request.hx-loading-indicator {
+.htmx-request .my-indicator {
     opacity: 1;
-    animation: fadeIn 2s linear forwards, slide 1.2s ease-in-out infinite;
+    animation: fadeIn 0.3s linear forwards, slide 1.2s ease-in-out infinite;
+}
+.htmx-request.my-indicator {
+    opacity: 1;
+    animation: fadeIn 0.3s linear forwards, slide 1.2s ease-in-out infinite;
+} */
+
+/* Overlay semi-opac pentru a bloca UI-ul în timpul încărcării */
+.my-indicator-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    cursor: wait;
+    
+}
+.htmx-request .my-indicator-overlay {
+    display: block;
+}
+.htmx-request.my-indicator-overlay {
+    display: block;
 }
 
-@keyframes slide {
+/* @keyframes slide {
     0%   { transform: translateX(-100%); }
     100% { transform: translateX( 100%); }
 }
@@ -104,7 +129,7 @@ body {
     0%   { opacity: 0; }
     50%  { opacity: 0; }
     100% { opacity: 1; }
-}
+} */
 
 /* Stiluri pentru butonul de comutare a temei */
 #theme-toggle {
