@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Import base logback config -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    
+    <!-- Include Spring Boot's functionality -->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    
+    <!-- Import different configurations based on Spring profiles -->
+    <springProfile name="dev">
+        <include resource="logback/logback-dev.xml"/>
+    </springProfile>
+    
+    <springProfile name="prod">
+        <include resource="logback/logback-prod.xml"/>
+    </springProfile>
+    
+    <!-- Set default profile if none active -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE" />
+    </root>
+</configuration>

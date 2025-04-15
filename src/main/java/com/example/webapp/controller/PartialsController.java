@@ -33,9 +33,9 @@ public class PartialsController {
     public String search(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000);
         log.debug("Accesare conținut parțial pentru căutare");
-        //throw new UnsupportedOperationException("Funcționalitate neimplementată");
-        model.addAttribute("contextPath", request.getContextPath());
-        return "partials/search";
+        throw new UnsupportedOperationException("Funcționalitate neimplementată");
+        //model.addAttribute("contextPath", request.getContextPath());
+        //return "partials/search";
     }
 
     @GetMapping("/valorification")

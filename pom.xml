@@ -21,8 +21,9 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
-        <weblogic.autodeploy.dir>C:\Oracle\Oracle_Home\user_projects\domains\base_domain\autodeploy</weblogic.autodeploy.dir>
+        <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy</weblogic.autodeploy.dir>
         <jte.version>3.2.0</jte.version>
+        <logs.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\logs\webapp</logs.dir>
         
         <!-- Remote WebLogic deployment properties -->
         <remote.weblogic.host>remote-weblogic-host</remote.weblogic.host>
@@ -243,6 +244,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+        
+        <!-- Logstash Logback Encoder pentru format NDJSON -->
+        <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>7.4</version>
         </dependency>
     </dependencies>
     
