@@ -15,6 +15,13 @@
         </rollingPolicy>
     </appender>
     
+    <!-- Consola pentru vizualizare log-uri în timpul dezvoltării -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender>
+    
     <!-- Niveluri de logare mai detaliate pentru dezvoltare -->
     <logger name="com.example.webapp" level="DEBUG" additivity="false">
         <appender-ref ref="CONSOLE" />

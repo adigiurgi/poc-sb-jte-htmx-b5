@@ -3,20 +3,32 @@
     <!-- Import base logback config -->
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     
-    <!-- Include Spring Boot's functionality -->
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!-- Definirea appenderului CONSOLE pentru configurația de rezervă -->
+    <!-- <appender name="DEFAULT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
+        </encoder>
+    </appender> -->
     
-    <!-- Import different configurations based on Spring profiles -->
-    <springProfile name="dev">
-        <include resource="logback/logback-dev.xml"/>
-    </springProfile>
+    <!-- Definirea unei variabile pentru profilul activ -->
+    <property name="ACTIVE_PROFILE" value="${spring.profiles.active:-dev}" />
     
-    <springProfile name="prod">
-        <include resource="logback/logback-prod.xml"/>
-    </springProfile>
+    <!-- Afișăm profilul activ pentru debugging -->
+    <logger name="ch.qos.logback" level="INFO" />
+    <statusListener class="ch.qos.logback.core.status.OnConsoleStatusListener" />
     
-    <!-- Set default profile if none active -->
-    <root level="INFO">
-        <appender-ref ref="CONSOLE" />
-    </root>
+    <!-- Folosim Janino pentru condiționare în loc de springProfile -->
+    <if condition='p("ACTIVE_PROFILE").contains("prod")'>
+        <then>
+            <include resource="logback/logback-prod.xml"/>
+        </then>
+        <else>
+            <include resource="logback/logback-dev.xml"/>
+        </else>
+    </if>
+    
+    <!-- Configurare de rezervă/default în caz că include-urile de mai sus eșuează -->
+    <!-- <root level="INFO">
+        <appender-ref ref="DEFAULT_CONSOLE" />
+    </root> -->
 </configuration>
