@@ -36,6 +36,7 @@ public class WebConfig implements WebMvcConfigurer {
         registration.addUrlPatterns("/css/vendor/*", "/js/vendor/*");
         registration.setName("gzipResourceFilter");
         registration.setOrder(1);
+        System.out.println("GzipResourceFilter a fost înregistrat pentru profilul de producție.");
         return registration;
     }
     
@@ -86,6 +87,7 @@ public class WebConfig implements WebMvcConfigurer {
                     .addResolver(new GzipResourceResolver())
                     .addResolver(new EncodedResourceResolver())
                     .addResolver(new PathResourceResolver());
+            System.out.println("Handler pentru " + pathPattern + " a fost configurat cu suport gzip.");
         } else {
             // În dev, fără compresie și fără cache
             registry.addResourceHandler(pathPattern)

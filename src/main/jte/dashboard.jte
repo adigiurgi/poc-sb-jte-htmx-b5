@@ -12,12 +12,19 @@
 <html lang="ro" data-bs-theme="light">
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${appName} - Dashboard</title>    <!-- Bootstrap 5 CSS -->
-    <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.min-5.3.5.css">
+    <title>${appName} - Dashboard</title>    
+    <!-- Bootstrap 5 CSS -->
+    @if (activeProfile == "dev") 
+        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.css">
+        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+    @else
+        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.min.css.gz">
+        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css.gz">
+    @endif
     
     <!-- Custom styles -->
     <link rel="stylesheet" href="${contextPath}/css/custom/webapp.css">
-    <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/icons/bootstrap-icons.min-1.11.3.css">
+    
 
 </head>
 <body>
@@ -134,8 +141,13 @@
         </div>    </footer>    
     
     <!-- Bootstrap 5 & htmx JS -->
-    <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min-5.3.5.js"></script>
-    <script src="${contextPath}/js/vendor/htmx/htmx.min-2.0.4.js"></script>
+    @if (activeProfile == "dev") 
+        <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.5.3.5.js"></script>
+        <script src="${contextPath}/js/vendor/htmx/htmx.2.0.4.js"></script> 
+    @else
+        <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min.5.3.5.js.gz"></script>
+        <script src="${contextPath}/js/vendor/htmx/htmx.min.2.0.4.js.gz"></script>
+    @endif    
     
     <script>
         // Activează tooltip-urile Bootstrap și inițializează tema

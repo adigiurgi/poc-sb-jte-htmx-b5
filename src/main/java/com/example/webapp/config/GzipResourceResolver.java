@@ -37,7 +37,7 @@ public class GzipResourceResolver implements ResourceResolver {
             if (!gzippedPath.endsWith(".gz")) {
                 gzippedPath = gzippedPath + ".gz";
             }
-            
+            System.out.println("Încercăm să servim resursa comprimată: " + gzippedPath);
             logger.debug("Încercăm să servim resursa comprimată: {}", gzippedPath);
             
             // Căutăm resursa comprimată
@@ -52,19 +52,23 @@ public class GzipResourceResolver implements ResourceResolver {
                         try {
                             Resource candidate = location.createRelative(gzippedPath);
                             if (candidate.exists() && candidate.isReadable()) {
+                                System.out.println("Resursa comprimată găsită direct din locatia: " + candidate.getURL());
                                 gzipped = candidate;
                                 break;
                             }
                         } catch (IOException e) {
+                            System.out.println("Eroare la accesarea resursei comprimate: " + e.getMessage());
                             logger.debug("Eroare la accesarea resursei comprimate: {}", e.getMessage());
                         }
                     }
                 }
             } catch (Exception e) {
+                System.out.println("Eroare la rezolvarea resursei comprimate: " + e.getMessage());
                 logger.error("Eroare la rezolvarea resursei comprimate: {}", e.getMessage());
             }
             
             if (gzipped != null) {
+                System.out.println("S-a găsit varianta comprimată pentru: " + requestPath);
                 logger.debug("S-a găsit varianta comprimată pentru: {}", requestPath);
                 
                 // Setăm atributele pentru a indica că aceasta este o resursă comprimată

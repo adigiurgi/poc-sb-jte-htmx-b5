@@ -1,0 +1,15 @@
+create user webapp identified by parola01;
+grant create session to webapp;
+grant create any context to webapp;
+grant execute on Dbms_Session to webapp;
+create or replace package webapp.DATABSE_CONNECTION_CONTEXT is
+ procedure set_connection_context (p_username in varchar2);
+end;
+create or replace package body webapp.DATABSE_CONNECTION_CONTEXT is
+  procedure set_connection_context (p_username in varchar2) is
+  begin
+    DBMS_SESSION.set_context(namespace => 'WEBAPP_CTX', attribute => 'USERNAME', value => p_username);
+  end set_connection_context;
+end;
+CREATE CONTEXT WEBAPP_CTX USING webapp.DATABSE_CONNECTION_CONTEXT;
+grant execute on webapp.DATABSE_CONNECTION_CONTEXT to webapp;
