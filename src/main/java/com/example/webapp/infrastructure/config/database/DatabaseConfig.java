@@ -1,4 +1,4 @@
-package com.example.webapp.config;
+package com.example.webapp.infrastructure.config.database;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;

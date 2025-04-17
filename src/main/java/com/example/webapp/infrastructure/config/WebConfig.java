@@ -1,4 +1,4 @@
-package com.example.webapp.config;
+package com.example.webapp.infrastructure.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

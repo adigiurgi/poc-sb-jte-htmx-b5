@@ -1,6 +1,6 @@
-package com.example.webapp.controller;
+package com.example.webapp.infrastructure.adapters.in.web;
 
-import com.example.webapp.model.User;
+import com.example.webapp.application.domain.models.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("SpringMVCViewInspection")
 @Slf4j
 @Controller
 public class HomeController {

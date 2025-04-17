@@ -1,4 +1,4 @@
-package com.example.webapp.controller;
+package com.example.webapp.infrastructure.adapters.in.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
 
+@SuppressWarnings("SpringMVCViewInspection")
 @Slf4j
 @Controller
 @RequestMapping("/partials")
@@ -33,9 +34,9 @@ public class PartialsController {
     public String search(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000);
         log.debug("Accesare conținut parțial pentru căutare");
-        throw new UnsupportedOperationException("Funcționalitate neimplementată");
-        //model.addAttribute("contextPath", request.getContextPath());
-        //return "partials/search";
+        //throw new UnsupportedOperationException("Funcționalitate neimplementată");
+        model.addAttribute("contextPath", request.getContextPath());
+        return "partials/search";
     }
 
     @GetMapping("/valorification")

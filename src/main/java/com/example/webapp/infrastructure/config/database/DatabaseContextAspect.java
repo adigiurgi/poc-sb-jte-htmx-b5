@@ -1,6 +1,5 @@
-package com.example.webapp.config.aspect;
+package com.example.webapp.infrastructure.config.database;
 
-import com.example.webapp.config.annotation.SetDatabaseContextForMethod;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -46,7 +45,7 @@ public class DatabaseContextAspect {
      * @throws Throwable if an error occurs during method execution
      */
     @Around("@within(org.springframework.stereotype.Repository) && " +
-            "@annotation(com.example.webapp.config.annotation.SetDatabaseContextForMethod)")
+            "@annotation(com.example.webapp.infrastructure.config.database.SetDatabaseContextForMethod)")
     public Object setDatabaseContext(ProceedingJoinPoint joinPoint) throws Throwable {
         MethodSignature signature = (MethodSignature) joinPoint.getSignature();
         Method method = signature.getMethod();

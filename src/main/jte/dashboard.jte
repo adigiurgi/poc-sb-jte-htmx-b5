@@ -1,4 +1,4 @@
-@import com.example.webapp.model.User
+@import com.example.webapp.application.domain.models.User
 @import java.util.List
 @import java.util.Map
 

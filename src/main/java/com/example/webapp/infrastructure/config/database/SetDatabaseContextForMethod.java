@@ -1,4 +1,4 @@
-package com.example.webapp.config.annotation;
+package com.example.webapp.infrastructure.config.database;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

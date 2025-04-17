@@ -1,4 +1,4 @@
-package com.example.webapp.controller;
+package com.example.webapp.infrastructure.adapters.in.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package com.example.webapp.config;
+package com.example.webapp.infrastructure.config;
 
 import org.springframework.web.filter.OncePerRequestFilter;
 

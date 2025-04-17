@@ -1,4 +1,4 @@
-package com.example.webapp.config.exceptions;
+package com.example.webapp.application.exceptions;
 
 public class EntityNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
