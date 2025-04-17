@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${appName} - Dashboard</title>    
     <!-- Bootstrap 5 CSS -->
-    @if (activeProfile == "dev") 
+    @if (activeProfile.equals("dev")) 
         <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.css">
         <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
     @else
@@ -141,7 +141,7 @@
         </div>    </footer>    
     
     <!-- Bootstrap 5 & htmx JS -->
-    @if (activeProfile == "dev") 
+    @if (activeProfile.equals("dev")) 
         <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.5.3.5.js"></script>
         <script src="${contextPath}/js/vendor/htmx/htmx.2.0.4.js"></script> 
     @else

@@ -236,6 +236,11 @@
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
         
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!-- HikariCP connection pool (already included with spring-boot-starter-data-jdbc) -->
         
         <!-- Logstash Logback Encoder pentru format NDJSON -->
