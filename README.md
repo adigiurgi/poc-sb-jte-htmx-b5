@@ -21,19 +21,19 @@ The application has the following core features:
       5.4. Administration
 
 ### Software design key principles for backend development
-1. The application follows a hexagonal architecture and is structured in a way that separates the core business logic from the presentation layer, making it easier to maintain and test.
-2. The application uses DDD concepts when designing the domain model and the application services.
-3. The application tries to use SOLID principles as much as possible throughout the codebase.
-4. The application tries to have at least 80% code coverage for the unit tests and 100% code coverage for the integration tests.
+1. The application should follow a hexagonal architecture and is structured in a way that separates the core business logic from the presentation layer, making it easier to maintain and test.
+2. The application should use DDD concepts when designing the domain model and the application services.
+3. The application should use SOLID principles as much as possible throughout the codebase.
+4. The application should have at least 80% code coverage for the unit tests and 100% code coverage for the integration tests.
 
 ### Software design key principles for frontend development
 1. The application uses JTE (Java Template Engine) for server-side rendering of HTML templates.
 2. The application uses HTMX to create a dynamic and responsive user interface.
 3. The application uses Bootstrap 5 for styling and layout.
 
-
 ### The application uses Maven profiles to manage different environments and configurations.
 It has 3 profiles: 
-- dev : default active profile (when using 'mvn spring-boot:run' cmd) - the app runs locally in spring's boot embedded Tomcat (used only for developers test)
-- prod: on this profile we build the project in the same manner as we do for production and after that we copy the resulted war in the /autodeoply directory of the locally running weblogic instance domain (used only for developers test)
-- remote-deploy: on this profile we build the project in the same manner as we do for production and after that we copy the resulted war in the /autodeoply directory of the remote running weblogic instance domain (used for integrated testing inside the organization)
+- dev : default active profile (when using 'mvn spring-boot:run' cmd) - the app runs locally as a jar in spring's boot embedded Tomcat
+- local: on this profile we build the project as a WAR for a locally installed WebLogic (without any sso integration, the user is mocked from a configuration class) and after that we copy the resulted war in the /autodeoply directory (used for developer testing of any possible WebLogic specific issues regarding spring boot and other dependencies)
+- test: on this profile we build the project as a WAR for a remote installed WebLogic (with proper sso integration) and after that we copy the resulted war in the /autodeoply directory of the remote running weblogic instance domain (used by the QA team for testing the application in a production-like environment).
+- prod: on this profile we build the project as a WAR for production with proper sso integration and after that we copy the resulted war in specific directory of the organization file server (used by the DevOps team for deploying the application in production environment).
