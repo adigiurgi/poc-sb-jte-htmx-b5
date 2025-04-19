@@ -1,4 +1,4 @@
-package com.example.webapp.infrastructure.adapters.out.database.oracle;
+package com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;

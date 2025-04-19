@@ -1,8 +1,17 @@
+--WITH DBA
 create user webapp identified by parola01;
-grant create session to webapp;
-grant create any context to webapp;
+grant DB_DEVELOPER_ROLE to WEBAPP;
 grant execute on Dbms_Session to webapp;
-GRANT CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE SEQUENCE TO webapp;
+ALTER USER WEBAPP QUOTA UNLIMITED ON USERS;
+ALTER USER WEBAPP DEFAULT TABLESPACE USERS;
+
+create user FLYWAY_WEBAPP identified by parola01;
+grant DB_DEVELOPER_ROLE to FLYWAY_WEBAPP;
+ALTER USER FLYWAY_WEBAPP QUOTA UNLIMITED ON USERS;
+ALTER USER FLYWAY_WEBAPP DEFAULT TABLESPACE USERS;
+grant execute on Dbms_Session to FLYWAY_WEBAPP;
+
+--WITH USER WEBAPP
 create or replace package webapp.DATABSE_CONNECTION_CONTEXT is
  procedure set_connection_context (p_username in varchar2);
 end;
@@ -13,4 +22,3 @@ create or replace package body webapp.DATABSE_CONNECTION_CONTEXT is
   end set_connection_context;
 end;
 CREATE CONTEXT WEBAPP_CTX USING webapp.DATABSE_CONNECTION_CONTEXT;
-grant execute on webapp.DATABSE_CONNECTION_CONTEXT to webapp;

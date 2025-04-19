@@ -1,14 +1,16 @@
 @import com.example.webapp.application.domain.models.User
+@import com.example.webapp.application.dto.query.UserActiveProfileDto
 @import java.util.List
 @import java.util.Map
 
 @param String appName
 @param String activeProfile
-@param User currentUser
+@param UserActiveProfileDto currentUserProfile
 @param List<Map<String, String>> menuItems
 @param String contextPath
 
 <!DOCTYPE html>
+<!--suppress HtmlUnknownTarget -->
 <html lang="ro" data-bs-theme="light">
 <head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -53,14 +55,12 @@
                     <!-- User Info -->
                     <div class="dropdown d-inline-block">
                         <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-inline-block text-truncate user-info">${currentUser.getFullName()}</span>
+                            <span class="d-inline-block text-truncate user-info">${currentUserProfile.username()}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><span class="dropdown-item-text">${currentUser.getRole()}</span></li>
-                            <li><span class="dropdown-item-text">${currentUser.getEmail()}</span></li>
+                            <li><span class="dropdown-item-text">${currentUserProfile.profileName()}</span></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Deconectare</a></li>
+                            <li><a class="dropdown-item" href="#">Setari personale</a></li>
                         </ul>
                     </div>
                 </div>

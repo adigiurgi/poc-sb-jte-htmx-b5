@@ -1,6 +1,6 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
-import com.example.webapp.application.domain.models.User;
+import com.example.webapp.application.dto.query.UserActiveProfileDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -27,13 +27,14 @@ public class HomeController {
     public String home(Model model, HttpServletRequest request) {
         log.info("Home endpoint accessed with active profile: {}", activeProfile);
         
-        // Date hardcodate despre utilizator
-        User currentUser = User.builder()
-                .username("admin")
-                .fullName("Administrator Sistem")
-                .role("Administrator")
-                .email("admin@example.com")
-                .build();
+        // Date hardcodate despre profilul activ al utilizatorului
+        UserActiveProfileDto currentUserProfile = new UserActiveProfileDto(
+            1L,
+            1L,
+            "admin",
+            1L,
+            "Administrator");
+
           // Opțiunile de meniu pentru navigarea din sidebar
         List<Map<String, String>> menuItems = Arrays.asList(
             Map.of("id", "notifications", "name", "Notificări", "icon", "bell", "link", "/partials/notifications"),
@@ -45,11 +46,10 @@ public class HomeController {
         
         // Obținem context path-ul pentru utilizare în template
         String contextPath = request.getContextPath();
-        
-        // Adăugăm datele în model pentru template
+          // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
         model.addAttribute("activeProfile", activeProfile);
-        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("currentUserProfile", currentUserProfile);
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("contextPath", contextPath);
         
