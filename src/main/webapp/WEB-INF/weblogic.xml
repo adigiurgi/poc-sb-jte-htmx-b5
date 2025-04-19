@@ -5,7 +5,15 @@
 
     <context-root>/webapp</context-root>
     
-    <!-- Class loader configuration -->
+    <!-- Security configurations -->
+    <!-- START SECURITY SECTION -->
+    <!-- Map web.xml security roles to WebLogic security principals -->
+    <security-role-assignment>
+        <role-name>${security.group}</role-name>
+        <principal-name>${security.group}</principal-name>
+    </security-role-assignment>
+    <!-- END SECURITY SECTION -->
+      <!-- Class loader configuration -->
     <container-descriptor>
         <!-- <prefer-web-inf-classes>true</prefer-web-inf-classes> -->
         <show-archived-real-path-enabled>true</show-archived-real-path-enabled>
@@ -14,9 +22,10 @@
             <package-name>org.springframework.*</package-name>
             <package-name>com.fasterxml.jackson.*</package-name>
         </prefer-application-packages>
-    </container-descriptor>
-    
-    <!-- Session configuration -->
+        
+        <!-- Client certificate handling for SSL authentication -->
+        <client-cert-proxy-enabled>true</client-cert-proxy-enabled>
+    </container-descriptor><!-- Session configuration -->
     <session-descriptor>
         <timeout-secs>1800</timeout-secs>
         <persistent-store-type>memory</persistent-store-type>
@@ -24,25 +33,5 @@
         <cookies-enabled>true</cookies-enabled>
         <url-rewriting-enabled>false</url-rewriting-enabled>
     </session-descriptor>
-    
-    <!-- Security configurations -->
-    <!-- 
-    <security-role-assignment>
-        <role-name>admin</role-name>
-        <principal-name>administrators</principal-name>
-    </security-role-assignment>
-    <security-role-assignment>
-        <role-name>user</role-name>
-        <principal-name>users</principal-name>
-    </security-role-assignment>
-    -->
-    
-    <!-- JNDI bindings for resources -->
-    <!-- 
-    <resource-description>
-        <res-ref-name>jdbc/MyDataSource</res-ref-name>
-        <jndi-name>jdbc/weblogic/MyDataSource</jndi-name>
-    </resource-description>
-    -->
 
 </weblogic-web-app>

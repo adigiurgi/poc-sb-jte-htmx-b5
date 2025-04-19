@@ -2,18 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.18</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    
+
     <groupId>com.example</groupId>
     <artifactId>webapp</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    
+
     <properties>
         <java.version>17</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -21,16 +21,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
-        <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy</weblogic.autodeploy.dir>
+        <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy
+        </weblogic.autodeploy.dir>
+        <weblogic.devops.dir>D:\devops\autodeploy</weblogic.devops.dir>
         <jte.version>3.2.0</jte.version>
-        
+
         <!-- Remote WebLogic deployment properties -->
         <remote.weblogic.host>remote-weblogic-host</remote.weblogic.host>
         <remote.weblogic.port>22</remote.weblogic.port>
         <remote.weblogic.username>weblogic-user</remote.weblogic.username>
         <remote.weblogic.autodeploy.dir>/path/to/autodeploy</remote.weblogic.autodeploy.dir>
     </properties>
-    
+
     <!-- Profile configuration for development and production environments -->
     <profiles>
         <profile>
@@ -43,15 +45,17 @@
                 <activateProfile>dev</activateProfile>
                 <spring.profiles.active>dev</spring.profiles.active>
                 <packaging.type>jar</packaging.type>
+                <security.enabled>false</security.enabled>
             </properties>
         </profile>
         <profile>
-            <!-- Production profile - WAR packaging for WebLogic deployment -->
-            <id>prod</id>
+            <!-- Local WebLogic profile - WAR packaging for WebLogic deployment -->
+            <id>local</id>
             <properties>
-                <activateProfile>prod</activateProfile>
-                <spring.profiles.active>prod</spring.profiles.active>
+                <activateProfile>local</activateProfile>
+                <spring.profiles.active>local</spring.profiles.active>
                 <packaging.type>war</packaging.type>
+                <!-- <security.enabled>false</security.enabled> -->
             </properties>
             <build>
                 <plugins>
@@ -74,7 +78,7 @@
                             </execution>
                         </executions>
                     </plugin>
-                    
+
                     <!-- Include jte-classes in WAR for WebLogic -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -85,10 +89,18 @@
                                     <directory>${basedir}/jte-classes</directory>
                                     <targetPath>WEB-INF/classes</targetPath>
                                 </resource>
+                                <!-- <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>WEB-INF/web.xml</include>
+                                        <include>WEB-INF/weblogic.xml</include>
+                                    </includes>
+                                </resource> -->
                             </webResources>
                         </configuration>
                     </plugin>
-                    
+
                     <!-- Auto-deploy to WebLogic -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
@@ -106,7 +118,7 @@
                                         <echo message="Copierea WAR-ului în directorul de autodeploy al WebLogic"/>
                                         <copy file="${project.build.directory}/${project.build.finalName}.war"
                                               todir="${weblogic.autodeploy.dir}"
-                                              overwrite="true" />
+                                              overwrite="true"/>
                                         <echo message="WAR copiat cu succes în ${weblogic.autodeploy.dir}"/>
                                     </target>
                                 </configuration>
@@ -116,18 +128,145 @@
                 </plugins>
             </build>
         </profile>
-        
+
         <profile>
-            <!-- Remote deployment profile - WAR packaging for remote WebLogic deployment -->
-            <id>remote-deploy</id>
+            <!-- Production WebLogic profile - WAR packaging for WebLogic deployment -->
+            <id>prod</id>
             <properties>
                 <activateProfile>prod</activateProfile>
                 <spring.profiles.active>prod</spring.profiles.active>
                 <packaging.type>war</packaging.type>
+                <auth.method>CLIENT-CERT</auth.method>
+                <security.enabled>true</security.enabled>
+                <security.group>WEBAPP_GROUP</security.group>
             </properties>
             <build>
                 <plugins>
-                    <!-- Deploy to Remote WebLogic server -->
+                    <!-- JTE Precompilation -->
+                    <plugin>
+                        <groupId>gg.jte</groupId>
+                        <artifactId>jte-maven-plugin</artifactId>
+                        <version>${jte.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>precompile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirectory>${basedir}/src/main/jte</sourceDirectory>
+                                    <targetDirectory>${basedir}/jte-classes</targetDirectory>
+                                    <contentType>Html</contentType>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Include jte-classes in WAR for WebLogic -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>${basedir}/jte-classes</directory>
+                                    <targetPath>WEB-INF/classes</targetPath>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>WEB-INF/web.xml</include>
+                                        <include>WEB-INF/weblogic.xml</include>
+                                    </includes>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+
+                    <!-- Auto-deploy to WebLogic -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-antrun-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>deploy-to-weblogic</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>run</goal>
+                                </goals>
+                                <configuration>
+                                    <target>
+                                        <echo message="Copierea WAR-ului în directorul de pe sistemul de fisiere pentru DevOps Team"/>
+                                        <copy file="${project.build.directory}/${project.build.finalName}.war"
+                                              todir="${weblogic.devops.dir}"
+                                              overwrite="true"/>
+                                        <echo message="WAR copiat cu succes în ${weblogic.devops.dir}"/>
+                                    </target>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <!-- Remote deployment profile - WAR packaging for remote WebLogic deployment -->
+            <id>test</id>
+            <properties>
+                <activateProfile>prod</activateProfile>
+                <spring.profiles.active>prod</spring.profiles.active>
+                <packaging.type>war</packaging.type>
+                <auth.method>CLIENT-CERT</auth.method>
+                <security.enabled>true</security.enabled>
+                <security.group>WEBAPP_GROUP</security.group>
+            </properties>            <build>
+                <plugins>
+                    <!-- JTE Precompilation -->
+                    <plugin>
+                        <groupId>gg.jte</groupId>
+                        <artifactId>jte-maven-plugin</artifactId>
+                        <version>${jte.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>precompile</goal>
+                                </goals>
+                                <configuration>
+                                    <sourceDirectory>${basedir}/src/main/jte</sourceDirectory>
+                                    <targetDirectory>${basedir}/jte-classes</targetDirectory>
+                                    <contentType>Html</contentType>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+
+                    <!-- Include jte-classes in WAR for WebLogic -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <configuration>
+                            <webResources>
+                                <resource>
+                                    <directory>${basedir}/jte-classes</directory>
+                                    <targetPath>WEB-INF/classes</targetPath>
+                                </resource>
+                                <resource>
+                                    <directory>src/main/webapp</directory>
+                                    <filtering>true</filtering>
+                                    <includes>
+                                        <include>WEB-INF/web.xml</include>
+                                        <include>WEB-INF/weblogic.xml</include>
+                                    </includes>
+                                </resource>
+                            </webResources>
+                        </configuration>
+                    </plugin>
+
+                    <!-- Deploy to Remote WebLogic server for QA team -->
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>wagon-maven-plugin</artifactId>
@@ -141,7 +280,9 @@
                                 </goals>
                                 <configuration>
                                     <fromFile>${project.build.directory}/${project.build.finalName}.war</fromFile>
-                                    <url>scp://${remote.weblogic.username}@${remote.weblogic.host}:${remote.weblogic.port}</url>
+                                    <url>
+                                        scp://${remote.weblogic.username}@${remote.weblogic.host}:${remote.weblogic.port}
+                                    </url>
                                     <toFile>${remote.weblogic.autodeploy.dir}/${project.build.finalName}.war</toFile>
                                     <serverId>remote-weblogic</serverId>
                                 </configuration>
@@ -152,17 +293,17 @@
             </build>
         </profile>
     </profiles>
-    
+
     <!-- Dynamic packaging type based on active profile -->
     <packaging>${packaging.type}</packaging>
-    
+
     <dependencies>
         <!-- Spring Boot Web Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-        
+
         <!-- JTE (Java Template Engine) -->
         <dependency>
             <groupId>gg.jte</groupId>
@@ -174,8 +315,8 @@
             <artifactId>jte-spring-boot-starter-2</artifactId>
             <version>${jte.version}</version>
         </dependency>
-        
-        
+
+
         <!-- Spring Boot DevTools -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -183,63 +324,63 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-        
+
         <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        
+
         <!-- MapStruct -->
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>
             <version>${org.mapstruct.version}</version>
         </dependency>
-        
+
         <!-- Jackson DataBind -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        
+
         <!-- Jackson JAXB Annotations - necesar pentru LogstashEncoder -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
         </dependency>
-        
+
         <!-- For WAR packaging - provided scope for embedded server -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
-          <!-- Test dependencies -->
+        <!-- Test dependencies -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        
+
         <!-- Oracle Database dependencies -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
             <version>19.16.0.0</version>
         </dependency>
-          <!-- Spring JDBC support -->
+        <!-- Spring JDBC support -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
-        
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-aop</artifactId>
         </dependency>
-        
+
         <!-- Flyway database migration -->
         <dependency>
             <groupId>org.flywaydb</groupId>
@@ -247,14 +388,14 @@
         </dependency>
 
         <!-- HikariCP connection pool (already included with spring-boot-starter-data-jdbc) -->
-        
+
         <!-- Logstash Logback Encoder pentru format NDJSON -->
         <dependency>
             <groupId>net.logstash.logback</groupId>
             <artifactId>logstash-logback-encoder</artifactId>
             <version>6.6</version>  <!-- Versiune compatibilă cu Logback 1.2.x -->
         </dependency>
-        
+
         <!-- Janino pentru evaluare condiții în Logback -->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
@@ -262,8 +403,16 @@
             <version>3.1.9</version>
         </dependency>
     </dependencies>
-    
+
     <build>
+        <extensions>
+            <!-- Enabling the use of SSH -->
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>3.5.3</version>
+            </extension>
+        </extensions>
         <plugins>
             <!-- Spring Boot Maven Plugin -->
             <plugin>
@@ -278,7 +427,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-              <!-- Maven Compiler Plugin for MapStruct annotation processing -->
+            <!-- Maven Compiler Plugin for MapStruct annotation processing -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -304,7 +453,7 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
-            
+
             <!-- Plugin for extracting database migration scripts -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

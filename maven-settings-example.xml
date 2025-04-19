@@ -2,11 +2,10 @@
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
-    
     <!-- Configurare pentru autentificare la serverul remote WebLogic -->
     <servers>
         <server>
-            <id>remote-weblogic</id>
+            <id>test</id>
             <username>weblogic-user</username>
             <!-- Folosiți una din cele două opțiuni de autentificare de mai jos -->
             
@@ -20,5 +19,4 @@
             -->
         </server>
     </servers>
-    
 </settings>

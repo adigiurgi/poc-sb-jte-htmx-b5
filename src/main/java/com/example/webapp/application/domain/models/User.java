@@ -1,5 +1,7 @@
 package com.example.webapp.application.domain.models;
 
+import com.example.webapp.application.domain.exceptions.DomainValidationException;
+
 import java.util.Objects;
 
 
@@ -17,20 +19,36 @@ public class User {
     }
 
     public static User create(String username, String firstName, String lastName) {
-
-        user.validate();
-        return new User(null, username, firstName, lastName);;
+        validateUsername(username);
+        validateFirstName(firstName);
+        validateLastName(lastName);
+        return new User(null, username, firstName, lastName);
     }
 
-    private void validate(){
-        if (username == null || username.isEmpty()) {
-            throw new IllegalArgumentException("Username cannot be null or empty for object ");
+    private static void validateUsername(String username) {
+        if (username == null || username.trim().isEmpty()) {
+            throw new DomainValidationException("name", "Numele de utilizator nu poate fi null sau gol");
         }
-        if (firstName == null || firstName.isEmpty()) {
-            throw new IllegalArgumentException("First name cannot be null or empty");
+        if (username.length() > 30) {
+            throw new DomainValidationException("name", "Numele de utilizator nu poate depăși 30 caractere");
         }
-        if (lastName == null || lastName.isEmpty()) {
-            throw new IllegalArgumentException("Last name cannot be null or empty");
+    }
+
+    private static void validateFirstName(String firstName) {
+        if (firstName == null || firstName.trim().isEmpty()) {
+            throw new DomainValidationException("name", "Prenumele nu poate fi null sau gol");
+        }
+        if (firstName.length() > 30) {
+            throw new DomainValidationException("name", "Prenumele nu poate depăși 30 caractere");
+        }
+    }
+
+    private static void validateLastName(String  lastName) {
+        if (lastName == null || lastName.trim().isEmpty()) {
+            throw new DomainValidationException("name", "Numele de familie nu poate fi null sau gol");
+        }
+        if (lastName.length() > 30) {
+            throw new DomainValidationException("name", "Numele de familie nu poate depăși 30 caractere");
         }
     }
 

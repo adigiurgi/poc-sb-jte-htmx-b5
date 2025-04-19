@@ -31,7 +31,7 @@ The application has the following core features:
 2. The application uses HTMX to create a dynamic and responsive user interface.
 3. The application uses Bootstrap 5 for styling and layout.
 
-### The application uses Maven profiles to manage different environments and configurations.
+### Maven build profiles.
 It has 3 profiles: 
 - dev : default active profile (when using 'mvn spring-boot:run' cmd) - the app runs locally as a jar in spring's boot embedded Tomcat
 - local: on this profile we build the project as a WAR for a locally installed WebLogic (without any sso integration, the user is mocked from a configuration class) and after that we copy the resulted war in the /autodeoply directory (used for developer testing of any possible WebLogic specific issues regarding spring boot and other dependencies)
