@@ -29,7 +29,7 @@ public class WebConfig implements WebMvcConfigurer {
      * doar în profilul de producție
      */
     @Bean
-    @Profile("prod")
+    @Profile({"prod", "test", "local"})
     public FilterRegistrationBean<GzipResourceFilter> gzipResourceFilterRegistration() {
         FilterRegistrationBean<GzipResourceFilter> registration = new FilterRegistrationBean<>();
         registration.setFilter(new GzipResourceFilter());
@@ -42,17 +42,17 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        boolean isProdProfile = isProdProfile();
+        boolean isWebLogicProfile = isWebLogicProfile();
         
         // Configurare pentru resurse CSS
-        configureResourceHandler(registry, "/css/vendor/**", "classpath:/css/vendor/", isProdProfile);
+        configureResourceHandler(registry, "/css/vendor/**", "classpath:/css/vendor/", isWebLogicProfile);
         
         // Resurse CSS custom nu sunt comprimate
         registry.addResourceHandler("/css/custom/**")
                 .addResourceLocations("classpath:/css/custom/");
         
         // Configurare pentru resurse JavaScript
-        configureResourceHandler(registry, "/js/vendor/**", "classpath:/js/vendor/", isProdProfile);
+        configureResourceHandler(registry, "/js/vendor/**", "classpath:/js/vendor/", isWebLogicProfile);
         
         // Resurse JS custom nu sunt comprimate
         registry.addResourceHandler("/js/custom/**")
@@ -98,9 +98,9 @@ public class WebConfig implements WebMvcConfigurer {
     /**
      * Verifică dacă profilul activ este "prod"
      */
-    private boolean isProdProfile() {
+    private boolean isWebLogicProfile() {
         for (String profile : environment.getActiveProfiles()) {
-            if ("prod".equals(profile)) {
+            if ("prod".equals(profile) || "test".equals(profile) || "local".equals(profile)) {
                 return true;
             }
         }

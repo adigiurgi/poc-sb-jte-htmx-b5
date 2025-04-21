@@ -222,7 +222,8 @@
                 <auth.method>CLIENT-CERT</auth.method>
                 <security.enabled>true</security.enabled>
                 <security.group>WEBAPP_GROUP</security.group>
-            </properties>            <build>
+            </properties>
+            <build>
                 <plugins>
                     <!-- JTE Precompilation -->
                     <plugin>

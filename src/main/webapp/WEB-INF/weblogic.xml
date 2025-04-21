@@ -8,10 +8,10 @@
     <!-- Security configurations -->
     <!-- START SECURITY SECTION -->
     <!-- Map web.xml security roles to WebLogic security principals -->
-    <security-role-assignment>
-        <role-name>${security.group}</role-name>
-        <principal-name>${security.group}</principal-name>
-    </security-role-assignment>
+<!--    <security-role-assignment>-->
+<!--        <role-name>${security.group}</role-name>-->
+<!--        <principal-name>${security.group}</principal-name>-->
+<!--    </security-role-assignment>-->
     <!-- END SECURITY SECTION -->
       <!-- Class loader configuration -->
     <container-descriptor>

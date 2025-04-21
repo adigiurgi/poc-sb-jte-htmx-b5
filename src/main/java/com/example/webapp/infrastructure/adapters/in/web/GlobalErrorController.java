@@ -92,7 +92,7 @@ public class GlobalErrorController implements ErrorController {
         model.addAttribute("trace", trace);
         
         // Pentru depanare
-        log.error("Eroare gestionată: cod={}, cale={}, mesaj={}", statusCode, path, message);
+        log.error("Eroare gestionată: cod={}, cale={}, mesaj={}, trace={}", statusCode, path, message, trace);
         
         // Selectăm template-ul în funcție de codul de eroare
         if (statusCode == HttpStatus.NOT_FOUND.value()) {

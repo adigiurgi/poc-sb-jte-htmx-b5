@@ -15,7 +15,7 @@
     <!-- Set Active Spring Profile for WebLogic -->
     <context-param>
         <param-name>spring.profiles.active</param-name>
-        <param-value>${spring.profiles.active}</param-value>
+        <param-value>local</param-value>
     </context-param>
 
     <!-- Character Encoding Filter -->
@@ -102,30 +102,30 @@
     
     <!-- START SECURITY CONSTRAINTS SECTION -->
     <!-- Only included for profiles with security.enabled=true -->
-    <security-constraint>
-        <display-name>Protected Resources</display-name>
-        <web-resource-collection>
-            <web-resource-name>All Resources</web-resource-name>
-            <url-pattern>/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <role-name>${security.group}</role-name>
-        </auth-constraint>
-        <user-data-constraint>
-            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
-        </user-data-constraint>
-    </security-constraint>
+<!--    <security-constraint>-->
+<!--        <display-name>Protected Resources</display-name>-->
+<!--        <web-resource-collection>-->
+<!--            <web-resource-name>All Resources</web-resource-name>-->
+<!--            <url-pattern>/*</url-pattern>-->
+<!--        </web-resource-collection>-->
+<!--        <auth-constraint>-->
+<!--            <role-name>${security.group}</role-name>-->
+<!--        </auth-constraint>-->
+<!--        <user-data-constraint>-->
+<!--            <transport-guarantee>CONFIDENTIAL</transport-guarantee>-->
+<!--        </user-data-constraint>-->
+<!--    </security-constraint>-->
 
-    <!-- Login Configuration -->
-    <login-config>
-        <auth-method>${auth.method}</auth-method>
-        <realm-name>myrealm</realm-name>
-    </login-config>
+<!--    &lt;!&ndash; Login Configuration &ndash;&gt;-->
+<!--    <login-config>-->
+<!--        <auth-method>${auth.method}</auth-method>-->
+<!--        <realm-name>myrealm</realm-name>-->
+<!--    </login-config>-->
 
-    <!-- Security Roles -->
-    <security-role>
-        <role-name>${security.group}</role-name>
-    </security-role>
+<!--    &lt;!&ndash; Security Roles &ndash;&gt;-->
+<!--    <security-role>-->
+<!--        <role-name>${security.group}</role-name>-->
+<!--    </security-role>-->
     <!-- END SECURITY CONSTRAINTS SECTION -->
 
 </web-app>
