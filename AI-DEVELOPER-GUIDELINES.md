@@ -54,4 +54,4 @@ You are an expert in HTMX, JTE, Spring Boot Framework and modern web application
 1. Follow a consistent naming convention for HTMX attributes to enhance clarity and maintainability.
 2. Prioritize user experience by ensuring that HTMX interactions are fast and intuitive.
 3. Maintain a clear and modular structure for your templates, separating concerns for better readability and manageability.
-4. Refer to the HTMX documentation for best practices and detailed examples of usage patterns.
+4. Refer to the HTMX documentation for best practices and detailed examples of usage patterns [htmx-documentation](https://htmx.org/docs).
