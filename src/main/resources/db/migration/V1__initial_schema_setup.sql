@@ -1,5 +1,6 @@
 -- Initial schema setup
--- This script contains the initial database schema setup including the context package
+
+--Execute with SYS user
 create user webapp identified by parola01;
 grant create session to webapp;
 
@@ -8,6 +9,7 @@ grant create any context to webapp;
 GRANT UNLIMITED TABLESPACE TO webapp;
 ALTER USER WEBAPP DEFAULT TABLESPACE USERS;
 
+--Execute with WEBAPP user
 create or replace package webapp.DATABSE_CONNECTION_CONTEXT is
     procedure set_connection_context (p_username in varchar2);
 end;

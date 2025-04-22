@@ -37,3 +37,7 @@ It has 4 profiles:
 - local: on this profile we build the project as a WAR for a locally installed WebLogic (without any sso integration, the user is mocked from a configuration file) and after that we copy the resulted war in the /autodeploy directory (used for developer testing of any possible WebLogic specific deploying issues regarding spring boot and any other dependencies)
 - test: on this profile we build the project as a WAR for a remote installed WebLogic (with proper sso integration) and after that we copy the resulted war in the /autodeploy directory of the remote running weblogic instance domain (used by the QA team for testing the application in a production-like environment).
 - prod: on this profile we build the project as a WAR for production with proper sso integration and after that we copy the resulted war in specific directory on the organization file server (used by the DevOps team for deploying the application in production environment).
+---
+### External dependency 
+1. Oracle Database 23ai - it's a mandatory dependency - install it as a Docker container, following the guidelines provided here [oracle-23-ai-free](https://hub.docker.com/r/gvenzl/oracle-free)
+2. WebLogic Server 14.1.2 - it's an optional dependency, only if you want to also build and test the 'local' profile - install it locally, following the guidelines provided here [weblogic-14.1.2-for-developers](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/14.1.2/wlsig/installing-weblogic-server-for-developers.html#WLSIG415) 
