@@ -285,7 +285,7 @@
                                         scp://${remote.weblogic.username}@${remote.weblogic.host}:${remote.weblogic.port}
                                     </url>
                                     <toFile>${remote.weblogic.autodeploy.dir}/${project.build.finalName}.war</toFile>
-                                    <serverId>remote-weblogic</serverId>
+                                    <serverId>test</serverId>
                                 </configuration>
                             </execution>
                         </executions>
