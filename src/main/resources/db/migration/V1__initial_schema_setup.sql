@@ -1,6 +1,7 @@
 -- Initial schema setup
 
 --Execute with SYS user
+--ALTER DATABASE SET TIME_ZONE = 'Europe/Bucharest';
 create user webapp identified by parola01;
 grant create session to webapp;
 
