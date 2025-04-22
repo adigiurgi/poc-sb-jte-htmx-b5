@@ -1,4 +1,4 @@
 package com.example.webapp.application.ports.in.cli;
 
-public interface UserProfileApi {
+public interface UserProfileCliApi {
 }
