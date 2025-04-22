@@ -19,20 +19,14 @@ public class UserAppCliApiImplementation implements UserAppCliApi {
     @Override
     public Long createUser(UserAppCreateDto userAppCreateDto) {
         log.info("Creating new user with username: {}", userAppCreateDto.username());
-        
-        User user = new User(
-                null,
-                userAppCreateDto.username(),
-                userAppCreateDto.email(),
+
+        User user = User.create(userAppCreateDto.username(),
                 userAppCreateDto.firstName(),
-                userAppCreateDto.lastName(),
-                LocalDateTime.now(),
-                LocalDateTime.now()
-        );
-        
+                userAppCreateDto.lastName());
+
         Long userId = userAppDao.saveUser(user);
         log.info("User created successfully with ID: {}", userId);
-        
+
         return userId;
     }
 }

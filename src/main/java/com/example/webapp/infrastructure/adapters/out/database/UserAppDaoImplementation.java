@@ -16,17 +16,12 @@ public class UserAppDaoImplementation implements UserAppDao {
 
     @Override
     public Long saveUser(User user) {
-        UserApp userApp = new UserApp(
-                null,
-                user.username(),
-                user.firstName(),
-                user.lastName(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                0
-        );
-        
+        UserApp userApp = UserApp.builder()
+                .username(user.getUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .build();
         UserApp savedUserApp = userAppRepository.save(userApp);
-        return savedUserApp.id();
+        return savedUserApp.getId();
     }
 }

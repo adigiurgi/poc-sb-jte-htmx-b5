@@ -1,4 +1,5 @@
 Avand in vedere contextul actualului proiect descris in fisierul README.md, codul de pana acum al proiectului, precum si indicatiile de dezvoltare din fisierul AI-DEVELOPER-GUIDLINES.md te rog sa imi implementezi urmatorul feature:
 
+
 Posibilitatea crearii unui utilizator, a unui profil asociat utilizatorului si a unui rol asociat utilizatorului din linie de comanda (CLI).
 Acest functionalitate nu va avea asociata si parte de implementare frontend. Este necesara doar pentru a putea crea cu usurinta utilizatori, profile asociate si roluri asociate in scopul testarii functionalitatilor viitoare ale aplicatiei.

@@ -47,18 +47,17 @@ public class UserManagementCliRunner implements CommandLineRunner {
     }
 
     private void handleCreateUser(String[] args) {
-        if (args.length < 5) {
+        if (args.length < 4) {
             log.error("Not enough arguments for create-user command");
             printCreateUserUsage();
             return;
         }
 
         String username = args[1];
-        String email = args[2];
-        String firstName = args[3];
-        String lastName = args[4];
+        String firstName = args[2];
+        String lastName = args[3];
 
-        UserAppCreateDto userAppCreateDto = new UserAppCreateDto(username, email, firstName, lastName);
+        UserAppCreateDto userAppCreateDto = new UserAppCreateDto(username, firstName, lastName);
         Long userId = userAppCliApi.createUser(userAppCreateDto);
 
         log.info("User created successfully with ID: {}", userId);
