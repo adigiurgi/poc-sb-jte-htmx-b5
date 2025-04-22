@@ -1,5 +1,13 @@
 -- Initial schema setup
 -- This script contains the initial database schema setup including the context package
+create user webapp identified by parola01;
+grant create session to webapp;
+
+GRANT CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE SEQUENCE TO webapp;
+grant create any context to webapp;
+GRANT UNLIMITED TABLESPACE TO webapp;
+ALTER USER WEBAPP DEFAULT TABLESPACE USERS;
+
 create or replace package webapp.DATABSE_CONNECTION_CONTEXT is
     procedure set_connection_context (p_username in varchar2);
 end;
@@ -11,6 +19,10 @@ create or replace package body webapp.DATABSE_CONNECTION_CONTEXT is
     end set_connection_context;
 end;
 /
+
+CREATE CONTEXT WEBAPP_CTX USING webapp.DATABSE_CONNECTION_CONTEXT;
+grant execute on Dbms_Session to webapp;
+grant execute on webapp.DATABSE_CONNECTION_CONTEXT to webapp;
 
 -- Create table
 create table WEBAPP.USER_APP
@@ -74,10 +86,6 @@ alter table WEBAPP.USER_PROFILES
 alter table WEBAPP.USER_PROFILES
     add constraint FK_USER_PROFILES_USER foreign key (ID_USER)
         references WEBAPP.USER_APP (ID);
-
-
--- Adăugarea unui index pentru coloana ID_USER (pentru că este cheie străină și va fi folosită în interogări)
-CREATE INDEX IDX_USER_PROFILES_USER ON USER_PROFILES (ID_USER);
 
 -- Adăugarea unei constrângeri de cheie primară pentru coloana ID
 -- Create table
