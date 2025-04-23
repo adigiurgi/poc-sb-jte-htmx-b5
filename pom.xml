@@ -370,6 +370,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!-- Oracle Database dependencies -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
