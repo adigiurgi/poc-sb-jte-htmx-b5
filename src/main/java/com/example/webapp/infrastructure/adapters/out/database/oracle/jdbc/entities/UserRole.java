@@ -4,22 +4,22 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-@Table(name = "USER_APP")
+@Table(name = "USER_ROLES")
 @Data
 @Builder
-public class UserApp {
+public class UserRole {
         @Id
         private Long id;
-        private String username;
-        private String firstName;
-        private String lastName;
+        private Long idUser;
+        private String roleName;
         private OffsetDateTime insertedAt;
         private OffsetDateTime updatedAt;
         @Version
-        private Long version;
-
+        private Integer version;
 }

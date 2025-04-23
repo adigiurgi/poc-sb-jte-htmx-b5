@@ -285,7 +285,7 @@
                                         scp://${remote.weblogic.username}@${remote.weblogic.host}:${remote.weblogic.port}
                                     </url>
                                     <toFile>${remote.weblogic.autodeploy.dir}/${project.build.finalName}.war</toFile>
-                                    <serverId>remote-weblogic</serverId>
+                                    <serverId>test</serverId>
                                 </configuration>
                             </execution>
                         </executions>
@@ -344,12 +344,17 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-        </dependency>
-
-        <!-- Jackson JAXB Annotations - necesar pentru LogstashEncoder -->
+        </dependency>        <!-- Jackson JAXB Annotations - necesar pentru LogstashEncoder -->
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-jaxb-annotations</artifactId>
+        </dependency>
+        
+        <!-- Spring Shell pentru CLI interactiv -->
+        <dependency>
+            <groupId>org.springframework.shell</groupId>
+            <artifactId>spring-shell-starter</artifactId>
+            <version>2.1.6</version>
         </dependency>
 
         <!-- For WAR packaging - provided scope for embedded server -->
@@ -383,10 +388,10 @@
         </dependency>
 
         <!-- Flyway database migration -->
-        <dependency>
-            <groupId>org.flywaydb</groupId>
-            <artifactId>flyway-core</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.flywaydb</groupId>-->
+<!--            <artifactId>flyway-core</artifactId>-->
+<!--        </dependency>-->
 
         <!-- HikariCP connection pool (already included with spring-boot-starter-data-jdbc) -->
 

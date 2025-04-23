@@ -4,7 +4,6 @@ import com.example.webapp.application.domain.exceptions.DomainValidationExceptio
 
 import java.util.Objects;
 
-
 public class User {
     private Long id;
     private final String username;

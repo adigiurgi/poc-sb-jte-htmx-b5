@@ -1,5 +1,5 @@
-# Project Name: WEBAPP - Hexagonal Architecture POC 
----
+# Hexagonal Architecture POC 
+
 ## Short description
 - The project is a proof of concept for a web application that uses the hexagonal architecture pattern. 
 - It is built with Spring Boot 2.7.18, Java 17, JTE (Java Template Engine), HTMX 2.0.4 (HTML over the wire), and Bootstrap 5.
@@ -41,3 +41,12 @@ It has 4 profiles:
 ### External dependency 
 1. Oracle Database 23ai - it's a mandatory dependency - install it as a Docker container, following the guidelines provided here [oracle-23-ai-free](https://hub.docker.com/r/gvenzl/oracle-free)
 2. WebLogic Server 14.1.2 - it's an optional dependency, only if you want to also build and test the 'local' profile - install it locally, following the guidelines provided here [weblogic-14.1.2-for-developers](https://docs.oracle.com/en/middleware/fusion-middleware/weblogic-server/14.1.2/wlsig/installing-weblogic-server-for-developers.html#WLSIG415) 
+---
+### CLI Feature 
+How to Use the CLI Feature to create users, profiles, and roles (for test purpose) from the command line:
+1. Enable the CLI by setting app.cli.enabled=true in application.properties or passing it as a JVM parameter
+2. Run the application with one of these commands:
+   - Create a new user: `java -jar webapp.jar create-user <username> <firstName> <lastName>`
+   - Create a profile for a user: `java -jar webapp.jar create-profile <userId> <profileName>`
+   - Create a role for a user: `java -jar webapp.jar create-role <userId> <roleName> <roleDescription>`
+
