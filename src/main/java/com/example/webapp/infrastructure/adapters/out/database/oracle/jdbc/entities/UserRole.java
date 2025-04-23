@@ -1,25 +1,25 @@
 package com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities;
 
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
-@Table(name = "user_roles")
-public record UserRole(
+@Table(name = "USER_ROLES")
+@Data
+@Builder
+public class UserRole {
         @Id
-        Long id,
-        @Column("id_user")
-        Long idUser,
-        @Column("role_name")
-        String roleName,
-        @Column("inserted_at")
-        LocalDateTime insertedAt,
-        @Column("updated_at")
-        LocalDateTime updatedAt,
+        private Long id;
+        private Long idUser;
+        private String roleName;
+        private OffsetDateTime insertedAt;
+        private OffsetDateTime updatedAt;
         @Version
-        Integer version
-) {
+        private Integer version;
 }

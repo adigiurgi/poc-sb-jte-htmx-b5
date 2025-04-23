@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class UserAppDaoImplementation implements UserAppDao {
                 .username(user.getUsername())
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
+                .insertedAt(OffsetDateTime.now())
                 .build();
         UserApp savedUserApp = userAppRepository.save(userApp);
         return savedUserApp.getId();

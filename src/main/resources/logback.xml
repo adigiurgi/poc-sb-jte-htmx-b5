@@ -4,11 +4,11 @@
     <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
     
     <!-- Definirea appenderului CONSOLE pentru configurația de rezervă -->
-    <!-- <appender name="DEFAULT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="DEFAULT_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %msg%n</pattern>
         </encoder>
-    </appender> -->
+    </appender>
     
     <!-- Definirea unei variabile pentru profilul activ -->
     <property name="ACTIVE_PROFILE" value="${spring.profiles.active:-dev}" />
@@ -28,7 +28,7 @@
     </if>
     
     <!-- Configurare de rezervă/default în caz că include-urile de mai sus eșuează -->
-    <!-- <root level="INFO">
+    <root level="INFO">
         <appender-ref ref="DEFAULT_CONSOLE" />
-    </root> -->
+    </root>
 </configuration>

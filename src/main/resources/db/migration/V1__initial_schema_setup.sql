@@ -148,6 +148,9 @@ alter table WEBAPP.USER_ROLES
     add constraint FK_USER_ROLES_USER foreign key (ID_USER)
         references USER_APP (ID);
 
+grant select, insert, update on webapp.user_app to webapp;
+grant select, insert, update on webapp.user_profiles to webapp;
+grant select, insert, update on webapp.user_roles to webapp;
 
 CREATE OR REPLACE TRIGGER webapp.trg_user_app_updated_at
     BEFORE UPDATE ON webapp.user_app

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -16,16 +17,13 @@ public class UserRoleDaoImplementation implements UserRoleDao {
 
     @Override
     public Long saveUserRole(UserRoleCreateDto userRoleCreateDto) {
-        UserRole userRole = new UserRole(
-                null,
-                userRoleCreateDto.idUser(),
-                userRoleCreateDto.roleName(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                0
-        );
-        
+        UserRole userRole = UserRole.builder()
+                .idUser(userRoleCreateDto.idUser())
+                .roleName(userRoleCreateDto.roleName())
+                .insertedAt(OffsetDateTime.now())
+                .build();
+
         UserRole savedUserRole = userRoleRepository.save(userRole);
-        return savedUserRole.id();
+        return savedUserRole.getId();
     }
 }

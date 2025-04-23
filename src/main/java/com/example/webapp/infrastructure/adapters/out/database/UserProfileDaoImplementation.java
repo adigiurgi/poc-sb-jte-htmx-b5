@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @Component
 @RequiredArgsConstructor
@@ -17,16 +18,13 @@ public class UserProfileDaoImplementation implements UserProfileDao {
     
     @Override
     public Long saveUserProfile(UserProfileCreateDto userProfileCreateDto) {
-        UserProfile userProfile = new UserProfile(
-                null,
-                userProfileCreateDto.idUser(),
-                userProfileCreateDto.profileName(),
-                LocalDateTime.now(),
-                LocalDateTime.now(),
-                0
-        );
-        
+        UserProfile userProfile = UserProfile.builder()
+                .idUser(userProfileCreateDto.idUser())
+                .profileName(userProfileCreateDto.profileName())
+                .insertedAt(OffsetDateTime.now())
+                .build();
+
         UserProfile savedUserProfile = userProfileAppRepository.save(userProfile);
-        return savedUserProfile.id();
+        return savedUserProfile.getId();
     }
 }
