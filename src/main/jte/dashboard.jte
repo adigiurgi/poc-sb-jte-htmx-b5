@@ -1,4 +1,4 @@
-@import com.example.webapp.application.domain.models.User
+@import com.example.webapp.application.domain.models.UserApp
 @import com.example.webapp.application.dto.query.UserActiveProfileDto
 @import java.util.List
 @import java.util.Map
@@ -55,7 +55,7 @@
                     <!-- User Info -->
                     <div class="dropdown d-inline-block">
                         <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-inline-block text-truncate user-info">${currentUserProfile.username()}</span>
+                            <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.username()}</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><span class="dropdown-item-text">${currentUserProfile.profileName()}</span></li>

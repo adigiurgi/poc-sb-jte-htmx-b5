@@ -1,8 +1,8 @@
 -- Initial schema setup
 
---Execute with SYS user
+--Execute with SYS userApp
 --ALTER DATABASE SET TIME_ZONE = 'Europe/Bucharest';
-create user webapp identified by parola01;
+create userApp webapp identified by parola01;
 grant create session to webapp;
 
 GRANT CREATE TABLE, CREATE VIEW, CREATE PROCEDURE, CREATE SEQUENCE TO webapp;
@@ -10,7 +10,7 @@ grant create any context to webapp;
 GRANT UNLIMITED TABLESPACE TO webapp;
 ALTER USER WEBAPP DEFAULT TABLESPACE USERS;
 
---Execute with WEBAPP user
+--Execute with WEBAPP userApp
 create or replace package webapp.DATABSE_CONNECTION_CONTEXT is
     procedure set_connection_context (p_username in varchar2);
 end;

@@ -6,7 +6,7 @@
     <servers>
         <server>
             <id>test</id>
-            <username>weblogic-user</username>
+            <username>weblogic-userApp</username>
             <!-- Folosiți una din cele două opțiuni de autentificare de mai jos -->
             
             <!-- Opțiunea 1: Parolă în text clar (nu este recomandată pentru producție) -->

@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 @Table(name = "USER_ACTIVE_PROFILES")
 @Data
 @Builder
-public class UserActiveProfile {
+public class UserActiveProfileEntity {
         @Id
         private Long id;
         private Long idUser;

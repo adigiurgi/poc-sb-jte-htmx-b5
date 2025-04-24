@@ -1,18 +1,18 @@
 package com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories;
 
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfile;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfileEntity;
 import com.example.webapp.infrastructure.config.database.SetDatabaseContextForMethod;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 @Repository
-public interface UserActiveProfileRepository extends CrudRepository<UserActiveProfile, Long> {
+public interface UserActiveProfileRepository extends CrudRepository<UserActiveProfileEntity, Long> {
     @SetDatabaseContextForMethod(
             procedureName = "set_connection_context",
             parameterName = "p_username"
     )
-    Optional<UserActiveProfile> findByUsername(String username);
+    Optional<UserActiveProfileEntity> findByUsername(String username);
 
     /*
     This annotation is used to set the database context for the method.

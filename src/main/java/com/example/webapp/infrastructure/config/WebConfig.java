@@ -1,5 +1,7 @@
 package com.example.webapp.infrastructure.config;
 
+import com.example.webapp.infrastructure.config.security.SecurityInterceptor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +11,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.http.CacheControl;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.resource.EncodedResourceResolver;
@@ -17,13 +20,23 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
+@RequiredArgsConstructor
 public class WebConfig implements WebMvcConfigurer {
     // Configurare JTE este gestionată automat de jte-spring-boot-starter-3
     // Nu mai este nevoie de configurarea manuală a ViewResolver-ului
     
     @Autowired
     private Environment environment;
-    
+
+    private final SecurityInterceptor securityInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(securityInterceptor)
+                .excludePathPatterns("/css/**")
+                .excludePathPatterns("/js/**");
+    }
+
     /**
      * Înregistrăm filtrul pentru servirea fișierelor comprimate,
      * doar în profilul de producție

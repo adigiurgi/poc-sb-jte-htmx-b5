@@ -11,7 +11,7 @@ import java.time.OffsetDateTime;
 @Table(name = "USER_APP")
 @Data
 @Builder
-public class UserApp {
+public class UserAppEntity {
         @Id
         private Long id;
         private String username;

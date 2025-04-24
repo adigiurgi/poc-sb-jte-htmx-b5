@@ -1,6 +1,8 @@
 package com.example.webapp.application.ports.out.database;
 
-import com.example.webapp.application.dto.command.UserProfileCreateDto;
+import com.example.webapp.application.domain.models.UserProfile;
+
+import java.util.List;
 
 public interface UserProfileDao {
     /**
@@ -8,5 +10,6 @@ public interface UserProfileDao {
      * @param userProfileCreateDto Profile data to save
      * @return ID of the saved profile
      */
-    Long saveUserProfile(UserProfileCreateDto userProfileCreateDto);
+    Long saveUserProfile(UserProfile userProfile);
+    List<UserProfile> findAllUserProfiles(Long idUser);
 }

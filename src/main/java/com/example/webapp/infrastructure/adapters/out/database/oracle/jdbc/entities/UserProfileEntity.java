@@ -4,20 +4,18 @@ import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
-import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-@Table(name = "USER_ROLES")
+@Table(name = "USER_PROFILES")
 @Data
 @Builder
-public class UserRole {
+public class UserProfileEntity {
         @Id
         private Long id;
         private Long idUser;
-        private String roleName;
+        private String profileName;
         private OffsetDateTime insertedAt;
         private OffsetDateTime updatedAt;
         @Version

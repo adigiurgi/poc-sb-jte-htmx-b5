@@ -6,17 +6,16 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 
-@Table(name = "USER_PROFILES")
+@Table(name = "USER_ROLES")
 @Data
 @Builder
-public class UserProfile {
+public class UserRoleEntity {
         @Id
         private Long id;
         private Long idUser;
-        private String profileName;
+        private String roleName;
         private OffsetDateTime insertedAt;
         private OffsetDateTime updatedAt;
         @Version

@@ -1,12 +1,11 @@
-package com.example.webapp.infrastructure.config.security;
+package com.example.webapp.infrastructure.config.security.profile;
 
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfile;
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.context.annotation.Scope;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfileEntity;
+import com.example.webapp.infrastructure.config.security.user.UserProvider;
+import lombok.*;
 import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.annotation.SessionScope;
 
 import java.time.OffsetDateTime;
 
@@ -15,10 +14,16 @@ import java.time.OffsetDateTime;
  * This bean is created for each HTTP request and is available throughout the request lifecycle.
  */
 @Component
-@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
 @Getter
 @Setter
+@ToString
+@RequiredArgsConstructor
+//@Scope(value = WebApplicationContext.SCOPE_REQUEST, proxyMode = ScopedProxyMode.TARGET_CLASS)
+@SessionScope(proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UserActiveProfileProvider {
+
+    final UserProvider userProvider;
+
     private Long id;
     private Long idUser;
     private String username;
@@ -27,11 +32,15 @@ public class UserActiveProfileProvider {
     private OffsetDateTime insertedAt;
     private OffsetDateTime updatedAt;
     private Integer version;
-    
+
+
+    public String getAuthenticatedUser(){
+        return this.userProvider.getAuthenticatedUser();
+    }
     /**
      * Updates this provider with data from a UserActiveProfile entity
      */
-    public void updateFromEntity(UserActiveProfile profile) {
+    public void updateFromEntity(UserActiveProfileEntity profile) {
         this.id = profile.getId();
         this.idUser = profile.getIdUser();
         this.username = profile.getUsername();

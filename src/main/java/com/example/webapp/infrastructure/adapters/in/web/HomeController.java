@@ -1,6 +1,8 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
 import com.example.webapp.application.dto.query.UserActiveProfileDto;
+import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import java.util.Map;
 @SuppressWarnings("SpringMVCViewInspection")
 @Slf4j
 @Controller
+@RequiredArgsConstructor
 public class HomeController {
 
     @Value("${spring.profiles.active}")
@@ -22,6 +25,8 @@ public class HomeController {
     
     @Value("${spring.application.name}")
     private String applicationName;
+
+    private final UserActiveProfileProvider userActiveProfileProvider;
 
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
@@ -31,7 +36,7 @@ public class HomeController {
         UserActiveProfileDto currentUserProfile = new UserActiveProfileDto(
             1L,
             1L,
-            "admin",
+                userActiveProfileProvider.getAuthenticatedUser(),
             1L,
             "Administrator");
 
