@@ -1,6 +1,9 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
+import com.example.webapp.application.domain.models.UserProfile;
 import com.example.webapp.application.dto.query.UserActiveProfileDto;
+import com.example.webapp.application.dto.query.UserProfileDto;
+import com.example.webapp.application.ports.in.web.UserProfileWebApi;
 import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,10 +31,22 @@ public class HomeController {
 
     private final UserActiveProfileProvider userActiveProfileProvider;
 
+    private final UserProfileWebApi userProfileWebApi;
+
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
         log.info("Home endpoint accessed with active profile: {}", activeProfile);
-        
+
+        List<UserProfile> userProfileList = userProfileWebApi
+                .showUserProfiles(userActiveProfileProvider.getIdUser());
+
+        List<UserProfileDto> userProfileDtoList = userProfileList.stream()
+                .map(userProfile -> new UserProfileDto(
+                        userProfile.getId(),
+                        userProfile.getIdUser(),
+                        userProfile.getProfileName()))
+                .toList();
+
         // Date hardcodate despre profilul activ al utilizatorului
         UserActiveProfileDto currentUserProfile = new UserActiveProfileDto(
             1L,

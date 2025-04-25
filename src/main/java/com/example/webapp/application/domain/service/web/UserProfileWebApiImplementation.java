@@ -1,6 +1,6 @@
 package com.example.webapp.application.domain.service.web;
 
-import com.example.webapp.application.dto.query.UserProfileDto;
+import com.example.webapp.application.domain.models.UserProfile;
 import com.example.webapp.application.ports.in.web.UserProfileWebApi;
 import com.example.webapp.application.ports.out.database.UserProfileDao;
 
@@ -15,7 +15,7 @@ public class UserProfileWebApiImplementation implements UserProfileWebApi {
     }
 
     @Override
-    public List<UserProfileDto> getAllUserProfiles() {
-        return null;
+    public List<UserProfile> showUserProfiles(Long idUser) {
+        return userProfileDao.findUserProfiles(idUser);
     }
 }

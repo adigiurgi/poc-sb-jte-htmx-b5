@@ -2,6 +2,7 @@ package com.example.webapp.infrastructure.adapters.out.database;
 
 import com.example.webapp.application.domain.models.UserProfile;
 import com.example.webapp.application.dto.command.UserProfileCreateDto;
+import com.example.webapp.application.dto.query.UserProfileDto;
 import com.example.webapp.application.ports.out.database.UserProfileDao;
 import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserProfileEntity;
 import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserProfileRepository;
@@ -30,8 +31,12 @@ public class UserProfileDaoImplementation implements UserProfileDao {
     }
 
     @Override
-    public List<UserProfile> findAllUserProfiles(Long idUser) {
+    public List<UserProfile> findUserProfiles(Long idUser) {
         List<UserProfileEntity> userProfileEntityList = userProfileAppRepository.findByIdUser(idUser);
-        return null;
+        return userProfileEntityList.stream()
+                .map(entity -> UserProfile.create(entity.getId(),
+                        entity.getIdUser(),
+                        entity.getProfileName()))
+                .toList();
     }
 }

@@ -21,6 +21,11 @@ public class UserProfile {
         return new UserProfile(null, idUser, profileName);
     }
 
+    public static UserProfile create(Long id, Long idUser, String profileName){
+        validateProfileName(profileName);
+        return new UserProfile(id, idUser, profileName);
+    }
+
     private static void validateProfileName(String profileName){
         if (profileName == null || profileName.trim().isEmpty()) {
             throw new DomainValidationException("profileName", "Numele profilului de utilizator nu poate fi null sau gol");

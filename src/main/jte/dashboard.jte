@@ -72,7 +72,8 @@
     <div class="main-container">
         <!-- Sidebar Navigation -->
         <nav id="sidebar" class="bg-body-secondary">
-            <div class="list-group list-group-flush pt-2">                @for(var item : menuItems)
+            <div class="list-group list-group-flush pt-2">
+                @for(var item : menuItems)
                     <a href="#${item.get("id")}" 
                        class="list-group-item list-group-item-action nav-link d-flex align-items-center" 
                        hx-get="${contextPath}${item.get("link")}" 
