@@ -56,7 +56,7 @@ Use this commands to build up a setup for testing the web-app. You basically nee
 
 ---
 #### User Management 
-1. `create-userApp <username> <firstname> <lastname>` -> creates a new userApp
+1. `create-user <username> <firstname> <lastname>` -> creates a new userApp
 2. `create-profile <userId> <profileName>` -> creates a new profile for a certain userApp
 3. `create-role <userId> <roleName> <roleDescription>` -> creates a new rol for a certain userApp
 ---
@@ -66,7 +66,7 @@ Use this commands to build up a setup for testing the web-app. You basically nee
 
 #### Usage examples:
 
-	   webapp-cli:> create-userApp john.doe John Doe
+	   webapp-cli:> create-user john.doe John Doe
 	   webapp-cli:> create-profile 1 First_Profile
 	   webapp-cli:> create-role 1 WEBAPP_ROLE
 	   webapp-cli:> system-info

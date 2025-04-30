@@ -4,6 +4,7 @@ import com.example.webapp.application.domain.models.UserProfile;
 import com.example.webapp.application.dto.query.UserActiveProfileDto;
 import com.example.webapp.application.dto.query.UserProfileDto;
 import com.example.webapp.application.ports.in.web.UserProfileWebApi;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserActiveProfileRepository;
 import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,7 +25,7 @@ import java.util.Map;
 public class HomeController {
 
     @Value("${spring.profiles.active}")
-    private String activeProfile;
+    private String activeAppProfile;
     
     @Value("${spring.application.name}")
     private String applicationName;
@@ -33,27 +34,22 @@ public class HomeController {
 
     private final UserProfileWebApi userProfileWebApi;
 
+    private final UserActiveProfileRepository userActiveProfileRepository;
+
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
-        log.info("Home endpoint accessed with active profile: {}", activeProfile);
+        log.info("Home endpoint accessed with active profile: {}", activeAppProfile);
 
         List<UserProfile> userProfileList = userProfileWebApi
                 .showUserProfiles(userActiveProfileProvider.getIdUser());
 
-        List<UserProfileDto> userProfileDtoList = userProfileList.stream()
+        List<UserProfileDto> userProfileNotActiveList = userProfileList.stream()
                 .map(userProfile -> new UserProfileDto(
                         userProfile.getId(),
                         userProfile.getIdUser(),
                         userProfile.getProfileName()))
+                .filter(userProfileDto -> !userProfileDto.id().equals(userActiveProfileProvider.getIdProfile()))
                 .toList();
-
-        // Date hardcodate despre profilul activ al utilizatorului
-        UserActiveProfileDto currentUserProfile = new UserActiveProfileDto(
-            1L,
-            1L,
-                userActiveProfileProvider.getAuthenticatedUser(),
-            1L,
-            "Administrator");
 
           // Opțiunile de meniu pentru navigarea din sidebar
         List<Map<String, String>> menuItems = Arrays.asList(
@@ -66,10 +62,17 @@ public class HomeController {
         
         // Obținem context path-ul pentru utilizare în template
         String contextPath = request.getContextPath();
+
+        String usernameFromDatabaseContext = userActiveProfileRepository
+                .getUsernameFromDatabaseContext(userActiveProfileProvider.getUsername());
+        log.info("Username from database context: {}", usernameFromDatabaseContext);
+
           // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
-        model.addAttribute("activeProfile", activeProfile);
-        model.addAttribute("currentUserProfile", currentUserProfile);
+        model.addAttribute("activeAppProfile", activeAppProfile);
+        model.addAttribute("currentUserProfile", userActiveProfileProvider);
+        model.addAttribute("userProfileNotActiveList", userProfileNotActiveList);
+        model.addAttribute("usernameFromDatabaseContext", usernameFromDatabaseContext);
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("contextPath", contextPath);
         

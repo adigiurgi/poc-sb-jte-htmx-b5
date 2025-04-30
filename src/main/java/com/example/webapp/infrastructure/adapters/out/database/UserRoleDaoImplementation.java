@@ -18,7 +18,7 @@ public class UserRoleDaoImplementation implements UserRoleDao {
     @Override
     public Long saveUserRole(UserRole userRole) {
         UserRoleEntity userRoleEntity = UserRoleEntity.builder()
-                .idUser(userRole.getId())
+                .idUser(userRole.getIdUser())
                 .roleName(userRole.getRoleName())
                 .insertedAt(OffsetDateTime.now())
                 .build();
