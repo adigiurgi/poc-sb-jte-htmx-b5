@@ -28,15 +28,15 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-A</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
-                <a href="#" class="btn btn-outline-info position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-info position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
                     14
                     </span>
                 </a>
                 <div class="vr"></div>
-                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                <a href="#" class="btn btn-warning position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     +99
@@ -50,7 +50,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-B</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -58,7 +58,7 @@
                     </span>
                 </a>
                 <div class="vr"></div>
-                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                <a href="#" class="btn btn-outline-warning position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     23
@@ -72,7 +72,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-C</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -87,10 +87,10 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-D</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
                     41
                     </span>
                 </a>
@@ -109,7 +109,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-E</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -124,7 +124,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-F</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -146,7 +146,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-G</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -168,7 +168,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-H</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -190,7 +190,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-I</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -205,7 +205,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-J</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -227,7 +227,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-K</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -242,7 +242,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-L</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -264,7 +264,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-M</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -286,7 +286,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-N</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -301,7 +301,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-O</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -323,7 +323,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-P</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -338,7 +338,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-R</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -360,7 +360,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-S</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -382,7 +382,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-T</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -397,7 +397,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-U</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -419,7 +419,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-V</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -434,7 +434,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-W</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -456,7 +456,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-X</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -478,7 +478,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-Y</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
@@ -493,7 +493,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-Z</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
@@ -515,7 +515,7 @@
         <div class="card text-center">
             <h5 class="card-header">MODUL-AA</h5>
             <div class="card-body">
-                <p class="card-text">Exista mesaje care necesita atentia dumneavoastra!</p>
+                <p class="card-text"> </p>
                 <a href="#" class="btn btn-outline-info position-relative mx-3">
                     Mesaje informative
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
