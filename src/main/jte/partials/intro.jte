@@ -24,7 +24,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Funcționalități disponibile</h5>
@@ -56,7 +56,7 @@
             </div>
         </div>
 
-        <div class="col-md-6 mb-4">
+        <div class="col-md-4 mb-4">
             <div class="card h-100">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Start rapid</h5>
@@ -77,5 +77,59 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">SVG Loaders Examples</h5>
+                </div>
+                <div class="card-body">
+                    <p class="mb-2">Avem aici mai multe svg loaders cu dimensiuni intre 1KB si 3KB:</p>
+                    <div class="container my-5">
+                        <div class="row row-cols-6 g-5">
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/audio.svg" alt="Audio Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/ball-triangle.svg" alt="Ball Triangle Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/circles.svg" alt="Circles Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/grid.svg" alt="Grid Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/hearts.svg" alt="Hearts Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/oval.svg" alt="Hearts Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/puff.svg" alt="Puff Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/rings.svg" alt="Rings Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/spinning-circles.svg" alt="Spinning Circles Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/tail-spin.svg" alt="Puff Loader" width="40" height="40">
+                            </div>
+                            <div class="col">
+                                <img src="${contextPath}/static/svg-loaders/three-dots.svg" alt="Puff Loader" width="40" height="40">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>

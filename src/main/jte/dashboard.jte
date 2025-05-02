@@ -15,9 +15,11 @@
 <!DOCTYPE html>
 <!--suppress HtmlUnknownTarget -->
 <html lang="ro" data-bs-theme="light">
-<head>    <meta charset="UTF-8">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>${appName} - Dashboard</title>
+    <link rel="icon" href="${contextPath}/static/logo/sfx-logo.ico" type="image/x-icon">
+    <title>${appName} - SFINX</title>
     <!-- Bootstrap 5 CSS -->
     @if (activeAppProfile.equals("dev"))
         <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.css">
@@ -30,7 +32,6 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="${contextPath}/css/custom/webapp.css">
 
-
 </head>
 <body>
 
@@ -38,12 +39,17 @@
     <header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
         <div class="container-fluid">
             <div class="row w-100 align-items-center">
-                <div class="col-3 d-flex align-items-center">                    <!-- Logo -->
+                <div class="col-2 d-flex align-items-center">                    
+                    <!-- Logo -->
                     <div class="me-2">
-                        <img src="${contextPath}/static/logo_lion.png" alt="Logo" class="app-logo">
+                        <img src="${contextPath}/static/logo/sfx-logo-light.svg" alt="Logo" class="app-logo theme-icon-light">
+                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo" class="app-logo theme-icon-dark d-none">
+                    </div>
+                    <div>
+                        <h2 class="app-name mb-0 fw-semibold">SFINX</h2>
                     </div>
                 </div>
-                <div class="col-6 text-center">
+                <div class="col-5 text-center">
                     <!-- App Title -->
                     <h4 class="mb-0 fw-semibold">${appName} - Username from database context: ${usernameFromDatabaseContext}</h4>
                 </div>
@@ -54,8 +60,9 @@
                         <i class="bi bi-moon-fill theme-icon-dark d-none"></i>
                     </button>
                 </div>
-                <div class="col-2 pull-right">
+                <div class="col-4">
                     <!-- User Info -->
+                    <label class="form-label mb-0">Profil activ: &nbsp;</label>
                     <div class="dropdown d-inline-block">
                         <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}</span>
@@ -283,4 +290,4 @@
         });
     </script>
 </body>
-</html>>
+</html>

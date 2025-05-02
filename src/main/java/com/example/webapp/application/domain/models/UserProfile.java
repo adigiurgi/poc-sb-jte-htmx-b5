@@ -30,7 +30,7 @@ public class UserProfile {
         if (profileName == null || profileName.trim().isEmpty()) {
             throw new DomainValidationException("profileName", "Numele profilului de utilizator nu poate fi null sau gol");
         }
-        if (profileName.length() > 30 || profileName.length() < 6) {
+        if (profileName.length() > 100 || profileName.length() < 6) {
             throw new DomainValidationException("profileName", "Numele profilului de utilizator nu poate depăși 30 caractere si nu poate fi mai mic de 6 caractere");
         }
     }
