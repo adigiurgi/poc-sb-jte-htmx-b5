@@ -4,6 +4,7 @@
 @import java.util.Map
 
 @param String appName
+@param String appDescription
 @param String activeAppProfile
 @param UserActiveProfileProvider currentUserProfile
 @param List<UserProfileDto> userProfileNotActiveList
@@ -11,6 +12,7 @@
 @param List<Map<String, String>> menuItems
 @param String contextPath
 @param String usernameFromDatabaseContext
+@param String appVersion
 
 <!DOCTYPE html>
 <!--suppress HtmlUnknownTarget -->
@@ -42,8 +44,8 @@
                 <div class="col-2 d-flex align-items-center">                    
                     <!-- Logo -->
                     <div class="me-2">
-                        <img src="${contextPath}/static/logo/sfx-logo-light.svg" alt="Logo" class="app-logo theme-icon-light">
-                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo" class="app-logo theme-icon-dark d-none">
+                        <img src="${contextPath}/static/logo/sfx-logo-light.svg" alt="Logo" class="app-logo theme-logo-light">
+                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo" class="app-logo theme-logo-dark d-none">
                     </div>
                     <div>
                         <h2 class="app-name mb-0 fw-semibold">SFINX</h2>
@@ -56,8 +58,8 @@
                 <div class="col-1">
                     <!-- Theme Toggle Button -->
                     <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button" aria-label="Theme Toggle">
-                        <i class="bi bi-sun-fill theme-icon-light"></i>
-                        <i class="bi bi-moon-fill theme-icon-dark d-none"></i>
+                        <i class="bi bi-sun-fill theme-toggle-light"></i>
+                        <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
                     </button>
                 </div>
                 <div class="col-4">
@@ -104,7 +106,7 @@
         </nav>
 
         <!-- Content Area -->
-        <main id="content" class="bg-body-tertiary">
+        <main id="content" class="bg-body-tertiary pb-5">
             <!-- Loading Indicator -->
             <!-- <div id="loading-indicator" class="hx-loading-indicator">
                 <div class="spinner-border text-primary" role="status">
@@ -141,14 +143,21 @@
                 </div>
             </div>
         </main>
-    </div>
-
-    <!-- Footer -->
-    <footer id="footer" class="bg-body-secondary d-flex align-items-center px-3">
+    </div>    <!-- Footer -->
+    <footer id="footer" class="bg-body-secondary d-flex align-items-center px-3 fixed-bottom">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 text-center">
-                    <small class="text-muted">© 2025 ${appName} | Profil activ: ${activeAppProfile}</small>
+                <div class="col-2">
+                    <div class="d-inline-block ms-2">
+                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo-Footer" width="15" height="15">
+                    </div>
+                    <small class="text-muted text-start">Powerd by: KnowledgeBase System Solutions</small>
+                </div>
+                <div class="col-8 text-center">
+<%--                    <small class="text-muted">© <span id="current-year"></span> ${appName} | Profil activ: ${activeAppProfile}</small>--%>
+                    <small class="text-muted">© <span id="current-year"></span> | ${appName} |  ${appDescription}</small>
+                </div>                <div class="col-2 text-center">
+                    <small class="text-muted">Versiune aplicatie: ${appVersion}</small>
                 </div>
             </div>
         </div>
@@ -161,15 +170,13 @@
     @else
         <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min.5.3.5.js.gz"></script>
         <script src="${contextPath}/js/vendor/htmx/htmx.min.2.0.4.js.gz"></script>
-    @endif
-
+    @endif    
     <script>
         // Activează tooltip-urile Bootstrap și inițializează tema
         document.addEventListener('DOMContentLoaded', function() {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
+            // Activează tooltip-urile Bootstrap
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
             // Activează primul element din meniu la încărcarea paginii
             const firstMenuItem = document.querySelector('#sidebar .nav-link');
@@ -179,6 +186,9 @@
 
             // Inițializează tema în funcție de preferința salvată
             initializeTheme();
+            
+            // Actualizează anul curent în footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
         });
 
         // Adaugă clasa active pentru elementul de meniu selectat
@@ -203,7 +213,7 @@
             localStorage.setItem('theme-preference', newTheme);
 
             // Actualizează iconița butonului
-            updateThemeIcon(newTheme);
+            updateThemeDetails(newTheme);
         });
 
         // Funcție pentru inițializarea temei în funcție de preferința salvată
@@ -218,20 +228,26 @@
             document.documentElement.setAttribute('data-bs-theme', theme);
 
             // Actualizează iconița butonului
-            updateThemeIcon(theme);
+            updateThemeDetails(theme);
         }
 
         // Funcție pentru actualizarea iconiței butonului în funcție de temă
-        function updateThemeIcon(theme) {
-            const lightIcon = document.querySelector('.theme-icon-light');
-            const darkIcon = document.querySelector('.theme-icon-dark');
+        function updateThemeDetails(theme) {
+            const lightToggle = document.querySelector('.theme-toggle-light');
+            const darkToggle = document.querySelector('.theme-toggle-dark');
+            const lightLogo = document.querySelector('.theme-logo-light');
+            const darkLogo = document.querySelector('.theme-logo-dark');
 
             if (theme === 'dark') {
-                lightIcon.classList.add('d-none');
-                darkIcon.classList.remove('d-none');
+                lightToggle.classList.add('d-none');
+                lightLogo.classList.add('d-none');
+                darkToggle.classList.remove('d-none');
+                darkLogo.classList.remove('d-none');
             } else {
-                lightIcon.classList.remove('d-none');
-                darkIcon.classList.add('d-none');
+                lightToggle.classList.remove('d-none');
+                lightLogo.classList.remove('d-none');
+                darkToggle.classList.add('d-none');
+                darkLogo.classList.add('d-none');
             }
         }
 

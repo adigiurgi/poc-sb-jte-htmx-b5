@@ -30,6 +30,12 @@ public class HomeController {
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Value("${spring.application.description}")
+    private String applicationDescription;
+
+    @Value("${spring.application.version}")
+    private String applicationVersion;
+
     private final UserActiveProfileProvider userActiveProfileProvider;
 
     private final UserProfileWebApi userProfileWebApi;
@@ -53,7 +59,8 @@ public class HomeController {
 
           // Opțiunile de meniu pentru navigarea din sidebar
         List<Map<String, String>> menuItems = Arrays.asList(
-            Map.of("id", "notifications", "name", "Notificări", "icon", "bell", "link", "/partials/notifications"),
+            Map.of("id", "notifications", "name", "Mesaje Forms", "icon", "bell", "link", "/partials/notifications"),
+                Map.of("id", "notifications", "name", "Mesaje Web", "icon", "bell", "link", "/partials/notifications"),
             Map.of("id", "intro", "name", "Introducere", "icon", "info-circle", "link", "/partials/intro"),
             Map.of("id", "search", "name", "Căutare", "icon", "search", "link", "/partials/search"),
             Map.of("id", "valorification", "name", "Valorificare", "icon", "chart-line", "link", "/partials/valorification"),
@@ -65,16 +72,16 @@ public class HomeController {
 
         String usernameFromDatabaseContext = userActiveProfileRepository
                 .getUsernameFromDatabaseContext(userActiveProfileProvider.getUsername());
-        log.info("Username from database context: {}", usernameFromDatabaseContext);
-
-          // Adăugăm datele în model pentru template
+        log.info("Username from database context: {}", usernameFromDatabaseContext);          // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
+        model.addAttribute("appDescription", applicationDescription);
         model.addAttribute("activeAppProfile", activeAppProfile);
         model.addAttribute("currentUserProfile", userActiveProfileProvider);
         model.addAttribute("userProfileNotActiveList", userProfileNotActiveList);
         model.addAttribute("usernameFromDatabaseContext", usernameFromDatabaseContext);
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("contextPath", contextPath);
+        model.addAttribute("appVersion", applicationVersion);
         
         return "dashboard";
     }

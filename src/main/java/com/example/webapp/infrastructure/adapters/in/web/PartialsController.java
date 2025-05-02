@@ -41,8 +41,8 @@ public class PartialsController {
 
     @GetMapping("/valorification")
     public String valorification(Model model, HttpServletRequest request) throws InterruptedException {
-        Thread.sleep(2000);
-        log.debug("Accesare intarziata conținut parțial pentru valorificare");
+        //Thread.sleep(2000);
+        log.debug("Accesare conținut parțial pentru valorificare");
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/valorification";
     }
