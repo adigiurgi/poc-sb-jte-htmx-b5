@@ -2,7 +2,7 @@
 
 <!-- Partial pentru Notificări -->
 <div class="container-fluid py-3">
-    <h2 class="mb-4">Mesaje Forms</h2>
+    <h2 class="mb-4">Mesaje</h2>
 
     <!-- Adăugare câmp de căutare pentru filtrare -->
     <div class="row mb-4">
@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <div class="alert alert-info alert-dismissible fade show d-none" role="alert">
         <strong>Felicitări!</strong> Nu aveți nici un mesaj nerezolvat!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>

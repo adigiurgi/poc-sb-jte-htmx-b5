@@ -14,7 +14,6 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    background-color: var(--bs-body-tertiary-bg); /* Asigurăm că are un fundal */
 }
 
 .app-logo {
@@ -31,8 +30,7 @@ body {
     padding-bottom: 50px; /* Înălțimea footer-ului */
     min-height: 100vh; /* Asigură că ocupă cel puțin înălțimea viewport-ului */
     box-sizing: border-box; /* Include padding-urile în calculul dimensiunii */
-    background-color: var(--bs-body-tertiary-bg); /* Asigurăm aceeași culoare de fundal */
-    margin-top: 60px; /* Folosim margin în loc de padding pentru a lăsa spațiu pentru header */
+    /*margin-top: 60px; /* Folosim margin în loc de padding pentru a lăsa spațiu pentru header */
 }
 
 #sidebar {

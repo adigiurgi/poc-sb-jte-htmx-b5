@@ -27,10 +27,12 @@
     <!-- Bootstrap 5 CSS -->
     @if (activeAppProfile.equals("dev"))
         <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.css">
-        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
+        <link rel="stylesheet"
+              href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.css">
     @else
         <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap.5.3.5.min.css.gz">
-        <link rel="stylesheet" href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css.gz">
+        <link rel="stylesheet"
+              href="${contextPath}/css/vendor/bootstrap/bootstrap-icons-1.11.3/font/bootstrap-icons.min.css.gz">
     @endif
 
     <!-- Custom styles -->
@@ -39,159 +41,195 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
-        <div class="container-fluid">
-            <div class="row w-100 align-items-center">
-                <div class="col-2 d-flex align-items-center">                    
-                    <!-- Logo -->
-                    <div class="me-2">
-                        <img src="${contextPath}/static/logo/app-logo-light.svg" alt="Logo" class="app-logo theme-logo-light">
-                        <img src="${contextPath}/static/logo/app-logo-dark.svg" alt="Logo" class="app-logo theme-logo-dark d-none">
-                    </div>
-                    <div>
-                        <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
-                    </div>
+<!-- Header -->
+<header id="header" class="bg-body-tertiary d-flex align-items-center px-3">
+    <div class="container-fluid">
+        <div class="row w-100 align-items-center">
+            <div class="col-2 d-flex align-items-center">
+                <!-- Logo -->
+                <div class="me-2">
+                    <img src="${contextPath}/static/logo/app-logo-light.svg" alt="Logo"
+                         class="app-logo theme-logo-light">
+                    <img src="${contextPath}/static/logo/app-logo-dark.svg" alt="Logo"
+                         class="app-logo theme-logo-dark d-none">
                 </div>
-                <div class="col-5 text-center">
-                    <!-- App Title -->
-                    <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
+                <div>
+                    <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
                 </div>
-                <div class="col-1">
-                    <!-- Theme Toggle Button -->
-                    <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button" aria-label="Theme Toggle">
-                        <i class="bi bi-sun-fill theme-toggle-light"></i>
-                        <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
+            </div>
+            <div class="col-5 text-center">
+                <!-- App Title -->
+                <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
+            </div>
+
+            <div class="col-1 align-items-end d-flex justify-content-end">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button"
+                        aria-label="Theme Toggle">
+                    <i class="bi bi-sun-fill theme-toggle-light"></i>
+                    <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
+                </button>
+            </div>
+
+            <div class="col-1 align-items-end d-flex justify-content-end">
+                <!-- Notification Bell Button -->
+                <div class="me-2 position-relative">
+                    <button id="notification-bell"
+                            class="btn btn-sm btn-outline-secondary text-center position-relative" type="button"
+                            aria-label="Notifications"
+                            hx-get="${contextPath}/partials/notifications-new"
+                            hx-target="#content-area"
+                            hx-swap="innerHTML"
+                            hx-trigger="click">
+                        <i class="bi bi-bell-fill"></i>
+                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                              id="notification-counter">
+                                2
+                                <span class="visually-hidden">notificări necitite</span>
+                            </span>
                     </button>
                 </div>
-                <div class="col-4">
-                    <!-- User Info -->
-                    <a href="#" class="form-label p-2 mb-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cont - Nume Profil">Profil activ: &nbsp;</a>
-                    <div class="dropdown d-inline-block">
-                        <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            @for(var profile : userProfileNotActiveList)
-                                <li><span class="dropdown-item-text">${profile.profileName()}/66/D3/S10/B1</span></li>
-                            @endfor
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Detalii cont</a></li>
-                        </ul>
-                    </div>
+            </div>
+
+            <div class="col-3 align-items-end d-flex justify-content-end">
+                <!-- User Info -->
+                <a href="#" class="form-label p-2 mb-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                   data-bs-title="Cont - Nume Profil">Profil activ: &nbsp;</a>
+                <div class="dropdown d-inline-block">
+                    <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        @for(var profile : userProfileNotActiveList)
+                            <li><span class="dropdown-item-text">${profile.profileName()}/66/D3/S10/B1</span></li>
+                        @endfor
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Detalii cont</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Main Content Container -->
-    <div class="main-container">
-        <!-- Sidebar Navigation -->
-        <nav id="sidebar" class="bg-body-secondary">
-            <div class="list-group list-group-flush pt-2">
-                @for(var item : menuItems)
-                    <a href="#${item.get("id")}"
-                       class="list-group-item list-group-item-action nav-link d-flex align-items-center"
-                       hx-get="${contextPath}${item.get("link")}"
-                       hx-target="#content-area"
-                       hx-swap="innerHTML"
-                       hx-trigger="click">
-                        <i class="bi bi-${item.get("icon")} me-2"></i>
-                        ${item.get("name")}
-                    <!-- Indicatori de încărcare pentru HTMX -->
-                    <!-- <div class="my-indicator"></div> -->
-                    <div class="my-indicator-overlay"></div>
-                    </a>
-                @endfor
-            </div>
-            
-            <!-- Help Guide Navigation - Static Bottom Item -->
-            <div class="help-guide-nav">
-                <a href="#user-guide"
+<!-- Main Content Container -->
+<div class="main-container">
+    <!-- Sidebar Navigation -->
+    <nav id="sidebar" class="bg-body-secondary">
+        <div class="list-group list-group-flush pt-2">
+            @for(var item : menuItems)
+                <a href="#${item.get("id")}"
                    class="list-group-item list-group-item-action nav-link d-flex align-items-center"
-                   hx-get="${contextPath}/partials/user-guide"
+                   hx-get="${contextPath}${item.get("link")}"
                    hx-target="#content-area"
                    hx-swap="innerHTML"
                    hx-trigger="click">
-                    <i class="bi bi-question-circle me-2"></i>
-                    Ghid de utilizare
+                    <i class="bi bi-${item.get("icon")} me-2"></i>
+                    ${item.get("name")}
+                    <!-- Indicatori de încărcare pentru HTMX -->
+                    <!-- <div class="my-indicator"></div> -->
                     <div class="my-indicator-overlay"></div>
                 </a>
-            </div>
-        </nav>
+            @endfor
+        </div>
 
-        <!-- Content Area -->
-        <main id="content" class="bg-body-tertiary pb-5">
-            <!-- Loading Indicator -->
-            <!-- <div id="loading-indicator" class="hx-loading-indicator">
-                <div class="spinner-border text-primary" role="status">
-                    <span class="visually-hidden">Se încarcă...</span>
-                </div>
-            </div> -->
+        <!-- Help Guide Navigation - Static Bottom Item -->
+        <div class="help-guide-nav">
+            <a href="#user-guide"
+               class="list-group-item list-group-item-action nav-link d-flex align-items-center"
+               hx-get="${contextPath}/partials/user-guide"
+               hx-target="#content-area"
+               hx-swap="innerHTML"
+               hx-trigger="click">
+                <i class="bi bi-question-circle me-2"></i>
+                Ghid de utilizare
+                <div class="my-indicator-overlay"></div>
+            </a>
+        </div>
+    </nav>
 
-            <!-- Error container for HTMX errors -->
-            <div id="error-container" class="alert alert-danger d-none" role="alert">
-                <h4 class="alert-heading">A apărut o eroare!</h4>
-                <div id="error-content"></div>
-                <hr>
-                <div class="mt-2">
-                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="document.getElementById('error-container').classList.add('d-none')">
-                        Închide
-                    </button>
-                    <button id="show-details-btn" type="button" class="btn btn-sm btn-outline-secondary ms-2 d-none"
-                            data-bs-toggle="collapse" data-bs-target="#error-details-collapse">
-                        Afișează detalii
-                    </button>
-                </div>
-                <div class="collapse mt-3" id="error-details-collapse">
-                    <div class="card card-body">
-                        <small class="text-muted" id="error-details"></small>
-                    </div>
-                </div>
+    <!-- Content Area -->
+    <main id="content" class="bg-body-tertiary pb-5">
+        <!-- Loading Indicator -->
+        <!-- <div id="loading-indicator" class="hx-loading-indicator">
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Se încarcă...</span>
             </div>
+        </div> -->
 
-            <div id="content-area" class="h-100">
-                <!-- Initial content on page load -->
-                <div class="text-center py-5">
-                    <h3>Bine ați venit la panoul de administrare</h3>
-                    <p class="text-muted">Selectați o opțiune din meniul lateral pentru a începe.</p>
-                </div>
+        <!-- Error container for HTMX errors -->
+        <div id="error-container" class="alert alert-danger d-none" role="alert">
+            <h4 class="alert-heading">A apărut o eroare!</h4>
+            <div id="error-content"></div>
+            <hr>
+            <div class="mt-2">
+                <button type="button" class="btn btn-sm btn-outline-danger"
+                        onclick="document.getElementById('error-container').classList.add('d-none')">
+                    Închide
+                </button>
+                <button id="show-details-btn" type="button" class="btn btn-sm btn-outline-secondary ms-2 d-none"
+                        data-bs-toggle="collapse" data-bs-target="#error-details-collapse">
+                    Afișează detalii
+                </button>
             </div>
-        </main>
-    </div>    <!-- Footer -->
-    <footer id="footer" class="bg-body-secondary d-flex align-items-center px-3 fixed-bottom">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-2"></div>
-                <div class="col-8 text-center">
-<%--                    <small class="text-muted">© <span id="current-year"></span> ${appName} | Profil activ: ${activeAppProfile}</small>--%>
-                    <small class="text-muted">© <span id="current-year"></span> | ${appDeveloperShort} |</small>
-                        <div class="d-inline-block">
-                            <img src="${contextPath}/static/logo/developer-logo.svg" alt="Logo-Footer" width="15" height="15">
-                        </div>
-                    <small class="text-muted"> | ${appDeveloperLong} |</small>
-                </div>
-                <div class="col-2 text-center">
-                    <small class="text-muted">Versiune aplicatie: ${appVersion}</small>
+            <div class="collapse mt-3" id="error-details-collapse">
+                <div class="card card-body">
+                    <small class="text-muted" id="error-details"></small>
                 </div>
             </div>
         </div>
-    </footer>
 
-    <!-- Bootstrap 5 & htmx JS -->
-    @if (activeAppProfile.equals("dev"))
-        <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.5.3.5.js"></script>
-        <script src="${contextPath}/js/vendor/htmx/htmx.2.0.4.js"></script>
-    @else
-        <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min.5.3.5.js.gz"></script>
-        <script src="${contextPath}/js/vendor/htmx/htmx.min.2.0.4.js.gz"></script>
-    @endif
-    <script src="${contextPath}/js/custom/general/tooltipInitialisation.js"></script>
-    <script src="${contextPath}/js/custom/general/domLoad.js"></script>
-    <script src="${contextPath}/js/custom/general/onAnyPartialSwap.js"></script>
-    <script src="${contextPath}/js/custom/general/navBarActivation.js"></script>
-    <script src="${contextPath}/js/custom/general/themeToggling.js"></script>
-    <script src="${contextPath}/js/custom/general/themeInitialisation.js"></script>
-    <script src="${contextPath}/js/custom/general/globalErrorHandling.js"></script>
+        <div id="content-area" class="h-100">
+            <!-- Initial content on page load -->
+            <div class="text-center py-5">
+                <h3>Bine ați venit la panoul de administrare</h3>
+                <p class="text-muted">Selectați o opțiune din meniul lateral pentru a începe.</p>
+            </div>
+        </div>
+    </main>
+</div>    <!-- Footer -->
+<footer id="footer" class="bg-body-secondary d-flex align-items-center px-3 fixed-bottom">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8 text-center">
+                <%--                    <small class="text-muted">© <span id="current-year"></span> ${appName} | Profil activ: ${activeAppProfile}</small>--%>
+                <small class="text-muted">© <span id="current-year"></span> | ${appDeveloperShort} |</small>
+                <div class="d-inline-block">
+                    <img src="${contextPath}/static/logo/developer-logo.svg" alt="Logo-Footer" width="15" height="15">
+                </div>
+                <small class="text-muted"> | ${appDeveloperLong} |</small>
+            </div>
+            <div class="col-2 text-center">
+                <small class="text-muted">
+                    <a href="#changelog"
+                       hx-get="${contextPath}/partials/changelog"
+                       hx-target="#content-area"
+                       hx-swap="innerHTML"
+                       hx-trigger="click">versiune ${appVersion} </a>
+                </small>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 & htmx JS -->
+@if (activeAppProfile.equals("dev"))
+<script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.5.3.5.js"></script>
+<script src="${contextPath}/js/vendor/htmx/htmx.2.0.4.js"></script>
+@else
+<script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min.5.3.5.js.gz"></script>
+<script src="${contextPath}/js/vendor/htmx/htmx.min.2.0.4.js.gz"></script>
+@endif
+<script src="${contextPath}/js/custom/general/tooltipInitialisation.js"></script>
+<script src="${contextPath}/js/custom/general/domLoad.js"></script>
+<script src="${contextPath}/js/custom/general/onAnyPartialSwap.js"></script>
+<script src="${contextPath}/js/custom/general/navBarActivation.js"></script>
+<script src="${contextPath}/js/custom/general/themeToggling.js"></script>
+<script src="${contextPath}/js/custom/general/themeInitialisation.js"></script>
+<script src="${contextPath}/js/custom/general/globalErrorHandling.js"></script>
 </body>
 </html>

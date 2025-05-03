@@ -65,11 +65,10 @@ public class HomeController {
 
           // Opțiunile de meniu pentru navigarea din sidebar
         List<Map<String, String>> menuItems = Arrays.asList(
-            Map.of("id", "notifications", "name", "Mesaje Forms", "icon", "bell", "link", "/partials/notifications"),
-                Map.of("id", "notifications", "name", "Mesaje Web", "icon", "bell", "link", "/partials/notifications"),
+            Map.of("id", "notifications", "name", "Mesaje", "icon", "envelope", "link", "/partials/notifications"),
             Map.of("id", "intro", "name", "Introducere", "icon", "info-circle", "link", "/partials/intro"),
             Map.of("id", "search", "name", "Căutare", "icon", "search", "link", "/partials/search"),
-            Map.of("id", "valorification", "name", "Valorificare", "icon", "chart-line", "link", "/partials/valorification"),
+            Map.of("id", "valorification", "name", "Valorificare", "icon", "clipboard2-data-fill", "link", "/partials/valorification"),
             Map.of("id", "admin", "name", "Administrare", "icon", "gear", "link", "/partials/admin")
         );
         
