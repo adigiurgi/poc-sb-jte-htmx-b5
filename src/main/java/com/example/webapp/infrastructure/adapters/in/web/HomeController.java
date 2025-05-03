@@ -33,6 +33,12 @@ public class HomeController {
     @Value("${spring.application.description}")
     private String applicationDescription;
 
+    @Value("${spring.application.developer.short}")
+    private String applicationDeveloperShort;
+
+    @Value("${spring.application.developer.long}")
+    private String applicationDeveloperLong;
+
     @Value("${spring.application.version}")
     private String applicationVersion;
 
@@ -75,6 +81,8 @@ public class HomeController {
         log.info("Username from database context: {}", usernameFromDatabaseContext);          // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
         model.addAttribute("appDescription", applicationDescription);
+        model.addAttribute("appDeveloperShort", applicationDeveloperShort);
+        model.addAttribute("appDeveloperLong", applicationDeveloperLong);
         model.addAttribute("activeAppProfile", activeAppProfile);
         model.addAttribute("currentUserProfile", userActiveProfileProvider);
         model.addAttribute("userProfileNotActiveList", userProfileNotActiveList);

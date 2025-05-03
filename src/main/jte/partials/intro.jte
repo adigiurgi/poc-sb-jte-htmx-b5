@@ -332,4 +332,4 @@
 
 </div>
 <!-- Script inline pentru filtrarea cardurilor - execută imediat fără a aștepte DOMContentLoaded -->
-<script src="${contextPath}/js/custom/filterCardsByCardHeaderText.js"></script>
+<script src="${contextPath}/js/custom/partials/common/filterCardsByCardHeaderText.js"></script>

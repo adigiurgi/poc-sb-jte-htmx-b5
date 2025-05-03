@@ -54,4 +54,12 @@ public class PartialsController {
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/admin";
     }
+
+    @GetMapping("/user-guide")
+    public String userGuide(Model model, HttpServletRequest request) throws InterruptedException {
+        //Thread.sleep(3000);
+        log.debug("Accesare conținut parțial pentru ghidul de utilizare");
+        model.addAttribute("contextPath", request.getContextPath());
+        return "partials/user-guide";
+    }
 }

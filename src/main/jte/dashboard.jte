@@ -5,6 +5,8 @@
 
 @param String appName
 @param String appDescription
+@param String appDeveloperShort
+@param String appDeveloperLong
 @param String activeAppProfile
 @param UserActiveProfileProvider currentUserProfile
 @param List<UserProfileDto> userProfileNotActiveList
@@ -20,7 +22,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="${contextPath}/static/logo/sfx-logo.ico" type="image/x-icon">
+    <link rel="icon" href="${contextPath}/static/logo/app-logo.ico" type="image/x-icon">
     <title>${appName} - SFINX</title>
     <!-- Bootstrap 5 CSS -->
     @if (activeAppProfile.equals("dev"))
@@ -44,16 +46,16 @@
                 <div class="col-2 d-flex align-items-center">                    
                     <!-- Logo -->
                     <div class="me-2">
-                        <img src="${contextPath}/static/logo/sfx-logo-light.svg" alt="Logo" class="app-logo theme-logo-light">
-                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo" class="app-logo theme-logo-dark d-none">
+                        <img src="${contextPath}/static/logo/app-logo-light.svg" alt="Logo" class="app-logo theme-logo-light">
+                        <img src="${contextPath}/static/logo/app-logo-dark.svg" alt="Logo" class="app-logo theme-logo-dark d-none">
                     </div>
                     <div>
-                        <h2 class="app-name mb-0 fw-semibold">SFINX</h2>
+                        <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
                     </div>
                 </div>
                 <div class="col-5 text-center">
                     <!-- App Title -->
-                    <h4 class="mb-0 fw-semibold">${appName} - Username from database context: ${usernameFromDatabaseContext}</h4>
+                    <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
                 </div>
                 <div class="col-1">
                     <!-- Theme Toggle Button -->
@@ -64,17 +66,17 @@
                 </div>
                 <div class="col-4">
                     <!-- User Info -->
-                    <label class="form-label mb-0">Profil activ: &nbsp;</label>
+                    <a href="#" class="form-label p-2 mb-0" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Cont - Nume Profil">Profil activ: &nbsp;</a>
                     <div class="dropdown d-inline-block">
                         <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}</span>
+                            <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             @for(var profile : userProfileNotActiveList)
-                                <li><span class="dropdown-item-text">${profile.profileName()}</span></li>
+                                <li><span class="dropdown-item-text">${profile.profileName()}/66/D3/S10/B1</span></li>
                             @endfor
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Setari personale</a></li>
+                            <li><a class="dropdown-item" href="#">Detalii cont</a></li>
                         </ul>
                     </div>
                 </div>
@@ -101,7 +103,20 @@
                     <div class="my-indicator-overlay"></div>
                     </a>
                 @endfor
-
+            </div>
+            
+            <!-- Help Guide Navigation - Static Bottom Item -->
+            <div class="help-guide-nav">
+                <a href="#user-guide"
+                   class="list-group-item list-group-item-action nav-link d-flex align-items-center"
+                   hx-get="${contextPath}/partials/user-guide"
+                   hx-target="#content-area"
+                   hx-swap="innerHTML"
+                   hx-trigger="click">
+                    <i class="bi bi-question-circle me-2"></i>
+                    Ghid de utilizare
+                    <div class="my-indicator-overlay"></div>
+                </a>
             </div>
         </nav>
 
@@ -147,16 +162,16 @@
     <footer id="footer" class="bg-body-secondary d-flex align-items-center px-3 fixed-bottom">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-2">
-                    <div class="d-inline-block ms-2">
-                        <img src="${contextPath}/static/logo/sfx-logo-dark.svg" alt="Logo-Footer" width="15" height="15">
-                    </div>
-                    <small class="text-muted text-start">Powerd by: KnowledgeBase System Solutions</small>
-                </div>
+                <div class="col-2"></div>
                 <div class="col-8 text-center">
 <%--                    <small class="text-muted">© <span id="current-year"></span> ${appName} | Profil activ: ${activeAppProfile}</small>--%>
-                    <small class="text-muted">© <span id="current-year"></span> | ${appName} |  ${appDescription}</small>
-                </div>                <div class="col-2 text-center">
+                    <small class="text-muted">© <span id="current-year"></span> | ${appDeveloperShort} |</small>
+                        <div class="d-inline-block">
+                            <img src="${contextPath}/static/logo/developer-logo.svg" alt="Logo-Footer" width="15" height="15">
+                        </div>
+                    <small class="text-muted"> | ${appDeveloperLong} |</small>
+                </div>
+                <div class="col-2 text-center">
                     <small class="text-muted">Versiune aplicatie: ${appVersion}</small>
                 </div>
             </div>
@@ -170,140 +185,13 @@
     @else
         <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min.5.3.5.js.gz"></script>
         <script src="${contextPath}/js/vendor/htmx/htmx.min.2.0.4.js.gz"></script>
-    @endif    
-    <script>
-        // Activează tooltip-urile Bootstrap și inițializează tema
-        document.addEventListener('DOMContentLoaded', function() {
-            // Activează tooltip-urile Bootstrap
-            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-            // Activează primul element din meniu la încărcarea paginii
-            const firstMenuItem = document.querySelector('#sidebar .nav-link');
-            if (firstMenuItem) {
-                firstMenuItem.click();
-            }
-
-            // Inițializează tema în funcție de preferința salvată
-            initializeTheme();
-            
-            // Actualizează anul curent în footer
-            document.getElementById('current-year').textContent = new Date().getFullYear();
-        });
-
-        // Adaugă clasa active pentru elementul de meniu selectat
-        document.addEventListener('click', function(event) {
-            if (event.target.closest('#sidebar .nav-link')) {
-                const navLinks = document.querySelectorAll('#sidebar .nav-link');
-                navLinks.forEach(link => link.classList.remove('active'));
-                event.target.closest('#sidebar .nav-link').classList.add('active');
-            }
-        });
-
-        // Funcționalitate pentru comutarea între modurile light și dark
-        document.getElementById('theme-toggle').addEventListener('click', function() {
-            const htmlElement = document.documentElement;
-            const isCurrentlyDark = htmlElement.getAttribute('data-bs-theme') === 'dark';
-            const newTheme = isCurrentlyDark ? 'light' : 'dark';
-
-            // Schimbă tema
-            htmlElement.setAttribute('data-bs-theme', newTheme);
-
-            // Salvează preferința în localStorage
-            localStorage.setItem('theme-preference', newTheme);
-
-            // Actualizează iconița butonului
-            updateThemeDetails(newTheme);
-        });
-
-        // Funcție pentru inițializarea temei în funcție de preferința salvată
-        function initializeTheme() {
-            const savedTheme = localStorage.getItem('theme-preference');
-            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-            // Dacă există o preferință salvată, folosește-o, altfel folosește preferința sistemului
-            const theme = savedTheme || (prefersDarkScheme ? 'dark' : 'light');
-
-            // Aplică tema
-            document.documentElement.setAttribute('data-bs-theme', theme);
-
-            // Actualizează iconița butonului
-            updateThemeDetails(theme);
-        }
-
-        // Funcție pentru actualizarea iconiței butonului în funcție de temă
-        function updateThemeDetails(theme) {
-            const lightToggle = document.querySelector('.theme-toggle-light');
-            const darkToggle = document.querySelector('.theme-toggle-dark');
-            const lightLogo = document.querySelector('.theme-logo-light');
-            const darkLogo = document.querySelector('.theme-logo-dark');
-
-            if (theme === 'dark') {
-                lightToggle.classList.add('d-none');
-                lightLogo.classList.add('d-none');
-                darkToggle.classList.remove('d-none');
-                darkLogo.classList.remove('d-none');
-            } else {
-                lightToggle.classList.remove('d-none');
-                lightLogo.classList.remove('d-none');
-                darkToggle.classList.add('d-none');
-                darkLogo.classList.add('d-none');
-            }
-        }
-
-        // Handler global pentru erorile HTMX
-
-        document.body.addEventListener('htmx:responseError', function(event) {
-            const errorContainer = document.getElementById('error-container');
-            const errorContent = document.getElementById('error-content');
-            const errorDetails = document.getElementById('error-details');
-            const showDetailsBtn = document.getElementById('show-details-btn');
-
-            const xhr = event.detail.xhr;
-            const requestPath = event.detail.pathInfo ? event.detail.pathInfo.requestPath : '';
-
-            // Extrage conținutul paginii de eroare din răspuns
-            let errorHTML = xhr.responseText;
-            let errorMessage = 'A apărut o eroare la procesarea cererii.';
-            let errorTrace = '';
-
-            try {
-                // Extrage titlul și descrierea erorii
-                const tempDiv = document.createElement('div');
-                tempDiv.innerHTML = errorHTML;
-
-                // Caută mesajul de eroare în HTML
-                const leadParas = tempDiv.querySelectorAll('.lead');
-                if (leadParas.length > 0) {
-                    errorMessage = leadParas[0].textContent;
-                }
-
-                // Caută stack trace-ul dacă există
-                const traceElements = tempDiv.querySelectorAll('pre');
-                if (traceElements.length > 0) {
-                    errorTrace = traceElements[0].textContent;
-                    showDetailsBtn.classList.remove('d-none');
-                } else {
-                    showDetailsBtn.classList.add('d-none');
-                }
-
-                // Setează conținutul de eroare
-                errorContent.innerHTML = '<p>' + errorMessage + '</p>' +
-                    '<p><strong>URL:</strong> ' + requestPath + '</p>';
-                errorDetails.textContent = errorTrace;
-
-            } catch (e) {
-                // Fallback dacă parsarea eșuează
-                errorContent.textContent = 'Eroare la încărcarea conținutului: ' + requestPath;
-                showDetailsBtn.classList.add('d-none');
-            }
-
-            // Arată containerul de eroare
-            errorContainer.classList.remove('d-none');
-
-            // Scrollează la containerul de eroare
-            errorContainer.scrollIntoView({ behavior: 'smooth' });
-        });
-    </script>
+    @endif
+    <script src="${contextPath}/js/custom/general/tooltipInitialisation.js"></script>
+    <script src="${contextPath}/js/custom/general/domLoad.js"></script>
+    <script src="${contextPath}/js/custom/general/onAnyPartialSwap.js"></script>
+    <script src="${contextPath}/js/custom/general/navBarActivation.js"></script>
+    <script src="${contextPath}/js/custom/general/themeToggling.js"></script>
+    <script src="${contextPath}/js/custom/general/themeInitialisation.js"></script>
+    <script src="${contextPath}/js/custom/general/globalErrorHandling.js"></script>
 </body>
 </html>

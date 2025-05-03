@@ -29,14 +29,14 @@
             <h5 class="card-header">MODUL-A</h5>
             <div class="card-body">
                 <p class="card-text"> </p>
-                <a href="#" class="btn btn-info position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom">
+                <a href="#" class="btn btn-info position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Accesati pentru mai multe detalii">
                     Mesaje informative
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     14
                     </span>
                 </a>
                 <div class="vr"></div>
-                <a href="#" class="btn btn-warning position-relative mx-3">
+                <a href="#" class="btn btn-warning position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accesati pentru mai multe detalii">
                     Mesaje flux
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                     +99
@@ -534,4 +534,4 @@
 </div>
 
 <!-- Script inline pentru filtrarea cardurilor - execută imediat fără a aștepte DOMContentLoaded -->
-<script src="${contextPath}/js/custom/filterCardsByCardHeaderText.js"></script>
+<script src="${contextPath}/js/custom/partials/common/filterCardsByCardHeaderText.js"></script>

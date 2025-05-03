@@ -2,12 +2,19 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    margin: 0; /* Eliminăm orice margin implicit */
+    padding-top: 60px; /* Adăugăm padding pentru a compensa header-ul fix */
 }
 
 #header {
     height: 60px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     z-index: 100;
+    position: fixed; /* Fixăm header-ul în partea de sus */
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--bs-body-tertiary-bg); /* Asigurăm că are un fundal */
 }
 
 .app-logo {
@@ -18,13 +25,48 @@ body {
 .main-container {
     display: flex;
     flex: 1;
+    position: relative; /* Pentru ca elementele position: fixed să se poziționeze corect */
+    padding-left: 250px; /* Lățimea sidebar-ului */
+    padding-top: 0; /* Eliminăm padding-ul de sus din container */
+    padding-bottom: 50px; /* Înălțimea footer-ului */
+    min-height: 100vh; /* Asigură că ocupă cel puțin înălțimea viewport-ului */
+    box-sizing: border-box; /* Include padding-urile în calculul dimensiunii */
+    background-color: var(--bs-body-tertiary-bg); /* Asigurăm aceeași culoare de fundal */
+    margin-top: 60px; /* Folosim margin în loc de padding pentru a lăsa spațiu pentru header */
 }
 
 #sidebar {
     width: 250px;
-    min-height: calc(100vh - 110px);
+    position: fixed; /* Fixăm sidebar-ul în poziție */
+    top: 60px; /* Înălțimea header-ului */
+    bottom: 50px; /* Înălțimea footer-ului */
+    left: 0; /* Lipit de marginea stângă */
     box-shadow: 1px 0 3px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    z-index: 99; /* Sub header, dar peste conținut */
+    background-color: var(--bs-body-secondary-bg); /* Asigură că sidebar-ul are fundal */
+}
+
+#sidebar .list-group-flush {
+    flex-grow: 1;
+    overflow-y: auto; /* Scrolabil pentru elementele din meniu */
+    max-height: calc(100% - 50px); /* Rezervă spațiu pentru elementul de help */
+}
+
+#sidebar .help-guide-nav {
+    position: absolute; /* Poziționare absolută față de sidebar */
+    bottom: 0; /* Lipit de partea de jos a sidebar-ului */
+    width: 100%; /* Ocupă toată lățimea sidebar-ului */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(var(--bs-body-color-rgb), .05);
+    z-index: 10;
+}
+
+#sidebar .help-guide-nav .list-group-item {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
 }
 
 #sidebar .nav-link {
