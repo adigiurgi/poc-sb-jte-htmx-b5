@@ -21,22 +21,20 @@ public class PartialsController {
     @Value("${spring.application.version}")
     private String applicationVersion;
 
-    @GetMapping("/notifications")
+    @GetMapping("/notifications-forms")
     public String notifications(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificări");
         model.addAttribute("contextPath", request.getContextPath());
-        return "partials/notifications";
+        return "partials/notifications-forms";
     }
 
-    @GetMapping("/notifications-new")
+    @GetMapping("/notifications-web")
     public String notificationsNew(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificările noi");
         model.addAttribute("contextPath", request.getContextPath());
-        model.addAttribute("appName", applicationName);
-        model.addAttribute("appVersion", applicationVersion);
-        return "partials/notifications-new";
+        return "partials/notifications-web";
     }
 
     @GetMapping("/intro")

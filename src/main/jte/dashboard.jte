@@ -57,38 +57,9 @@
                     <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
                 </div>
             </div>
-            <div class="col-5 text-center">
+            <div class="col-6 text-center">
                 <!-- App Title -->
                 <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
-            </div>
-
-            <div class="col-1 align-items-end d-flex justify-content-end">
-                <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button"
-                        aria-label="Theme Toggle">
-                    <i class="bi bi-sun-fill theme-toggle-light"></i>
-                    <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
-                </button>
-            </div>
-
-            <div class="col-1 align-items-end d-flex justify-content-end">
-                <!-- Notification Bell Button -->
-                <div class="me-2 position-relative">
-                    <button id="notification-bell"
-                            class="btn btn-sm btn-outline-secondary text-center position-relative" type="button"
-                            aria-label="Notifications"
-                            hx-get="${contextPath}/partials/notifications-new"
-                            hx-target="#content-area"
-                            hx-swap="innerHTML"
-                            hx-trigger="click">
-                        <i class="bi bi-bell-fill"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                              id="notification-counter">
-                                2
-                                <span class="visually-hidden">notificări necitite</span>
-                            </span>
-                    </button>
-                </div>
             </div>
 
             <div class="col-3 align-items-end d-flex justify-content-end">
@@ -111,6 +82,16 @@
                     </ul>
                 </div>
             </div>
+
+            <div class="col-1 align-items-end d-flex justify-content-end">
+                <!-- Theme Toggle Button -->
+                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button"
+                        aria-label="Theme Toggle">
+                    <i class="bi bi-sun-fill theme-toggle-light"></i>
+                    <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
+                </button>
+            </div>
+
         </div>
     </div>
 </header>
@@ -132,6 +113,9 @@
                     <!-- Indicatori de încărcare pentru HTMX -->
                     <!-- <div class="my-indicator"></div> -->
                     <div class="my-indicator-overlay"></div>
+                    @if(item.get("id").equals("notifications-web"))
+                        <span class="badge rounded-pill bg-danger mx-3">78</span>
+                    @endif
                 </a>
             @endfor
         </div>

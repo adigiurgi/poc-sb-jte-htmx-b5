@@ -2,7 +2,7 @@
 
 <!-- Partial pentru Notificări -->
 <div class="container-fluid py-3">
-    <h2 class="mb-4">Mesaje</h2>
+    <h2 class="mb-4">Notificari Web</h2>
 
     <!-- Adăugare câmp de căutare pentru filtrare -->
     <div class="row mb-4">

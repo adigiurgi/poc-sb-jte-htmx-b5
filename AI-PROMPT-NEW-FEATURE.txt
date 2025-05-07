@@ -1,6 +1,4 @@
 Avand in vedere contextul actualului proiect descris in fisierul README.md, codul de pana acum al proiectului, 
 precum si indicatiile de dezvoltare din fisierul AI-DEVELOPER-GUIDLINES.md te rog sa imi implementezi urmatoare functionalitate:
 
-Adaugarea unui element de navigare in actualul element de nagigare cu id="sidebar" care sa fie static si sa fie mereu in partea de jos a viewport-ului de navigare,
-lipit practic de footer-ul paginii. Din noul element de navigare trebuie sa se poata accesa un nou partial pe care va trebui sa il creezi (da-ti frau liber imaginatiei 
-aici dar foloseste-te de informatiile din fisierul README.md al aplicatiei) si care va contine ghidul de utilizare al aplicatiei.
+
