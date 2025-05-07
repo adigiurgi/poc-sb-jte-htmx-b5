@@ -22,15 +22,23 @@ public class PartialsController {
     private String applicationVersion;
 
     @GetMapping("/notifications-forms")
-    public String notifications(Model model, HttpServletRequest request) throws InterruptedException {
+    public String notificationsForms(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificări");
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/notifications-forms";
     }
 
+    @GetMapping("/notifications-forms-details")
+    public String notificationsFormsDetails(Model model, HttpServletRequest request) throws InterruptedException {
+        //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
+        log.debug("Accesare conținut parțial pentru detalii notificări");
+        model.addAttribute("contextPath", request.getContextPath());
+        return "partials/notifications-forms-details";
+    }
+
     @GetMapping("/notifications-web")
-    public String notificationsNew(Model model, HttpServletRequest request) throws InterruptedException {
+    public String notificationsWeb(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificările noi");
         model.addAttribute("contextPath", request.getContextPath());

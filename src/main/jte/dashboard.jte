@@ -59,7 +59,7 @@
             </div>
             <div class="col-6 text-center">
                 <!-- App Title -->
-                <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
+                <h4 class="mb-0 fw-semibold">${appDescription}</h4>
             </div>
 
             <div class="col-3 align-items-end d-flex justify-content-end">

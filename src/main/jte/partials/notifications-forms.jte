@@ -2,7 +2,12 @@
 
 <!-- Partial pentru Notificări -->
 <div class="container-fluid py-3">
-    <h2 class="mb-4">Notificari Forms</h2>
+    <%--    <h2 class="mb-4">Notificari Forms</h2>--%>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item active" aria-current="page">Toate notificarile</li>
+        </ol>
+    </nav>
 
     <!-- Adăugare câmp de căutare pentru filtrare -->
     <div class="row mb-4">
@@ -17,6 +22,13 @@
                 <span id="searchResultCount"></span>
             </div>
         </div>
+        <div class="col-md-6">
+            <button type="button" class="btn btn-outline-light">
+                Actualizeaza tot
+                <i class="bi bi-arrow-clockwise"></i>
+            </button>
+        </div>
+
     </div>
 
     <div class="alert alert-info alert-dismissible fade show d-none" role="alert">
@@ -27,11 +39,17 @@
     <div style="grid-template-columns: 1fr 1fr 1fr 1fr;" class="d-grid gap-3 mb-3" id="cardsContainer">
 
         <div class="card text-center">
-            <h5 class="card-header">MODUL-A</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5>MODUL-A</h5>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#notifications-forms-details"
-                   class="btn btn-info position-relative mx-3"
+                <a href="#modul-a"
+                   id="a"
+                   class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
@@ -39,20 +57,28 @@
                    hx-target="#content-area"
                    hx-swap="innerHTML"
                    hx-trigger="click">
-                    Acceseaza detalii mesaje informative
+                    Acceseaza detalii notificari
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
                 Durata actualizare: 53 secunde
+                <div class="vr"></div>
+                Data actualizare: 07.05.2025 16:40
             </div>
         </div>
         <div class="card text-center">
-            <h5 class="card-header">MODUL-B</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5>MODUL-B</h5>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#notifications-forms-details"
-                   class="btn btn-info position-relative mx-3"
+                <a href="#modul-b"
+                   id="b"
+                   class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
@@ -60,20 +86,28 @@
                    hx-target="#content-area"
                    hx-swap="innerHTML"
                    hx-trigger="click">
-                    Acceseaza detalii mesaje informative
+                    Acceseaza detalii notificari
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
                 Durata actualizare: 3 secunde
+                <div class="vr"></div>
+                Data actualizare: 07.05.2025 16:40
             </div>
         </div>
         <div class="card text-center">
-            <h5 class="card-header">MODUL-C</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5>MODUL-C</h5>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#notifications-forms-details"
-                   class="btn btn-info position-relative mx-3"
+                <a href="#modul-c"
+                   id="c"
+                   class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
@@ -81,20 +115,27 @@
                    hx-target="#content-area"
                    hx-swap="innerHTML"
                    hx-trigger="click">
-                    Acceseaza detalii mesaje informative
+                    Acceseaza detalii notificari
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
                 Durata actualizare: 14 secunde
+                <div class="vr"></div>
+                Data actualizare: 07.05.2025 16:40
             </div>
         </div>
         <div class="card text-center">
-            <h5 class="card-header">MODUL-D</h5>
+            <div class="card-header d-flex justify-content-between">
+                <h5>MODUL-A</h5>
+                <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <i class="bi bi-arrow-clockwise"></i>
+                </button>
+            </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#notifications-forms-details"
-                   class="btn btn-info position-relative mx-3"
+                <a href="#modul-d"
+                   class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
                    data-bs-placement="bottom"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
@@ -102,12 +143,14 @@
                    hx-target="#content-area"
                    hx-swap="innerHTML"
                    hx-trigger="click">
-                    Acceseaza detalii mesaje informative
+                    Acceseaza detalii notificari
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
                 Durata actualizare: 5 secunde
+                <div class="vr"></div>
+                Data actualizare: 07.05.2025 16:40
             </div>
         </div>
 
