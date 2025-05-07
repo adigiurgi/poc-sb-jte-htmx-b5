@@ -1,5 +1,6 @@
 package com.example.webapp.application.domain.service.cli;
 
+import com.example.webapp.application.domain.models.UserProfile;
 import com.example.webapp.application.dto.command.UserProfileCreateDto;
 import com.example.webapp.application.ports.in.cli.UserProfileCliApi;
 import com.example.webapp.application.ports.out.database.UserProfileDao;
@@ -17,8 +18,9 @@ public class UserProfileCliApiImplementation implements UserProfileCliApi {
     public Long createUserProfile(UserProfileCreateDto userProfileCreateDto) {
         log.info("Creating new profile for user ID: {} with name: {}", 
                 userProfileCreateDto.idUser(), userProfileCreateDto.profileName());
-        
-        Long profileId = userProfileDao.saveUserProfile(userProfileCreateDto);
+        UserProfile userProfile = UserProfile.create(userProfileCreateDto.idUser(),
+                userProfileCreateDto.profileName());
+        Long profileId = userProfileDao.saveUserProfile(userProfile);
         log.info("Profile created successfully with ID: {}", profileId);
         
         return profileId;

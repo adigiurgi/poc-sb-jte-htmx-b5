@@ -12,7 +12,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>webapp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1-MVP</version>
 
     <properties>
         <java.version>17</java.version>
@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
-        <weblogic.autodeploy.dir>C:\Oracle\Oracle_Home\user_projects\domains\base_domain\autodeploy
+        <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy
         </weblogic.autodeploy.dir>
         <weblogic.devops.dir>D:\devops\autodeploy</weblogic.devops.dir>
         <jte.version>3.2.0</jte.version>
@@ -29,7 +29,7 @@
         <!-- Remote WebLogic deployment properties -->
         <remote.weblogic.host>remote-weblogic-host</remote.weblogic.host>
         <remote.weblogic.port>22</remote.weblogic.port>
-        <remote.weblogic.username>weblogic-user</remote.weblogic.username>
+        <remote.weblogic.username>weblogic-userApp</remote.weblogic.username>
         <remote.weblogic.autodeploy.dir>/path/to/autodeploy</remote.weblogic.autodeploy.dir>
     </properties>
 
@@ -369,6 +369,12 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Spring Security -->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-security</artifactId>-->
+<!--        </dependency>-->
 
         <!-- Oracle Database dependencies -->
         <dependency>

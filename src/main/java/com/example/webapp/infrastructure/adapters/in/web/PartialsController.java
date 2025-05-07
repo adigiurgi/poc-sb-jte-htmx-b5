@@ -1,6 +1,7 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +15,28 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/partials")
 public class PartialsController {
 
+    @Value("${spring.application.name}")
+    private String applicationName;
+
+    @Value("${spring.application.version}")
+    private String applicationVersion;
+
     @GetMapping("/notifications")
     public String notifications(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificări");
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/notifications";
+    }
+
+    @GetMapping("/notifications-new")
+    public String notificationsNew(Model model, HttpServletRequest request) throws InterruptedException {
+        //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
+        log.debug("Accesare conținut parțial pentru notificările noi");
+        model.addAttribute("contextPath", request.getContextPath());
+        model.addAttribute("appName", applicationName);
+        model.addAttribute("appVersion", applicationVersion);
+        return "partials/notifications-new";
     }
 
     @GetMapping("/intro")
@@ -41,8 +58,8 @@ public class PartialsController {
 
     @GetMapping("/valorification")
     public String valorification(Model model, HttpServletRequest request) throws InterruptedException {
-        Thread.sleep(2000);
-        log.debug("Accesare intarziata conținut parțial pentru valorificare");
+        //Thread.sleep(2000);
+        log.debug("Accesare conținut parțial pentru valorificare");
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/valorification";
     }
@@ -53,5 +70,21 @@ public class PartialsController {
         log.debug("Accesare conținut parțial pentru administrare");
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/admin";
+    }
+
+    @GetMapping("/user-guide")
+    public String userGuide(Model model, HttpServletRequest request) throws InterruptedException {
+        //Thread.sleep(3000);
+        log.debug("Accesare conținut parțial pentru ghidul de utilizare");
+        model.addAttribute("contextPath", request.getContextPath());
+        return "partials/user-guide";
+    }
+
+    @GetMapping("/changelog")
+    public String changelog(Model model, HttpServletRequest request) throws InterruptedException {
+        //Thread.sleep(3000);
+        log.debug("Accesare conținut parțial pentru changelog");
+        model.addAttribute("contextPath", request.getContextPath());
+        return "partials/changelog";
     }
 }

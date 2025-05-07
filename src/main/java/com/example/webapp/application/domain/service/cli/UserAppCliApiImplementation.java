@@ -1,12 +1,10 @@
 package com.example.webapp.application.domain.service.cli;
 
-import com.example.webapp.application.domain.models.User;
+import com.example.webapp.application.domain.models.UserApp;
 import com.example.webapp.application.dto.command.UserAppCreateDto;
 import com.example.webapp.application.ports.in.cli.UserAppCliApi;
 import com.example.webapp.application.ports.out.database.UserAppDao;
 import lombok.extern.slf4j.Slf4j;
-
-import java.time.LocalDateTime;
 
 @Slf4j
 public class UserAppCliApiImplementation implements UserAppCliApi {
@@ -20,11 +18,11 @@ public class UserAppCliApiImplementation implements UserAppCliApi {
     public Long createUser(UserAppCreateDto userAppCreateDto) {
         log.info("Creating new user with username: {}", userAppCreateDto.username());
 
-        User user = User.create(userAppCreateDto.username(),
+        UserApp userApp = UserApp.create(userAppCreateDto.username(),
                 userAppCreateDto.firstName(),
                 userAppCreateDto.lastName());
 
-        Long userId = userAppDao.saveUser(user);
+        Long userId = userAppDao.saveUser(userApp);
         log.info("User created successfully with ID: {}", userId);
 
         return userId;

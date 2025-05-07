@@ -1,6 +1,6 @@
 package com.example.webapp.application.ports.out.database;
 
-import com.example.webapp.application.dto.command.UserRoleCreateDto;
+import com.example.webapp.application.domain.models.UserRole;
 
 public interface UserRoleDao {
     /**
@@ -8,5 +8,5 @@ public interface UserRoleDao {
      * @param userRoleCreateDto Role data to save
      * @return ID of the saved role
      */
-    Long saveUserRole(UserRoleCreateDto userRoleCreateDto);
+    Long saveUserRole(UserRole userRole);
 }

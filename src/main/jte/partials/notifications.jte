@@ -2,70 +2,536 @@
 
 <!-- Partial pentru Notificări -->
 <div class="container-fluid py-3">
-    <h2 class="mb-4">Notificări</h2>
-    
-    <div class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Info!</strong> Aveți 3 notificări noi.
+    <h2 class="mb-4">Mesaje</h2>
+
+    <!-- Adăugare câmp de căutare pentru filtrare -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-search"></i></span>
+                <input type="text" id="cardSearchInput" class="form-control" placeholder="Caută după numele modulului...">
+                <button class="btn btn-outline-secondary" type="button" id="clearSearch">Șterge</button>
+            </div>
+            <div id="searchInfo" class="mt-2 small text-muted">
+                <span id="searchResultCount"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info alert-dismissible fade show d-none" role="alert">
+        <strong>Felicitări!</strong> Nu aveți nici un mesaj nerezolvat!
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    
-    <div class="card mb-3">
-        <div class="card-header d-flex justify-content-between align-items-center">
-            <h6 class="mb-0">Notificări recente</h6>
-            <button class="btn btn-sm btn-outline-secondary">Marchează toate ca citite</button>
+
+    <div style="grid-template-columns: 1fr 1fr 1fr 1fr;" class="d-grid gap-3 mb-3" id="cardsContainer">
+
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-A</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-info position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="Accesati pentru mai multe detalii">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    14
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-warning position-relative mx-3" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Accesati pentru mai multe detalii">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    +99
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
         </div>
-        <ul class="list-group list-group-flush">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-primary rounded-pill me-2">Nou</span>
-                    <span>Actualizare de sistem disponibilă</span>
-                    <small class="text-muted d-block">Versiunea 2.7.18 este acum disponibilă pentru instalare.</small>
-                </div>
-                <small class="text-muted">Acum 1 oră</small>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-primary rounded-pill me-2">Nou</span>
-                    <span>Mesaj de la administrator</span>
-                    <small class="text-muted d-block">Mentenanță programată pentru mâine la ora 22:00.</small>
-                </div>
-                <small class="text-muted">Acum 3 ore</small>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <span class="badge bg-primary rounded-pill me-2">Nou</span>
-                    <span>Raport nou generat</span>
-                    <small class="text-muted d-block">Raportul lunar a fost generat și poate fi descărcat.</small>
-                </div>
-                <small class="text-muted">Acum 5 ore</small>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <span>Solicitare de aprobare</span>
-                    <small class="text-muted d-block">O nouă cerere de aprobare așteaptă verificarea dvs.</small>
-                </div>
-                <small class="text-muted">Ieri</small>
-            </li>
-        </ul>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-B</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    7
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-warning position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    23
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 3 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-C</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    17
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 14 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-D</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning">
+                    41
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 5 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-E</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    4
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-F</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    37
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    6
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-G</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    14
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-H</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    7
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    23
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 3 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-I</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    17
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 14 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-J</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    41
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 5 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-K</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    4
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-L</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    14
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-M</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    7
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    23
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 3 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-N</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    17
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 14 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-O</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    41
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 5 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-P</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    4
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-R</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    14
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-S</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    7
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    23
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 3 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-T</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    17
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 14 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-U</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    41
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 5 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-V</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    4
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-W</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    14
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    99
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-X</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    7
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    23
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 3 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-Y</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    17
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 14 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-Z</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    41
+                    </span>
+                </a>
+                <div class="vr"></div>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje flux
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                    3
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 5 secunde
+            </div>
+        </div>
+        <div class="card text-center">
+            <h5 class="card-header">MODUL-AA</h5>
+            <div class="card-body">
+                <p class="card-text"> </p>
+                <a href="#" class="btn btn-outline-info position-relative mx-3">
+                    Mesaje informative
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info">
+                    4
+                    </span>
+                </a>
+            </div>
+            <div class="card-footer text-body-secondary">
+                Durata actualizare: 53 secunde
+            </div>
+        </div>
+
+
     </div>
-    
-    <div class="card">
-        <div class="card-header">
-            <h6 class="mb-0">Setări notificări</h6>
-        </div>
-        <div class="card-body">
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="notif-email" checked>
-                <label class="form-check-label" for="notif-email">Primește notificări prin email</label>
-            </div>
-            <div class="form-check form-switch mb-2">
-                <input class="form-check-input" type="checkbox" id="notif-system" checked>
-                <label class="form-check-label" for="notif-system">Notificări de sistem</label>
-            </div>
-            <div class="form-check form-switch">
-                <input class="form-check-input" type="checkbox" id="notif-reports">
-                <label class="form-check-label" for="notif-reports">Notificări pentru rapoarte noi</label>
-            </div>
-        </div>
-    </div>
+
 </div>
+
+<!-- Script inline pentru filtrarea cardurilor - execută imediat fără a aștepte DOMContentLoaded -->
+<script src="${contextPath}/js/custom/partials/common/filterCardsByCardHeaderText.js"></script>

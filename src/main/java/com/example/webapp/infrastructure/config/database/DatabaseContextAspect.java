@@ -1,5 +1,6 @@
 package com.example.webapp.infrastructure.config.database;
 
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -25,6 +26,7 @@ import java.sql.SQLException;
  */
 @Aspect
 @Component
+@Slf4j
 public class DatabaseContextAspect {
 
     private final JdbcTemplate jdbcTemplate;
@@ -55,7 +57,9 @@ public class DatabaseContextAspect {
         Object parameterValue = determineParameterValue(annotation, joinPoint, method);
 
         // Set database context using JdbcTemplate
+        log.info("Setting database context for method: {} with parameter: {}", method.getName(), parameterValue);
         setDatabaseContextInOracle(annotation.procedureName(), annotation.parameterName(), parameterValue);
+        log.info("Database context set successfully for method: {}", method.getName());
 
         // Execute the original method
         return joinPoint.proceed();
@@ -89,11 +93,11 @@ public class DatabaseContextAspect {
             case SPRING_EXPRESSION:
                 String expression = annotation.expression();
                 if (expression == null || expression.isEmpty()) {
-                    throw new IllegalArgumentException("Method " + method.getName() + 
+                    throw new IllegalArgumentException("Method " + method.getName() +
                             " annotated with @SetDatabaseContextForMethod using SPRING_EXPRESSION strategy " +
                             "must specify a valid expression");
                 }
-                
+
                 Object[] arguments = joinPoint.getArgs();
                 EvaluationContext context = new MethodBasedEvaluationContext(
                         joinPoint.getTarget(),
@@ -101,7 +105,7 @@ public class DatabaseContextAspect {
                         arguments,
                         parameterNameDiscoverer
                 );
-                
+
                 return expressionParser.parseExpression(expression).getValue(context);
                 
             default:
