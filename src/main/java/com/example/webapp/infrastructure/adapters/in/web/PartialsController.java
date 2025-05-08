@@ -1,5 +1,7 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
+import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,13 +15,28 @@ import javax.servlet.http.HttpServletRequest;
 @Slf4j
 @Controller
 @RequestMapping("/partials")
+@RequiredArgsConstructor
 public class PartialsController {
+
+    @Value("${spring.profiles.active}")
+    private String activeAppProfile;
 
     @Value("${spring.application.name}")
     private String applicationName;
 
+    @Value("${spring.application.description}")
+    private String applicationDescription;
+
+    @Value("${spring.application.developer.short}")
+    private String applicationDeveloperShort;
+
+    @Value("${spring.application.developer.long}")
+    private String applicationDeveloperLong;
+
     @Value("${spring.application.version}")
     private String applicationVersion;
+
+    private final UserActiveProfileProvider userActiveProfileProvider;
 
     @GetMapping("/notifications-forms")
     public String notificationsForms(Model model, HttpServletRequest request) throws InterruptedException {
@@ -34,6 +51,13 @@ public class PartialsController {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru detalii notificări");
         model.addAttribute("contextPath", request.getContextPath());
+        model.addAttribute("currentUserProfile", userActiveProfileProvider);
+        model.addAttribute("appName", applicationName);
+        model.addAttribute("appDescription", applicationDescription);
+        model.addAttribute("appDeveloperShort", applicationDeveloperShort);
+        model.addAttribute("appDeveloperLong", applicationDeveloperLong);
+        model.addAttribute("activeAppProfile", activeAppProfile);
+        model.addAttribute("appVersion", applicationVersion);
         return "partials/notifications-forms-details";
     }
 

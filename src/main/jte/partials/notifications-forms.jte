@@ -2,12 +2,7 @@
 
 <!-- Partial pentru Notificări -->
 <div class="container-fluid py-3">
-    <%--    <h2 class="mb-4">Notificari Forms</h2>--%>
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active" aria-current="page">Toate notificarile</li>
-        </ol>
-    </nav>
+        <h2 class="mb-4">Notificari Forms</h2>
 
     <!-- Adăugare câmp de căutare pentru filtrare -->
     <div class="row mb-4">
@@ -47,18 +42,16 @@
             </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#modul-a"
+                <a href="${contextPath}/partials/notifications-forms-details"
                    id="a"
                    class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
+                   data-bs-placement="left"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
-                   hx-get="${contextPath}/partials/notifications-forms-details"
-                   hx-target="#content-area"
-                   hx-swap="innerHTML"
-                   hx-trigger="click">
+                   target="_blank"
+                   rel="noopener">
                     Acceseaza detalii notificari
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">4</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
@@ -76,18 +69,16 @@
             </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#modul-b"
+                <a href="${contextPath}/partials/notifications-forms-details"
                    id="b"
                    class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
+                   data-bs-placement="left"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
-                   hx-get="${contextPath}/partials/notifications-forms-details"
-                   hx-target="#content-area"
-                   hx-swap="innerHTML"
-                   hx-trigger="click">
+                   target="_blank"
+                   rel="noopener">
                     Acceseaza detalii notificari
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">12</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
@@ -105,18 +96,16 @@
             </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#modul-c"
+                <a href="${contextPath}/partials/notifications-forms-details"
                    id="c"
                    class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
+                   data-bs-placement="left"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
-                   hx-get="${contextPath}/partials/notifications-forms-details"
-                   hx-target="#content-area"
-                   hx-swap="innerHTML"
-                   hx-trigger="click">
+                   target="_blank"
+                   rel="noopener">
                     Acceseaza detalii notificari
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">5</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">
@@ -127,24 +116,22 @@
         </div>
         <div class="card text-center">
             <div class="card-header d-flex justify-content-between">
-                <h5>MODUL-A</h5>
+                <h5>MODUL-D</h5>
                 <button type="button" class="btn btn-sm btn-outline-secondary">
                     <i class="bi bi-arrow-clockwise"></i>
                 </button>
             </div>
             <div class="card-body">
                 <p class="card-text"></p>
-                <a href="#modul-d"
+                <a href="${contextPath}/partials/notifications-forms-details"
                    class="btn btn-outline-info position-relative mx-3"
                    data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
+                   data-bs-placement="left"
                    data-bs-title="Indicatorul din coltul din dreapta sus arata numarul tipurilor de mesaje aferente acestui modul"
-                   hx-get="${contextPath}/partials/notifications-forms-details"
-                   hx-target="#content-area"
-                   hx-swap="innerHTML"
-                   hx-trigger="click">
+                   target="_blank"
+                   rel="noopener">
                     Acceseaza detalii notificari
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">14</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">9</span>
                 </a>
             </div>
             <div class="card-footer text-body-secondary">

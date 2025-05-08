@@ -64,21 +64,38 @@
 
             <div class="col-3 align-items-end d-flex justify-content-end">
                 <!-- User Info -->
-                <a href="#" class="form-label p-2 mb-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                   data-bs-title="Cont - Nume Profil">Profil activ: &nbsp;</a>
-                <div class="dropdown d-inline-block">
+                <a href="#" class="form-label p-2 mb-0"
+                   data-bs-toggle="tooltip"
+                   data-bs-placement="bottom"
+                   data-bs-title="Cont - Nume Profil">Profil activ:
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <div class="dropdown d-inline-block"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="right"
+                     data-bs-title="Schimba profil">
                     <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
+                        <span class="d-inline-block text-truncate">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         @for(var profile : userProfileNotActiveList)
-                            <li><span class="dropdown-item-text">${profile.profileName()}/66/D3/S10/B1</span></li>
+                            <li>
+                                <span class="dropdown-item-text">
+                                    <i class="bi bi-person"></i>
+                                    ${profile.profileName()}/66/D3/S10/B1
+                                </span>
+                            </li>
                         @endfor
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Detalii cont</a></li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-person-fill-gear"></i>
+                                Configurare preferinte cont
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -110,12 +127,13 @@
                    hx-trigger="click">
                     <i class="bi bi-${item.get("icon")} me-2"></i>
                     ${item.get("name")}
-                    <!-- Indicatori de încărcare pentru HTMX -->
-                    <!-- <div class="my-indicator"></div> -->
-                    <div class="my-indicator-overlay"></div>
-                    @if(item.get("id").equals("notifications-web"))
-                        <span class="badge rounded-pill bg-danger mx-3">78</span>
+                    @if(item.get("id").equals("notifications-forms"))
+                        <span class="badge text-bg-danger ms-2">forms</span>
+                    @elseif(item.get("id").equals("notifications-web"))
+                        <span class="badge text-bg-warning ms-2">web</span>
+                        <span class="badge rounded-pill bg-primary ms-3">489</span>
                     @endif
+                    <div class="my-indicator-overlay"></div>
                 </a>
             @endfor
         </div>

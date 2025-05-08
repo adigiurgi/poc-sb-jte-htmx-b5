@@ -21,7 +21,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <org.mapstruct.version>1.5.3.Final</org.mapstruct.version>
         <org.projectlombok.version>1.18.26</org.projectlombok.version>
-        <weblogic.autodeploy.dir>D:\oracle\ORACLE_HOME\user_projects\domains\base_domain\autodeploy
+        <weblogic.autodeploy.dir>C:\Oracle\Oracle_Home\user_projects\domains\base_domain\autodeploy
         </weblogic.autodeploy.dir>
         <weblogic.devops.dir>D:\devops\autodeploy</weblogic.devops.dir>
         <jte.version>3.2.0</jte.version>
