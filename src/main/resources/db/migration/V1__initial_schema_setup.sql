@@ -232,6 +232,80 @@ alter table webapp.USER_NOTIFICATIONS_NEW
     add constraint FK_PROFILE_USER_NOTIFICATIONS_NEW foreign key (id_profile)
         references webapp.USER_PROFILES (ID);
 
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',6);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-A',7);
+
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',6);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',7);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',8);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-B',9);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-C',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-C',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-C',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-C',4);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',6);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',7);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',8);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',9);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',10);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',11);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-D',12);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-E',6);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',6);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',7);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',8);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',9);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',10);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',11);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',12);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',13);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-F',14);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',3);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',4);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',5);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',6);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',7);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-G',8);
+
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-H',1);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-H',2);
+insert into webapp.user_notifications_new(id_profile,module_name,module_aggregate_id) values (1,'MODUL-H',3);
+
+
+
 -- Create table
 create table WEBAPP.USER_NOTIFICATIONS_OLD
 (
@@ -282,8 +356,6 @@ alter table WEBAPP.USER_NOTIFICATIONS_OLD
             minextents 1
             maxextents unlimited
             );
-
-
 
 CREATE OR REPLACE PACKAGE WEBAPP.MESAJE_MODUL_A IS
     PROCEDURE verificare_mesaje (p_id_profile IN VARCHAR2);
@@ -404,3 +476,4 @@ CREATE OR REPLACE PACKAGE BODY WEBAPP.MESAJE_MODUL_D IS
     END verificare_mesaje;
 END;
 /
+
