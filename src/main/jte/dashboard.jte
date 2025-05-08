@@ -64,27 +64,29 @@
 
             <div class="col-3 align-items-end d-flex justify-content-end">
                 <!-- User Info -->
-                <a href="#" class="form-label p-2 mb-0"
-                   data-bs-toggle="tooltip"
-                   data-bs-placement="bottom"
-                   data-bs-title="Cont - Nume Profil">Profil activ:
+                <p class="form-label p-2 mb-0">Utilizator conectat: </p>
+                <a href="#" class="form-label p-2 mb-0">
+                    ${currentUserProfile.getAuthenticatedUser()}
                     <i class="bi bi-person-circle"></i>
                 </a>
-                <div class="dropdown d-inline-block"
+                <div class="dropdown d-inline-block ms-2"
                      data-bs-toggle="tooltip"
                      data-bs-placement="right"
-                     data-bs-title="Schimba profil">
+                     data-bs-title="Profil activ">
                     <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-inline-block text-truncate">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
+                        <span class="d-inline-block text-truncate">
+                            <i class="bi bi-diagram-3-fill"></i>
+                            ${currentUserProfile.getProfileName()}/66/D3/S10/B2
+                        </span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
                         @for(var profile : userProfileNotActiveList)
                             <li>
-                                <span class="dropdown-item-text">
-                                    <i class="bi bi-person"></i>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bi bi-diagram-3"></i>
                                     ${profile.profileName()}/66/D3/S10/B1
-                                </span>
+                                </a>
                             </li>
                         @endfor
                         <li>
