@@ -9,4 +9,12 @@ public interface UserRoleDao {
      * @return ID of the saved role
      */
     Long saveUserRole(UserRole userRole);
+    
+    /**
+     * Checks if a user has a specific role
+     * @param idUser The user ID
+     * @param roleName The role name to check
+     * @return true if the user has the role, false otherwise
+     */
+    boolean hasRole(Long idUser, String roleName);
 }

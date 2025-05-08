@@ -6,10 +6,12 @@ import com.example.webapp.application.ports.out.database.UserRoleDao;
 import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserRoleEntity;
 import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserRoleRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
 public class UserRoleDaoImplementation implements UserRoleDao {
@@ -25,5 +27,11 @@ public class UserRoleDaoImplementation implements UserRoleDao {
 
         UserRoleEntity savedUserRoleEntity = userRoleRepository.save(userRoleEntity);
         return savedUserRoleEntity.getId();
+    }
+    
+    @Override
+    public boolean hasRole(Long idUser, String roleName) {
+        log.debug("Checking if user ID {} has role {}", idUser, roleName);
+        return userRoleRepository.existsByIdUserAndRoleName(idUser, roleName);
     }
 }
