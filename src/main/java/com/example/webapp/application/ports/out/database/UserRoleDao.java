@@ -2,11 +2,20 @@ package com.example.webapp.application.ports.out.database;
 
 import com.example.webapp.application.domain.models.UserRole;
 
+import java.util.List;
+
 public interface UserRoleDao {
     /**
      * Creates a new user role in the database
-     * @param userRoleCreateDto Role data to save
+     * @param userRole Role data to save
      * @return ID of the saved role
      */
     Long saveUserRole(UserRole userRole);
+
+    /**
+     * Rolurile/Modulele la care utilizatorul conectat are acces
+     * @param idUser Id-ul utilizatorului conectat
+     * @return returneaza lista de roluri a utilizatorului conectat
+     */
+    List<UserRole> findRolesByIdUser(Long idUser);
 }

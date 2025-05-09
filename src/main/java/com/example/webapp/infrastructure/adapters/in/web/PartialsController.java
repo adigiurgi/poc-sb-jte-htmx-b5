@@ -1,5 +1,6 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
+import com.example.webapp.application.ports.in.web.UserFormsNotificationsApi;
 import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -7,9 +8,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 @SuppressWarnings("SpringMVCViewInspection")
 @Slf4j
@@ -38,12 +43,58 @@ public class PartialsController {
 
     private final UserActiveProfileProvider userActiveProfileProvider;
 
+    private final UserFormsNotificationsApi userFormsNotificationsApi;
+
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm", Locale.getDefault());
+
     @GetMapping("/notifications-forms")
     public String notificationsForms(Model model, HttpServletRequest request) throws InterruptedException {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru notificări");
+        model.addAttribute("userRoles", userFormsNotificationsApi.findAllUserRoles(userActiveProfileProvider.getIdUser()));
         model.addAttribute("contextPath", request.getContextPath());
         return "partials/notifications-forms";
+    }
+
+    @GetMapping("/notifications-forms-module-card/{roleName}")
+    public String notificationsFormsModuleCard(Model model, HttpServletRequest request, @PathVariable String roleName) throws InterruptedException {
+        //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
+        log.debug("Accesare conținut parțial pentru cardul aferent modulului {}", roleName);
+
+        //TODO apel procedura ...
+        int notificationsCount = 0;
+        double executionDurationTimeInSeconds = 0;
+
+
+        switch (roleName) {
+            case "MODUL-A" -> {
+                Thread.sleep(2000);
+                notificationsCount = 5;
+                executionDurationTimeInSeconds = 2;
+            }
+            case "MODUL-C" -> {
+                Thread.sleep(3000);
+                notificationsCount = 7;
+                executionDurationTimeInSeconds = 3;
+            }
+            case "MODUL-B" -> {
+                Thread.sleep(5000);
+                notificationsCount = 9;
+                executionDurationTimeInSeconds = 5;
+            }
+            default -> {
+                Thread.sleep(1000);
+                executionDurationTimeInSeconds = 1;
+            }
+        };
+
+        model.addAttribute("notificationsCount", notificationsCount);
+        model.addAttribute("executionDurationTimeInSeconds", executionDurationTimeInSeconds);
+        model.addAttribute("executionTime", FORMATTER.format(OffsetDateTime.now()));
+
+        model.addAttribute("contextPath", request.getContextPath());
+        model.addAttribute("roleName", roleName);
+        return "partials/notifications-forms-module-card";
     }
 
     @GetMapping("/notifications-forms-details")

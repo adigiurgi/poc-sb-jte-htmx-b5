@@ -57,19 +57,19 @@
                     <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
                 </div>
             </div>
-            <div class="col-6 text-center">
+            <div class="col-6 text-start">
                 <!-- App Title -->
-                <h4 class="mb-0 fw-semibold">${appDescription}</h4>
+                <h4 class="mb-0 fw-normal">${appDescription}</h4>
             </div>
 
-            <div class="col-3 align-items-end d-flex justify-content-end">
+            <div class="col-4 align-items-end d-flex justify-content-end">
                 <!-- User Info -->
-                <p class="form-label p-2 mb-0">Utilizator conectat: </p>
+                <p class="form-label p-2 mb-0">Utilizator: </p>
                 <a href="#" class="form-label p-2 mb-0">
                     ${currentUserProfile.getAuthenticatedUser()}
                     <i class="bi bi-person-circle"></i>
                 </a>
-                <div class="dropdown d-inline-block ms-2"
+                <div class="dropdown d-inline-block ms-1"
                      data-bs-toggle="tooltip"
                      data-bs-placement="right"
                      data-bs-title="Profil activ">
@@ -100,16 +100,14 @@
                         </li>
                     </ul>
                 </div>
-            </div>
-
-            <div class="col-1 align-items-end d-flex justify-content-end">
                 <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button"
+                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center ms-4" type="button"
                         aria-label="Theme Toggle">
                     <i class="bi bi-sun-fill theme-toggle-light"></i>
                     <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
                 </button>
             </div>
+
 
         </div>
     </div>

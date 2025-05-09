@@ -43,7 +43,6 @@ body {
     display: flex;
     flex-direction: column;
     z-index: 99; /* Sub header, dar peste conținut */
-    background-color: var(--bs-body-secondary-bg); /* Asigură că sidebar-ul are fundal */
 }
 
 #sidebar .list-group-flush {
@@ -151,25 +150,41 @@ body {
     background-color: rgba(0, 0, 0, 0.4);
     z-index: 999;
     cursor: wait;
-    
 }
 .htmx-request .my-indicator-overlay {
     display: block;
 }
-.htmx-request.my-indicator-overlay {
-    display: block;
+
+.section-card-body {
+    padding: 15px;
+    min-height: 100px;
+    position: relative;  /* Important for absolute positioning of indicator */
 }
 
-/* @keyframes slide {
-    0%   { transform: translateX(-100%); }
-    100% { transform: translateX( 100%); }
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
 }
 
-@keyframes fadeIn {
-    0%   { opacity: 0; }
-    50%  { opacity: 0; }
-    100% { opacity: 1; }
-} */
+/* Card Section HTMX indicator styles */
+.card-section-indicator {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 10;
+}
+
+.htmx-request .card-section-indicator {
+    display: flex;
+}
+
+
 
 /* Stiluri pentru butonul de comutare a temei */
 #theme-toggle {

@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -25,5 +26,14 @@ public class UserRoleDaoImplementation implements UserRoleDao {
 
         UserRoleEntity savedUserRoleEntity = userRoleRepository.save(userRoleEntity);
         return savedUserRoleEntity.getId();
+    }
+
+    @Override
+    public List<UserRole> findRolesByIdUser(Long idUser) {
+        return userRoleRepository.findByIdUser(idUser).stream()
+                .map(userRoleEntity -> UserRole.create(userRoleEntity.getIdUser(),
+                        userRoleEntity.getRoleName()))
+                .filter(userRole -> !userRole.getRoleName().equalsIgnoreCase("WEBAPP_ROLE"))
+                .toList();
     }
 }
