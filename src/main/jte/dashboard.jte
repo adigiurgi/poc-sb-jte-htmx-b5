@@ -57,60 +57,58 @@
                     <h2 class="app-name mb-0 fw-semibold">${appName}</h2>
                 </div>
             </div>
-            <div class="col-5 text-center">
+            <div class="col-6 text-start">
                 <!-- App Title -->
-                <h4 class="mb-0 fw-semibold">${appDescription} [${usernameFromDatabaseContext}]</h4>
+                <h4 class="mb-0 fw-normal">${appDescription}</h4>
             </div>
 
-            <div class="col-1 align-items-end d-flex justify-content-end">
+            <div class="col-4 align-items-end d-flex justify-content-end">
+                <!-- User Info -->
+                <p class="form-label p-2 mb-0">Utilizator: </p>
+                <a href="#" class="form-label p-2 mb-0">
+                    ${currentUserProfile.getAuthenticatedUser()}
+                    <i class="bi bi-person-circle"></i>
+                </a>
+                <div class="dropdown d-inline-block ms-1"
+                     data-bs-toggle="tooltip"
+                     data-bs-placement="right"
+                     data-bs-title="Profil activ">
+                    <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="d-inline-block text-truncate">
+                            <i class="bi bi-diagram-3-fill"></i>
+                            ${currentUserProfile.getProfileName()}/66/D3/S10/B2
+                        </span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        @for(var profile : userProfileNotActiveList)
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="bi bi-diagram-3"></i>
+                                    ${profile.profileName()}/66/D3/S10/B1
+                                </a>
+                            </li>
+                        @endfor
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi bi-person-fill-gear"></i>
+                                Configurare preferinte cont
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <!-- Theme Toggle Button -->
-                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center" type="button"
+                <button id="theme-toggle" class="btn btn-sm btn-outline-secondary text-center ms-4" type="button"
                         aria-label="Theme Toggle">
                     <i class="bi bi-sun-fill theme-toggle-light"></i>
                     <i class="bi bi-moon-fill theme-toggle-dark d-none"></i>
                 </button>
             </div>
 
-            <div class="col-1 align-items-end d-flex justify-content-end">
-                <!-- Notification Bell Button -->
-                <div class="me-2 position-relative">
-                    <button id="notification-bell"
-                            class="btn btn-sm btn-outline-secondary text-center position-relative" type="button"
-                            aria-label="Notifications"
-                            hx-get="${contextPath}/partials/notifications-new"
-                            hx-target="#content-area"
-                            hx-swap="innerHTML"
-                            hx-trigger="click">
-                        <i class="bi bi-bell-fill"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-                              id="notification-counter">
-                                2
-                                <span class="visually-hidden">notificări necitite</span>
-                            </span>
-                    </button>
-                </div>
-            </div>
 
-            <div class="col-3 align-items-end d-flex justify-content-end">
-                <!-- User Info -->
-                <a href="#" class="form-label p-2 mb-0" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                   data-bs-title="Cont - Nume Profil">Profil activ: &nbsp;</a>
-                <div class="dropdown d-inline-block">
-                    <button class="btn btn-outline-secondary dropdown-toggle text-center" type="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="d-inline-block text-truncate userApp-info">${currentUserProfile.getAuthenticatedUser()} - ${currentUserProfile.getProfileName()}/66/D3/S10/B2</span>
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end">
-                        @for(var profile : userProfileNotActiveList)
-                            <li><span class="dropdown-item-text">${profile.profileName()}/66/D3/S10/B1</span></li>
-                        @endfor
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item" href="#">Detalii cont</a></li>
-                    </ul>
-                </div>
-            </div>
         </div>
     </div>
 </header>
@@ -129,8 +127,12 @@
                    hx-trigger="click">
                     <i class="bi bi-${item.get("icon")} me-2"></i>
                     ${item.get("name")}
-                    <!-- Indicatori de încărcare pentru HTMX -->
-                    <!-- <div class="my-indicator"></div> -->
+                    @if(item.get("id").equals("notifications-forms"))
+                        <span class="badge text-bg-danger ms-2">forms</span>
+                    @elseif(item.get("id").equals("notifications-web"))
+                        <span class="badge text-bg-warning ms-2">web</span>
+                        <span class="badge rounded-pill bg-primary ms-3">489</span>
+                    @endif
                     <div class="my-indicator-overlay"></div>
                 </a>
             @endfor

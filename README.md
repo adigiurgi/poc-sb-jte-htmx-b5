@@ -58,7 +58,7 @@ Use this commands to build up a setup for testing the web-app. You basically nee
 #### User Management 
 1. `create-user <username> <firstname> <lastname>` -> creates a new userApp
 2. `create-profile <userId> <profileName>` -> creates a new profile for a certain userApp
-3. `create-role <userId> <roleName> <roleDescription>` -> creates a new rol for a certain userApp
+3. `create-role <userId> <roleName>` -> creates a new rol for a certain userApp
 ---
 #### Admin Commands
 1. `system-info` -> shows info about the system

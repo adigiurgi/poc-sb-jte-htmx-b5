@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
 import javax.servlet.http.HttpServletRequest;
 
 import java.util.Arrays;
@@ -26,7 +27,7 @@ public class HomeController {
 
     @Value("${spring.profiles.active}")
     private String activeAppProfile;
-    
+
     @Value("${spring.application.name}")
     private String applicationName;
 
@@ -46,38 +47,28 @@ public class HomeController {
 
     private final UserProfileWebApi userProfileWebApi;
 
-    private final UserActiveProfileRepository userActiveProfileRepository;
-
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
         log.info("Home endpoint accessed with active profile: {}", activeAppProfile);
 
-        List<UserProfile> userProfileList = userProfileWebApi
-                .showUserProfiles(userActiveProfileProvider.getIdUser());
+        List<UserProfileDto> userProfileNotActiveList = userProfileWebApi
+                .showUserProfiles(userActiveProfileProvider.getIdUser(), userActiveProfileProvider.getIdProfile());
 
-        List<UserProfileDto> userProfileNotActiveList = userProfileList.stream()
-                .map(userProfile -> new UserProfileDto(
-                        userProfile.getId(),
-                        userProfile.getIdUser(),
-                        userProfile.getProfileName()))
-                .filter(userProfileDto -> !userProfileDto.id().equals(userActiveProfileProvider.getIdProfile()))
-                .toList();
 
-          // Opțiunile de meniu pentru navigarea din sidebar
+        // Opțiunile de meniu pentru navigarea din sidebar
+        // MOCK IMPLEMENTATION FOR SIMPLICITY...CHILL :D
         List<Map<String, String>> menuItems = Arrays.asList(
-            Map.of("id", "notifications", "name", "Mesaje", "icon", "envelope", "link", "/partials/notifications"),
-            Map.of("id", "intro", "name", "Introducere", "icon", "save2", "link", "/partials/intro"),
-            Map.of("id", "search", "name", "Căutare", "icon", "search", "link", "/partials/search"),
-            Map.of("id", "valorification", "name", "Valorificare", "icon", "clipboard2-data-fill", "link", "/partials/valorification"),
-            Map.of("id", "admin", "name", "Administrare", "icon", "gear", "link", "/partials/admin")
+                Map.of("id", "notifications-forms", "name", "Notificări", "icon", "bell-fill", "link", "/partials/notifications-forms"),
+                Map.of("id", "notifications-web", "name", "Notificări", "icon", "bell-fill", "link", "/partials/notifications-web"),
+                Map.of("id", "intro", "name", "Introducere", "icon", "save2", "link", "/partials/intro"),
+                Map.of("id", "search", "name", "Regăsire", "icon", "search-heart", "link", "/partials/search"),
+                Map.of("id", "valorification", "name", "Valorificare", "icon", "clipboard2-data-fill", "link", "/partials/valorification"),
+                Map.of("id", "admin", "name", "Administrare", "icon", "gear", "link", "/partials/admin")
         );
-        
+
         // Obținem context path-ul pentru utilizare în template
         String contextPath = request.getContextPath();
 
-        String usernameFromDatabaseContext = userActiveProfileRepository
-                .getUsernameFromDatabaseContext(userActiveProfileProvider.getUsername());
-        log.info("Username from database context: {}", usernameFromDatabaseContext);          // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
         model.addAttribute("appDescription", applicationDescription);
         model.addAttribute("appDeveloperShort", applicationDeveloperShort);
@@ -85,11 +76,10 @@ public class HomeController {
         model.addAttribute("activeAppProfile", activeAppProfile);
         model.addAttribute("currentUserProfile", userActiveProfileProvider);
         model.addAttribute("userProfileNotActiveList", userProfileNotActiveList);
-        model.addAttribute("usernameFromDatabaseContext", usernameFromDatabaseContext);
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("contextPath", contextPath);
         model.addAttribute("appVersion", applicationVersion);
-        
+
         return "dashboard";
     }
 }

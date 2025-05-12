@@ -130,6 +130,7 @@ public class DatabaseContextAspect {
             }
             return null;
         });
+        log.info("Dupa executie procedura de setare context");
     }
 
     /**
