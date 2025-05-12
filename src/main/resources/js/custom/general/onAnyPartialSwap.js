@@ -10,9 +10,7 @@ document.body.addEventListener('htmx:afterSwap', function(event) {
 //If tooltips are causing issues during swaps (e.g., lingering elements),
 //we might need to manually dispose of them before the swap happens.
 document.body.addEventListener('htmx:beforeSwap', function(event) {
-
-
-
+   
    // Găsește toate elementele cu tooltip în zona care va fi actualizată
    const tooltipElements = event.target.querySelectorAll('[data-bs-toggle="tooltip"]');
    

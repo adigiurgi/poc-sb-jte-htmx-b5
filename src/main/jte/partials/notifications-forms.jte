@@ -35,12 +35,12 @@
             <div class="card text-center">
                 <div class="card-header d-flex justify-content-between">
                     <h5>${userRole.roleName()}</h5>
-                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                    <button type="button" class="btn btn-sm btn-outline-secondary" id="refreshCardBtn-${userRole.roleName()}"
                             hx-get="${contextPath}/partials/notifications-forms-module-card/${userRole.roleName()}"
                             hx-target="#card-section-${userRole.roleName()}"
-                            hx-swap="outerHTML"
-                            hx-indicator="#id-indicator-${userRole.roleName()}">
+                            hx-swap="outerHTML">
                         <i class="bi bi-arrow-clockwise"></i>
+                        <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" class="button-indicator" width="20" height="20">
                     </button>
                 </div>
                 <section id="card-section-${userRole.roleName()}"

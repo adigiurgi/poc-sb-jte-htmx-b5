@@ -8,7 +8,7 @@
          hx-get="${contextPath}/partials/notifications-forms-module-card/${roleName}"
          hx-trigger="refreshCard from:body"
          hx-swap="outerHTML">
-    <div class="htmx-indicator" id="id-indicator-${roleName}">
+    <div class="htmx-indicator">
         <div class="card-body">
             <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
         </div>
