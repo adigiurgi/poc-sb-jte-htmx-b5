@@ -47,24 +47,16 @@ public class HomeController {
 
     private final UserProfileWebApi userProfileWebApi;
 
-    private final UserActiveProfileRepository userActiveProfileRepository;
-
     @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
         log.info("Home endpoint accessed with active profile: {}", activeAppProfile);
 
-        List<UserProfile> userProfileList = userProfileWebApi
-                .showUserProfiles(userActiveProfileProvider.getIdUser());
+        List<UserProfileDto> userProfileNotActiveList = userProfileWebApi
+                .showUserProfiles(userActiveProfileProvider.getIdUser(), userActiveProfileProvider.getIdProfile());
 
-        List<UserProfileDto> userProfileNotActiveList = userProfileList.stream()
-                .map(userProfile -> new UserProfileDto(
-                        userProfile.getId(),
-                        userProfile.getIdUser(),
-                        userProfile.getProfileName()))
-                .filter(userProfileDto -> !userProfileDto.id().equals(userActiveProfileProvider.getIdProfile()))
-                .toList();
 
         // Opțiunile de meniu pentru navigarea din sidebar
+        // MOCK IMPLEMENTATION FOR SIMPLICITY...CHILL :D
         List<Map<String, String>> menuItems = Arrays.asList(
                 Map.of("id", "notifications-forms", "name", "Notificări", "icon", "bell-fill", "link", "/partials/notifications-forms"),
                 Map.of("id", "notifications-web", "name", "Notificări", "icon", "bell-fill", "link", "/partials/notifications-web"),
@@ -77,9 +69,6 @@ public class HomeController {
         // Obținem context path-ul pentru utilizare în template
         String contextPath = request.getContextPath();
 
-        String usernameFromDatabaseContext = userActiveProfileRepository
-                .getUsernameFromDatabaseContext(userActiveProfileProvider.getUsername());
-        log.info("Username from database context: {}", usernameFromDatabaseContext);          // Adăugăm datele în model pentru template
         model.addAttribute("appName", applicationName);
         model.addAttribute("appDescription", applicationDescription);
         model.addAttribute("appDeveloperShort", applicationDeveloperShort);
@@ -87,7 +76,6 @@ public class HomeController {
         model.addAttribute("activeAppProfile", activeAppProfile);
         model.addAttribute("currentUserProfile", userActiveProfileProvider);
         model.addAttribute("userProfileNotActiveList", userProfileNotActiveList);
-        model.addAttribute("usernameFromDatabaseContext", usernameFromDatabaseContext);
         model.addAttribute("menuItems", menuItems);
         model.addAttribute("contextPath", contextPath);
         model.addAttribute("appVersion", applicationVersion);

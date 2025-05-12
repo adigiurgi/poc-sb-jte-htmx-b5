@@ -29,28 +29,27 @@
 
     </div>
 
-    <div class="alert alert-info alert-dismissible fade show d-none" role="alert">
-        <strong>Felicitări!</strong> Nu aveți nici un mesaj nerezolvat!
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-
-    <div style="grid-template-columns: 1fr 1fr 1fr 1fr;" class="d-grid gap-3 mb-3" id="cardsContainer">
+    <div style="grid-template-columns: 1fr 1fr 1fr 1fr 1fr;" class="d-grid gap-3 mb-3" id="cardsContainer">
 
         @for(var userRole: userRoles)
             <div class="card text-center">
                 <div class="card-header d-flex justify-content-between">
                     <h5>${userRole.roleName()}</h5>
-                    <button type="button" class="btn btn-sm btn-outline-secondary">
+                    <button type="button" class="btn btn-sm btn-outline-secondary"
+                            hx-get="${contextPath}/partials/notifications-forms-module-card/${userRole.roleName()}"
+                            hx-target="#card-section-${userRole.roleName()}"
+                            hx-swap="outerHTML"
+                            hx-indicator="#id-indicator-${userRole.roleName()}">
                         <i class="bi bi-arrow-clockwise"></i>
                     </button>
                 </div>
                 <section id="card-section-${userRole.roleName()}"
                          hx-get="${contextPath}/partials/notifications-forms-module-card/${userRole.roleName()}"
-<%--                         hx-trigger="intersect once"--%>
-                         hx-trigger="load, refreshCard from:body"
+                        <%--                         hx-trigger="intersect once"--%>
+                         hx-trigger="load"
                          hx-swap="outerHTML">
                     <div class="card-body">
-                            <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
+                        <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
                     </div>
                     <div class="card-footer text-body-secondary">
                         Se verifica notificarile...

@@ -1,6 +1,6 @@
 package com.example.webapp.application.ports.out.database;
 
-import com.example.webapp.application.domain.models.notifications.forms.NotificationForms;
+import com.example.webapp.application.domain.models.notifications.forms.NotificationFormsForModuleDetails;
 
 import java.util.List;
 
@@ -9,11 +9,10 @@ public interface NotificationFormsDao {
 
     /**
      * Calls the stored procedure to calculate notifications for a module
-     * @param idProfile The profile ID of the connected user
+     * @param username The username of the connected user
      * @param moduleName The name of the module
-     * @return The execution time in seconds
      */
-    long calculateNotificationsForModule(Long idProfile, String moduleName);
+    void calculateNotificationsForModule(String username, String moduleName);
 
     /**
      * Counts notifications for a specific profile and module
@@ -31,5 +30,5 @@ public interface NotificationFormsDao {
      * @param moduleName The name of the module
      * @return List of notifications
      */
-    List<NotificationForms> getNotificationsByProfileAndModule(Long idProfile, String moduleName);
+    List<NotificationFormsForModuleDetails> getNotificationsByProfileAndModule(Long idProfile, String moduleName);
 }

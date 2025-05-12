@@ -1,11 +1,12 @@
 package com.example.webapp.infrastructure.config.domainimplementations;
 
 import com.example.webapp.application.domain.service.web.UserActiveProfileWebApiImplementation;
-import com.example.webapp.application.domain.service.web.UserFormsNotificationsApiImplem;
+import com.example.webapp.application.domain.service.web.NotificationFormsApiImplem;
 import com.example.webapp.application.domain.service.web.UserProfileWebApiImplementation;
 import com.example.webapp.application.ports.in.web.UserActiveProfileWebApi;
-import com.example.webapp.application.ports.in.web.UserFormsNotificationsApi;
+import com.example.webapp.application.ports.in.web.NotificationFormsApi;
 import com.example.webapp.application.ports.in.web.UserProfileWebApi;
+import com.example.webapp.application.ports.out.database.NotificationFormsDao;
 import com.example.webapp.application.ports.out.database.UserActiveProfileDao;
 import com.example.webapp.application.ports.out.database.UserProfileDao;
 import com.example.webapp.application.ports.out.database.UserRoleDao;
@@ -30,8 +31,9 @@ public class WebConfigImplementations {
     }
 
     @Bean
-    public UserFormsNotificationsApi userFormsNotificationsApi(UserRoleDao userRoleDao) {
+    public NotificationFormsApi userFormsNotificationsApi(UserRoleDao userRoleDao,
+                                                          NotificationFormsDao notificationFormsDao) {
         log.info("Creating UserFormsNotificationsApi bean");
-        return new UserFormsNotificationsApiImplem(userRoleDao);
+        return new NotificationFormsApiImplem(userRoleDao, notificationFormsDao);
     }
 }

@@ -1,13 +1,13 @@
 package com.example.webapp.application.domain.models.notifications.forms;
 
-public class NotificationForms {
+public class NotificationFormsForModuleDetails {
     private final Long id;
     private final Long idProfile;
     private final String moduleName;
     private final String tipMesaj;
     private final String textMesaj;
 
-    private NotificationForms(Long id, Long idProfile, String moduleName, String tipMesaj, String textMesaj) {
+    private NotificationFormsForModuleDetails(Long id, Long idProfile, String moduleName, String tipMesaj, String textMesaj) {
         this.id = id;
         this.idProfile = idProfile;
         this.moduleName = moduleName;
@@ -15,9 +15,9 @@ public class NotificationForms {
         this.textMesaj = textMesaj;
     }
 
-    public static NotificationForms create(Long id, Long idProfile, String moduleName, String tipMesaj,
-                                      String textMesaj) {
-        return new NotificationForms(id, idProfile, moduleName, tipMesaj, textMesaj);
+    public static NotificationFormsForModuleDetails create(Long id, Long idProfile, String moduleName, String tipMesaj,
+                                                           String textMesaj) {
+        return new NotificationFormsForModuleDetails(id, idProfile, moduleName, tipMesaj, textMesaj);
     }
 
     public boolean isFluxType() {

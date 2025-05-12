@@ -1,23 +1,21 @@
 package com.example.webapp.application.domain.models.notifications.forms;
 
-import java.time.OffsetDateTime;
-
-public class ModuleFormsNotifications {
+public class NotificationFormsForModule {
 
     private final String moduleName;
 
     private final int notificationsCount;
 
-    private final int executionTimeInSeconds;
+    private final float executionTimeInSeconds;
 
-    private ModuleFormsNotifications(String moduleName, int notificationsCount, int executionTimeInSeconds){
+    private NotificationFormsForModule(String moduleName, int notificationsCount, float executionTimeInSeconds){
         this.moduleName = moduleName;
         this.notificationsCount = notificationsCount;
         this.executionTimeInSeconds = executionTimeInSeconds;
     }
 
-    public static ModuleFormsNotifications create(String moduleName, int notificationsCount, int executionTimeInSeconds) {
-        return new ModuleFormsNotifications(moduleName, notificationsCount, executionTimeInSeconds);
+    public static NotificationFormsForModule create(String moduleName, int notificationsCount, float executionTimeInSeconds) {
+        return new NotificationFormsForModule(moduleName, notificationsCount, executionTimeInSeconds);
     }
 
     public String getModuleName() {
@@ -28,7 +26,7 @@ public class ModuleFormsNotifications {
         return notificationsCount;
     }
 
-    public int getExecutionTime() {
+    public float getExecutionTime() {
         return executionTimeInSeconds;
     }
 }
