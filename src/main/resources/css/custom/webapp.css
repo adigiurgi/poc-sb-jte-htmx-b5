@@ -120,8 +120,8 @@ body {
 }
 
 .htmx-request {
-    opacity: 0.3;
-    transition: opacity 1.5s ease-in-out;
+    opacity: 0.6;
+    transition: opacity 3s ease-in-out;
 }
 
 /* Overlay semi-opac pentru a bloca UI-ul în timpul încărcării */
@@ -166,7 +166,12 @@ button.htmx-request .bi-arrow-clockwise {
     display: block;
 }
 
-
+.offcanvas-start {
+    --bs-offcanvas-width: 1000px;
+}
+.offcanvas-top {
+    --bs-offcanvas-height: 70vh;
+}
 /* Stiluri pentru butonul de comutare a temei */
 #theme-toggle {
     width: 38px;

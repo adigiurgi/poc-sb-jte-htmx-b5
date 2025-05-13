@@ -1,5 +1,6 @@
 package com.example.webapp.infrastructure.adapters.in.web;
 
+import com.example.webapp.application.domain.models.notifications.forms.NotificationFormsCard;
 import com.example.webapp.application.domain.models.notifications.forms.NotificationFormsForModule;
 import com.example.webapp.application.ports.in.web.NotificationFormsApi;
 import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
@@ -62,17 +63,33 @@ public class PartialsController {
         //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
         log.debug("Accesare conținut parțial pentru cardul aferent modulului {}", roleName);
 
-        NotificationFormsForModule notification = notificationFormsApi.processNotificationsForModule(userActiveProfileProvider.getAuthenticatedUser(),
+//        NotificationFormsForModule notification = notificationFormsApi.processNotificationsForModule(userActiveProfileProvider.getAuthenticatedUser(),
+//                userActiveProfileProvider.getIdProfile(), roleName);
+
+        NotificationFormsCard notificationFormsCard = notificationFormsApi.processNotifications(userActiveProfileProvider.getAuthenticatedUser(),
                 userActiveProfileProvider.getIdProfile(), roleName);
 
-        model.addAttribute("notificationsCount", notification.getNotificationsCount());
-        model.addAttribute("executionDurationTimeInSeconds", notification.getExecutionTime());
+
+        model.addAttribute("notificationsCount", notificationFormsCard.getNotificationsCount());
+        model.addAttribute("executionDurationTimeInSeconds", notificationFormsCard.getExecutionDurationTimeInSeconds());
         model.addAttribute("executionTime", FORMATTER.format(OffsetDateTime.now()));
+        model.addAttribute("notificationFormsList", notificationFormsCard.getNotificationFormsList());
 
         model.addAttribute("contextPath", request.getContextPath());
         model.addAttribute("roleName", roleName);
 
         return "partials/notifications-forms-module-card";
+    }
+
+    @GetMapping("/notifications-forms-module-card-refreshed/{roleName}")
+    public String notificationsFormsModuleCardRefreshed(Model model, HttpServletRequest request, @PathVariable String roleName) throws InterruptedException {
+        //Thread.sleep(3000); // Simulăm o întârziere de 1 secundă pentru a simula un apel de rețea
+        log.debug("Accesare conținut parțial pentru cardul refreshuit aferent modulului {}", roleName);
+
+        model.addAttribute("contextPath", request.getContextPath());
+        model.addAttribute("roleName", roleName);
+
+        return "partials/notifications-forms-module-card-refreshed";
     }
 
     @GetMapping("/notifications-forms-details")

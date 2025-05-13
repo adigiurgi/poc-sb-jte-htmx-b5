@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-outline-light" onclick="refreshAllCards()">
+            <button type="button" class="btn btn-outline-secondary" onclick="refreshAllCards()">
                 Actualizeaza tot
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
@@ -36,7 +36,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h5>${userRole.roleName()}</h5>
                     <button type="button" class="btn btn-sm btn-outline-secondary" id="refreshCardBtn-${userRole.roleName()}"
-                            hx-get="${contextPath}/partials/notifications-forms-module-card/${userRole.roleName()}"
+                            hx-get="${contextPath}/partials/notifications-forms-module-card-refreshed/${userRole.roleName()}"
                             hx-target="#card-section-${userRole.roleName()}"
                             hx-swap="outerHTML">
                         <i class="bi bi-arrow-clockwise"></i>

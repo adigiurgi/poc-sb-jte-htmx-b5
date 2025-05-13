@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 @Table(name = "USER_NOTIFICATIONS_OLD")
 @Data
 @Builder
-public class NotificationForms {
+public class NotificationFormsEntity {
     @Id
     private Long id;
     private Long idProfile;
