@@ -5,6 +5,15 @@ document.body.addEventListener('htmx:afterSwap', function(event) {
     // event.target is the element that htmx swapped content into.
     // Initialize tooltips only within the newly loaded content area.
     initializeTooltips(event.target);
+    
+    // Actualizează vizibilitatea SVG loaderelor pentru conținutul nou încărcat
+    if (typeof updateSvgLoaderVisibilityForTarget === 'function') {
+        // Obține tema curentă
+        const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+        console.log("Tema curenta este: ", currentTheme);
+        // Aplică actualizarea doar pentru elementele din zona actualizată
+        updateSvgLoaderVisibilityForTarget(event.target, currentTheme);
+    }
 });
 
 //If tooltips are causing issues during swaps (e.g., lingering elements),

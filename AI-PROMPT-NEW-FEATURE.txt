@@ -1,4 +1,7 @@
 Avand in vedere contextul actualului proiect descris in fisierul README.md, codul de pana acum al proiectului, 
 precum si indicatiile de dezvoltare din fisierul AI-DEVELOPER-GUIDLINES.md te rog sa imi implementezi urmatoare functionalitate:
 
-
+Vreau ca, atunci cand  tema aplicatiei este dark, tuturor elementelor html din aplicatie (gasite in fisierele .jte) care au clasa de css "svg-loader-light" sa le fie aplicata 
+clasa de css "d-none", iar tuturor elementelor care au clasa "svg-loader-dark" sa le fie eliminata clasa "d-none". Similar, vreau ca, atunci cand  tema aplicatiei este light, 
+tuturor elementelor html din aplicatie (gasite in fisierele .jte) care au clasa de css "svg-loader-dark" sa le fie aplicata 
+clasa de css "d-none", iar tuturor elementelor care au clasa "svg-loader-light" sa le fie eliminata clasa "d-none".

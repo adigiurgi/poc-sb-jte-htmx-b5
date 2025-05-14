@@ -12,6 +12,11 @@ document.getElementById('theme-toggle').addEventListener('click', function() {
 
     // Actualizează iconița butonului
     updateThemeDetails(newTheme);
+    
+    // Actualizează vizibilitatea SVG loaderelor
+    if (typeof updateSvgLoaderVisibility === 'function') {
+        updateSvgLoaderVisibility(newTheme);
+    }
 });
 
 // Funcție pentru actualizarea iconiței butonului de schimbare a temei precum si a logo-ului în funcție de temă

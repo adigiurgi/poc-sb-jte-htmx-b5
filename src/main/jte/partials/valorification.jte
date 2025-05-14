@@ -15,40 +15,52 @@
                     <div class="container my-5">
                         <div class="row row-cols-6 g-5">
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/audio.svg" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/audio-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/audio-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/ball-triangle.svg" alt="Ball Triangle Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/ball-triangle-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/ball-triangle-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/bars-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/bars-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/circles.svg" alt="Circles Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/circles-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/circles-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/grid.svg" alt="Grid Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/grid-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/grid-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/hearts.svg" alt="Hearts Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/hearts-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/hearts-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/oval.svg" alt="Hearts Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/oval-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/oval-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/puff.svg" alt="Puff Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/puff-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/puff-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/rings.svg" alt="Rings Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/rings-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/rings-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/spinning-circles.svg" alt="Spinning Circles Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/spinning-circles-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/spinning-circles-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/tail-spin.svg" alt="Puff Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/tail-spin-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/tail-spin-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                             <div class="col">
-                                <img src="${contextPath}/static/svg-loaders/three-dots.svg" alt="Puff Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/three-dots-light.svg" class="svg-loader-light" alt="Audio Loader" width="40" height="40">
+                                <img src="${contextPath}/static/svg-loaders/three-dots-dark.svg" class="svg-loader-dark d-none" alt="Audio Loader" width="40" height="40">
                             </div>
                         </div>
                     </div>

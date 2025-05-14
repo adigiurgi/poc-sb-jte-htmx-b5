@@ -51,9 +51,8 @@
             <hr>
             <a href="${contextPath}/" class="btn btn-primary">Înapoi la pagina principală</a>
         </div>
-    </div>
-
-    <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min-5.3.5.js"></script>
+    </div>    <script src="${contextPath}/js/vendor/bootstrap/bootstrap.bundle.min-5.3.5.js"></script>
+    <script src="${contextPath}/js/custom/general/svgLoaderThemeHandler.js"></script>
     <script>
         // Detectează tema curentă și aplică-o la încărcare
         document.addEventListener('DOMContentLoaded', function() {
@@ -61,6 +60,11 @@
             const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const theme = savedTheme || (prefersDarkScheme ? 'dark' : 'light');
             document.documentElement.setAttribute('data-bs-theme', theme);
+            
+            // Actualizează vizibilitatea SVG loaderelor
+            if (typeof updateSvgLoaderVisibility === 'function') {
+                updateSvgLoaderVisibility(theme);
+            }
         });
     </script>
 </body>

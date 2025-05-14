@@ -11,4 +11,9 @@ function initializeTheme() {
 
     // Actualizează iconița butonului
     updateThemeDetails(theme);
+    
+    // Actualizează vizibilitatea SVG loaderelor
+    if (typeof updateSvgLoaderVisibility === 'function') {
+        updateSvgLoaderVisibility(theme);
+    }
 }
