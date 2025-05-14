@@ -1,6 +1,6 @@
 package com.example.webapp.infrastructure.config.security.profile;
 
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfileEntity;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.users.UserActiveProfileEntity;
 import com.example.webapp.infrastructure.config.security.user.UserProvider;
 import lombok.*;
 import org.springframework.context.annotation.ScopedProxyMode;

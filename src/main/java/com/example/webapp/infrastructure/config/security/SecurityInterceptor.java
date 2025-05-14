@@ -1,13 +1,13 @@
 package com.example.webapp.infrastructure.config.security;
 
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserActiveProfileEntity;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserActiveProfileRepository;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserAppRepository;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserProfileRepository;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.UserRoleRepository;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserAppEntity;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserProfileEntity;
-import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.UserRoleEntity;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.users.UserActiveProfileEntity;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.users.UserActiveProfileRepository;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.users.UserAppRepository;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.users.UserProfileRepository;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.users.UserRoleRepository;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.users.UserAppEntity;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.users.UserProfileEntity;
+import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.entities.users.UserRoleEntity;
 import com.example.webapp.infrastructure.config.security.profile.UserActiveProfileProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
