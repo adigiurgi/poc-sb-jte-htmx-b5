@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Loader Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .svg-test-group {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .svg-loader {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        [data-bs-theme="dark"] {
+            background-color: #212529;
+            color: #f8f9fa;
+        }
+        
+        [data-bs-theme="dark"] .svg-test-group {
+            border-color: #495057;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4">Test de vizibilitate SVG Loader</h1>
+        <button id="toggle-theme" class="btn btn-primary mb-4">Schimbă tema</button>
+        
+        <div class="svg-test-group">
+            <h3>Loader pentru tema light</h3>
+            <p>Acest loader ar trebui să fie vizibil doar în tema light</p>
+            <div class="svg-loader svg-loader-light">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="6" x2="12" y2="12"></line>
+                    <line x1="12" y1="12" x2="16" y2="16"></line>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="svg-test-group">
+            <h3>Loader pentru tema dark</h3>
+            <p>Acest loader ar trebui să fie vizibil doar în tema dark</p>
+            <div class="svg-loader svg-loader-dark d-none">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="6" x2="12" y2="12"></line>
+                    <line x1="12" y1="12" x2="16" y2="16"></line>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="svg-test-group">
+            <h3>Test HTMX</h3>
+            <p>Secțiune pentru testarea încărcării conținutului dinamic cu HTMX</p>
+            <button id="load-dynamic" class="btn btn-secondary mb-3">Încarcă conținut dinamic</button>
+            <div id="dynamic-content"></div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Importăm codul din svgLoaderThemeHandler.js
+        function updateSvgLoaderVisibility(theme) {
+            // Aplică pentru întregul document
+            updateSvgLoaderVisibilityForTarget(document, theme);
+        }
+
+        function updateSvgLoaderVisibilityForTarget(container, theme) {
+            // Selectează toate elementele cu clasele svg-loader-light și svg-loader-dark din container
+            const lightLoaders = container.querySelectorAll('.svg-loader-light');
+            const darkLoaders = container.querySelectorAll('.svg-loader-dark');
+
+            if (theme === 'dark') {
+                // În modul dark, ascunde elementele light și arată elementele dark
+                lightLoaders.forEach(element => element.classList.add('d-none'));
+                darkLoaders.forEach(element => element.classList.remove('d-none'));
+            } else {
+                // În modul light, arată elementele light și ascunde elementele dark
+                lightLoaders.forEach(element => element.classList.remove('d-none'));
+                darkLoaders.forEach(element => element.classList.add('d-none'));
+            }
+
+            console.log(`Actualizat vizibilitatea pentru ${lightLoaders.length} svg-loader-light și ${darkLoaders.length} svg-loader-dark în container cu tema: ${theme}`);
+        }
+        
+        // Toggle theme functionality
+        const toggleThemeBtn = document.getElementById('toggle-theme');
+        let currentTheme = 'light';
+        
+        toggleThemeBtn.addEventListener('click', function() {
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', currentTheme);
+            updateSvgLoaderVisibility(currentTheme);
+            console.log(`Tema schimbată la: ${currentTheme}`);
+        });
+        
+        // Load dynamic content button
+        document.getElementById('load-dynamic').addEventListener('click', function() {
+            const dynamicContent = document.getElementById('dynamic-content');
+            
+            // Create dynamic content with SVG loaders
+            const html = `
+                <div class="alert alert-success mt-3">
+                    <h4>Conținut încărcat cu succes!</h4>
+                    <p>Mai jos sunt loaderele pentru ambele teme:</p>
+                    
+                    <div class="svg-loader svg-loader-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12"></line>
+                            <line x1="12" y1="12" x2="16" y2="16"></line>
+                        </svg>
+                    </div>
+                    
+                    <div class="svg-loader svg-loader-dark d-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12"></line>
+                            <line x1="12" y1="12" x2="16" y2="16"></line>
+                        </svg>
+                    </div>
+                </div>
+            `;
+            
+            dynamicContent.innerHTML = html;
+            
+            // Simulate HTMX afterSwap event
+            updateSvgLoaderVisibilityForTarget(dynamicContent, currentTheme);
+            console.log("Conținut dinamic încărcat și actualizat pentru tema:", currentTheme);
+        });
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSvgLoaderVisibility(currentTheme);
+        });
+    </script>
+</body>
+</html>

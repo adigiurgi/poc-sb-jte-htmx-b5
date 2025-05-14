@@ -21,7 +21,7 @@
             </div>
         </div>
         <div class="col-md-6">
-            <button type="button" class="btn btn-outline-light" onclick="refreshAllCards()">
+            <button type="button" class="btn btn-outline-secondary" onclick="refreshAllCards()">
                 Actualizeaza tot
                 <i class="bi bi-arrow-clockwise"></i>
             </button>
@@ -36,11 +36,12 @@
                 <div class="card-header d-flex justify-content-between">
                     <h5>${userRole.roleName()}</h5>
                     <button type="button" class="btn btn-sm btn-outline-secondary" id="refreshCardBtn-${userRole.roleName()}"
-                            hx-get="${contextPath}/partials/notifications-forms-module-card/${userRole.roleName()}"
+                            hx-get="${contextPath}/partials/notifications-forms-module-card-refreshed/${userRole.roleName()}"
                             hx-target="#card-section-${userRole.roleName()}"
                             hx-swap="outerHTML">
                         <i class="bi bi-arrow-clockwise"></i>
-                        <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" class="button-indicator" width="20" height="20">
+                        <img src="${contextPath}/static/svg-loaders/bars-light.svg" alt="Bars Loader" class="button-indicator svg-loader-light" width="20" height="20">
+                        <img src="${contextPath}/static/svg-loaders/bars-dark.svg" alt="Bars Loader" class="button-indicator svg-loader-dark d-none" width="20" height="20">
                     </button>
                 </div>
                 <section id="card-section-${userRole.roleName()}"
@@ -49,7 +50,8 @@
                          hx-trigger="load"
                          hx-swap="outerHTML">
                     <div class="card-body">
-                        <img src="${contextPath}/static/svg-loaders/bars.svg" alt="Bars Loader" width="40" height="40">
+                        <img src="${contextPath}/static/svg-loaders/bars-light.svg" class="svg-loader-light" alt="Bars Loader" width="40" height="40">
+                        <img src="${contextPath}/static/svg-loaders/bars-dark.svg" class="svg-loader-dark d-none" alt="Bars Loader" width="40" height="40">
                     </div>
                     <div class="card-footer text-body-secondary">
                         Se verifica notificarile...

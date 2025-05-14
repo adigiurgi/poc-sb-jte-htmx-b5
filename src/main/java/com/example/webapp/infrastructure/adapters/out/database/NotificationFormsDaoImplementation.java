@@ -1,5 +1,6 @@
 package com.example.webapp.infrastructure.adapters.out.database;
 
+import com.example.webapp.application.domain.models.notifications.forms.NotificationForms;
 import com.example.webapp.application.domain.models.notifications.forms.NotificationFormsForModuleDetails;
 import com.example.webapp.application.ports.out.database.NotificationFormsDao;
 import com.example.webapp.infrastructure.adapters.out.database.oracle.jdbc.repositories.NotificationFormsRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class NotificationFormsDaoImplementation implements NotificationFormsDao 
 
     @Override
     public void calculateNotificationsForModule(String username, String moduleName) {
-        switch(moduleName) {
+        switch (moduleName) {
             case "MODUL-A" -> {
                 notificationsFormsProcedureRepository.processNotificationsForModuleA(username);
             }
@@ -41,11 +43,24 @@ public class NotificationFormsDaoImplementation implements NotificationFormsDao 
 
     @Override
     public int countNotificationsByProfileAndModule(Long idProfile, String moduleName) {
-        return notificationFormsRepository.countByIdProfileAndModuleName(idProfile,moduleName);
+        return notificationFormsRepository.countByIdProfileAndModuleName(idProfile, moduleName);
     }
 
     @Override
     public List<NotificationFormsForModuleDetails> getNotificationsByProfileAndModule(Long idProfile, String moduleName) {
         return null;
+    }
+
+    @Override
+    public List<NotificationForms> getNotificationFormsByProfileAndModule(Long idProfile, String moduleName) {
+        return notificationFormsRepository.findByIdProfileAndModuleName(idProfile, moduleName)
+                .stream()
+                .map(notificationFormsEntity ->
+                        NotificationForms.create(notificationFormsEntity.getId(),
+                                notificationFormsEntity.getIdProfile(),
+                                notificationFormsEntity.getModuleName(),
+                                notificationFormsEntity.getTipMesaj(),
+                                notificationFormsEntity.getTextMesaj())).
+                toList();
     }
 }

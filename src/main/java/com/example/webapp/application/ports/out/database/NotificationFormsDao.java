@@ -1,5 +1,6 @@
 package com.example.webapp.application.ports.out.database;
 
+import com.example.webapp.application.domain.models.notifications.forms.NotificationForms;
 import com.example.webapp.application.domain.models.notifications.forms.NotificationFormsForModuleDetails;
 
 import java.util.List;
@@ -31,4 +32,13 @@ public interface NotificationFormsDao {
      * @return List of notifications
      */
     List<NotificationFormsForModuleDetails> getNotificationsByProfileAndModule(Long idProfile, String moduleName);
+
+    /**
+     * Retrieves notifications for a specific profile and module
+     *
+     * @param idProfile The profile ID
+     * @param moduleName The name of the module
+     * @return List of notifications
+     */
+    List<NotificationForms> getNotificationFormsByProfileAndModule(Long idProfile, String moduleName);
 }

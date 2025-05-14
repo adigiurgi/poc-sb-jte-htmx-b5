@@ -228,6 +228,7 @@
 @endif
 <script src="${contextPath}/js/custom/general/tooltipInitialisation.js"></script>
 <script src="${contextPath}/js/custom/general/domLoad.js"></script>
+<script src="${contextPath}/js/custom/general/svgLoaderThemeHandler.js"></script>
 <script src="${contextPath}/js/custom/general/onAnyPartialSwap.js"></script>
 <script src="${contextPath}/js/custom/general/navBarActivation.js"></script>
 <script src="${contextPath}/js/custom/general/themeToggling.js"></script>

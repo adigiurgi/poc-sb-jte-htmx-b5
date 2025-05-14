@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Loader Test</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .svg-container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12">
+                <h2>SVG Loader Theme Testing</h2>
+                <button id="theme-toggle" class="btn btn-primary mb-3">Toggle Theme</button>
+                
+                <div class="theme-toggle-light">Current Theme: Light</div>
+                <div class="theme-toggle-dark d-none">Current Theme: Dark</div>
+                
+                <div class="svg-container">
+                    <h4>Light Theme Loader (Should be visible in light mode)</h4>
+                    <div class="svg-loader-light">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12"></line>
+                            <line x1="12" y1="12" x2="16" y2="16"></line>
+                        </svg>
+                    </div>
+                </div>
+                
+                <div class="svg-container">
+                    <h4>Dark Theme Loader (Should be visible in dark mode)</h4>
+                    <div class="svg-loader-dark d-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" stroke="#ffffff"></circle>
+                            <line x1="12" y1="6" x2="12" y2="12" stroke="#ffffff"></line>
+                            <line x1="12" y1="12" x2="16" y2="16" stroke="#ffffff"></line>
+                        </svg>
+                    </div>
+                </div>
+                
+                <hr>
+                
+                <div id="htmx-test-area" class="mt-4 p-3 bg-light">
+                    <h4>HTMX Swap Test Area</h4>
+                    <button 
+                        class="btn btn-secondary"
+                        hx-get="/test-partial-svg"
+                        hx-trigger="click"
+                        hx-target="#htmx-content"
+                        hx-swap="innerHTML">
+                        Load Test Content
+                    </button>
+                    <div id="htmx-content" class="mt-3 p-3 border">
+                        Content will load here via HTMX
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap and other scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4/dist/htmx.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script>
+        // Funcție pentru actualizarea iconiței butonului
+        function updateThemeDetails(theme) {
+            const lightToggle = document.querySelector('.theme-toggle-light');
+            const darkToggle = document.querySelector('.theme-toggle-dark');
+            
+            if (theme === 'dark') {
+                lightToggle.classList.add('d-none');
+                darkToggle.classList.remove('d-none');
+            } else {
+                lightToggle.classList.remove('d-none');
+                darkToggle.classList.add('d-none');
+            }
+        }
+        
+        // Funcțiile pentru managementul SVG loaderelor
+        function updateSvgLoaderVisibility(theme) {
+            const lightLoaders = document.querySelectorAll('.svg-loader-light');
+            const darkLoaders = document.querySelectorAll('.svg-loader-dark');
+            
+            if (theme === 'dark') {
+                lightLoaders.forEach(loader => loader.classList.add('d-none'));
+                darkLoaders.forEach(loader => loader.classList.remove('d-none'));
+            } else {
+                darkLoaders.forEach(loader => loader.classList.add('d-none'));
+                lightLoaders.forEach(loader => loader.classList.remove('d-none'));
+            }
+            
+            console.log(`Updated SVG loaders visibility for ${theme} theme: ${lightLoaders.length} light loaders, ${darkLoaders.length} dark loaders`);
+        }
+        
+        function updateSvgLoaderVisibilityForTarget(target, theme) {
+            const lightLoaders = target.querySelectorAll('.svg-loader-light');
+            const darkLoaders = target.querySelectorAll('.svg-loader-dark');
+            
+            if (theme === 'dark') {
+                lightLoaders.forEach(loader => loader.classList.add('d-none'));
+                darkLoaders.forEach(loader => loader.classList.remove('d-none'));
+            } else {
+                darkLoaders.forEach(loader => loader.classList.add('d-none'));
+                lightLoaders.forEach(loader => loader.classList.remove('d-none'));
+            }
+            
+            console.log(`Updated SVG loaders visibility in target for ${theme} theme: ${lightLoaders.length} light loaders, ${darkLoaders.length} dark loaders`);
+        }
+        
+        // Toggle theme function
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            const htmlElement = document.documentElement;
+            const isCurrentlyDark = htmlElement.getAttribute('data-bs-theme') === 'dark';
+            const newTheme = isCurrentlyDark ? 'light' : 'dark';
+            
+            htmlElement.setAttribute('data-bs-theme', newTheme);
+            updateThemeDetails(newTheme);
+            updateSvgLoaderVisibility(newTheme);
+        });
+        
+        // Initialize tooltips function (mock for test)
+        function initializeTooltips(target) {
+            console.log("Initializing tooltips for:", target);
+        }
+        
+        // Handle HTMX after swap
+        document.body.addEventListener('htmx:afterSwap', function(event) {
+            console.log("htmx:afterSwap triggered on target:", event.target);
+            initializeTooltips(event.target);
+            
+            const currentTheme = document.documentElement.getAttribute('data-bs-theme');
+            updateSvgLoaderVisibilityForTarget(event.target, currentTheme);
+        });
+        
+        // Initialize theme on page load
+        function initializeTheme() {
+            const theme = document.documentElement.getAttribute('data-bs-theme') || 'light';
+            updateThemeDetails(theme);
+            updateSvgLoaderVisibility(theme);
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTheme();
+        });
+        
+        // Mock for HTMX request
+        document.querySelector('button[hx-get]').addEventListener('click', function(e) {
+            e.preventDefault();
+            setTimeout(() => {
+                const content = `
+                    <div>
+                        <h5>Dynamic Content Loaded</h5>
+                        <div class="svg-loader-light">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="6" x2="12" y2="12"></line>
+                                <line x1="12" y1="12" x2="16" y2="16"></line>
+                            </svg>
+                        </div>
+                        <div class="svg-loader-dark d-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" stroke="#ffffff"></circle>
+                                <line x1="12" y1="6" x2="12" y2="12" stroke="#ffffff"></line>
+                                <line x1="12" y1="12" x2="16" y2="16" stroke="#ffffff"></line>
+                            </svg>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('htmx-content').innerHTML = content;
+                const event = new CustomEvent('htmx:afterSwap', { 
+                    detail: {}, 
+                    bubbles: true, 
+                    cancelable: true 
+                });
+                document.getElementById('htmx-content').dispatchEvent(event);
+            }, 500);
+        });
+    </script>
+</body>
+</html>
